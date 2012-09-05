@@ -317,11 +317,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UploadLocalization.zh-CN.resx</DependentUpon>
     </Compile>
+    <Compile Include="Areas\Administrativa\AdministrativaAreaRegistration.cs" />
+    <Compile Include="Areas\UsuarioComum\UsuarioComumAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AutenticacaoLinkedin.cs" />
+    <Compile Include="Models\Administrador.cs" />
+    <Compile Include="Models\CandidatoVaga.cs" />
+    <Compile Include="Models\Context\ContextoDadosNH.cs" />
+    <Compile Include="Models\Context\IContextoDados.cs" />
+    <Compile Include="Models\OAuthBase.cs" />
+    <Compile Include="Models\OAuthLinkedIn.cs" />
+    <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\Vaga.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -627,7 +636,12 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\Context\" />
+    <Folder Include="Areas\Administrativa\Controllers\" />
+    <Folder Include="Areas\Administrativa\Models\" />
+    <Folder Include="Areas\Administrativa\Views\Shared\" />
+    <Folder Include="Areas\UsuarioComum\Controllers\" />
+    <Folder Include="Areas\UsuarioComum\Models\" />
+    <Folder Include="Areas\UsuarioComum\Views\Shared\" />
     <Folder Include="Models\Mappings\" />
   </ItemGroup>
   <ItemGroup>
@@ -860,6 +874,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Administrativa\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\UsuarioComum\Views\Web.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
