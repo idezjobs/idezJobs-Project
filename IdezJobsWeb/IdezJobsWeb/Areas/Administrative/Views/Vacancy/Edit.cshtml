@@ -1,0 +1,73 @@
+﻿@model IdezJobsWeb.Models.Vacancy
+
+@{
+    ViewBag.Title = "Editar Vaga"; 
+    Layout = "~/Areas/Administrative/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Editar Vaga:</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Vacancy</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RegistrionDate, "Data Registro:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RegistrionDate)
+            @Html.ValidationMessageFor(model => model.RegistrionDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RegistrationDeadline,"Data Limite Cadastro:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RegistrationDeadline)
+            @Html.ValidationMessageFor(model => model.RegistrationDeadline)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description, "Descrição:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CompanyName, "Nome Empresa:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CompanyName)
+            @Html.ValidationMessageFor(model => model.CompanyName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.JobsNumber, "Número de Vagas:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.JobsNumber)
+            @Html.ValidationMessageFor(model => model.JobsNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ProfileJobs, "Perfil Vaga:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ProfileJobs)
+            @Html.ValidationMessageFor(model => model.ProfileJobs)
+        </div>
+
+        <p>
+            <input type="submit" value="Salvar" id="ButtonEditVacancy" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Index", "Index")
+</div>

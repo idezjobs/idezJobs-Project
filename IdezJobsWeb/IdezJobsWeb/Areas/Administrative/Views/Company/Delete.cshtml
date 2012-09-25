@@ -1,0 +1,52 @@
+﻿@model IdezJobsWeb.Models.Company
+@{
+	ViewBag.Title = "Delete";
+	Layout = "~/Areas/Administrative/Views/Shared/_Layout.cshtml";
+}
+<h2>
+	Delete</h2>
+<h3>
+	Você tem certeza que deseja excluir esse registro?</h3>
+@using (Html.BeginForm( ))
+{
+	<fieldset>
+		<legend>Empresa</legend>
+		@Html.HiddenFor(model => model.Id)
+		<div class="display-label">
+			Nome:</div>
+		<div class="display-field">
+			@Html.DisplayFor(model => model.Name)
+		</div>
+		<div class="display-label">
+			Email:</div>
+		<div class="display-field">
+			@Html.DisplayFor(model => model.Email)
+		</div>
+		<div class="display-label">
+			Endereço:</div>
+		<div class="display-field">
+			@Html.DisplayFor(model => model.Address)
+		</div>
+		<div class="display-label">
+			Bairro:</div>
+		<div class="display-field">
+			@Html.DisplayFor(model => model.Neighborhood)
+		</div>
+		<div class="display-label">
+			Cidade:</div>
+		<div class="display-field">
+			@Html.DisplayFor(model => model.City)
+		</div>
+		<div class="display-label">
+			Estado:</div>
+		<div class="display-field">
+			@Html.DisplayFor(model => model.State)
+		</div>
+	</fieldset>
+
+	<p>
+		<input type="submit" value="Delete" id="ButtonDeleteCompany" />
+		|
+		@Html.ActionLink("Index", "Index")
+	</p>
+}
