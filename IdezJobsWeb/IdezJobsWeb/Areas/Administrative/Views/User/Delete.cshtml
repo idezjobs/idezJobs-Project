@@ -1,0 +1,47 @@
+﻿@model IdezJobsWeb.Models.User
+@{
+	ViewBag.Title = "Delete";
+	Layout = "~/Areas/Administrative/Views/Shared/_Layout.cshtml";
+}
+<h2>
+	Delete Usuário: @Model.Name</h2>
+<h3>
+	Você tem certeza que deseja excluir esse registro?</h3>
+@using (Html.BeginForm( ))
+{
+	<fieldset>
+		<legend>User</legend>
+		@Html.HiddenFor(model => model.Id)
+		<div class="display-label">
+			Name</div>
+		<div class="display-field">
+			@Html.DisplayFor(model => model.Name)
+		</div>
+		<div class="display-label">
+			Type</div>
+		<div class="display-field">
+			@Html.DisplayFor(model => model.Type)
+		</div>
+		<div class="display-label">
+			Email</div>
+		<div class="display-field">
+			@Html.DisplayFor(model => model.Email)
+		</div>
+		<div class="display-label">
+			DateRegister</div>
+		<div class="display-field">
+			@Html.DisplayFor(model => model.DateRegister)
+		</div>
+		<div class="display-label">
+			Token</div>
+		<div class="display-field">
+			@Html.DisplayFor(model => model.Token)
+		</div>
+	</fieldset>
+
+	<p>
+		<input type="submit" value="Delete" />
+		|
+		@Html.ActionLink("Index", "Index")
+	</p>
+}

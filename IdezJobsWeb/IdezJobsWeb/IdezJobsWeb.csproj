@@ -34,52 +34,52 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DotNetOpenAuth.Core">
+    <Reference Include="DotNetOpenAuth.Core, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetOpenAuth.Core.4.1.0.12182\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.Core.UI">
+    <Reference Include="DotNetOpenAuth.Core.UI, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetOpenAuth.Core.UI.4.1.0.12182\lib\net40-full\DotNetOpenAuth.Core.UI.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.InfoCard">
+    <Reference Include="DotNetOpenAuth.InfoCard, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetOpenAuth.InfoCard.4.1.0.12182\lib\net40-full\DotNetOpenAuth.InfoCard.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.InfoCard.UI">
+    <Reference Include="DotNetOpenAuth.InfoCard.UI, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetOpenAuth.InfoCard.UI.4.1.0.12182\lib\net40-full\DotNetOpenAuth.InfoCard.UI.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.OAuth">
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.1.0.12182\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.OAuth.Common">
+    <Reference Include="DotNetOpenAuth.OAuth.Common, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetOpenAuth.OAuth.Common.4.1.0.12182\lib\net40-full\DotNetOpenAuth.OAuth.Common.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.OAuth.Consumer">
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.1.0.12182\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.OAuth.ServiceProvider">
+    <Reference Include="DotNetOpenAuth.OAuth.ServiceProvider, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetOpenAuth.OAuth.ServiceProvider.4.1.0.12182\lib\net40-full\DotNetOpenAuth.OAuth.ServiceProvider.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.OpenId">
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.1.0.12182\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.OpenId.Provider">
+    <Reference Include="DotNetOpenAuth.OpenId.Provider, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetOpenAuth.OpenId.Provider.4.1.0.12182\lib\net40-full\DotNetOpenAuth.OpenId.Provider.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.OpenId.Provider.UI">
+    <Reference Include="DotNetOpenAuth.OpenId.Provider.UI, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetOpenAuth.OpenId.Provider.UI.4.1.0.12182\lib\net40-full\DotNetOpenAuth.OpenId.Provider.UI.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty">
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.1.0.12182\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty.UI">
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty.UI, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.UI.4.1.0.12182\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.UI.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.OpenId.UI">
+    <Reference Include="DotNetOpenAuth.OpenId.UI, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.UI.4.1.0.12182\lib\net40-full\DotNetOpenAuth.OpenId.UI.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.OpenIdInfoCard.UI">
+    <Reference Include="DotNetOpenAuth.OpenIdInfoCard.UI, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetOpenAuth.OpenIdInfoCard.UI.4.1.0.12182\lib\net40-full\DotNetOpenAuth.OpenIdInfoCard.UI.dll</HintPath>
     </Reference>
-    <Reference Include="DotNetOpenAuth.OpenIdOAuth">
+    <Reference Include="DotNetOpenAuth.OpenIdOAuth, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetOpenAuth.OpenIdOAuth.4.1.0.12182\lib\net40-full\DotNetOpenAuth.OpenIdOAuth.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -89,8 +89,14 @@
     <Reference Include="FluentNHibernate">
       <HintPath>..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="Hammock">
+      <HintPath>..\packages\Hammock.1.3.0\lib\net40\Hammock.dll</HintPath>
+    </Reference>
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="LinkedIn.OAuth">
+      <HintPath>..\packages\LinkedIn.OAuth.0.6.1\lib\LinkedIn.OAuth.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Security">
       <HintPath>..\packages\Npgsql.2.0.11\lib\Net40\Mono.Security.dll</HintPath>
@@ -106,6 +112,7 @@
     </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.Helpers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.CSharp" />
@@ -118,6 +125,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.WebPages.Razor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -317,23 +325,90 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UploadLocalization.zh-CN.resx</DependentUpon>
     </Compile>
-    <Compile Include="Areas\Administrativa\AdministrativaAreaRegistration.cs" />
-    <Compile Include="Areas\UsuarioComum\UsuarioComumAreaRegistration.cs" />
+    <Compile Include="Areas\Administrative\AdministrativeAreaRegistration.cs" />
+    <Compile Include="Areas\Administrative\Controllers\CompanyController.cs" />
+    <Compile Include="Areas\Administrative\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administrative\Controllers\UserController.cs" />
+    <Compile Include="Areas\Administrative\Controllers\VacancyController.cs" />
+    <Compile Include="Areas\Business\BusinessAreaRegistration.cs" />
+    <Compile Include="Areas\Business\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Business\Controllers\VacancyController.cs" />
+    <Compile Include="Areas\CommonUser\CommonUserAreaRegistration.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Administrador.cs" />
-    <Compile Include="Models\CandidatoVaga.cs" />
-    <Compile Include="Models\Context\ContextoDadosNH.cs" />
-    <Compile Include="Models\Context\IContextoDados.cs" />
-    <Compile Include="Models\OAuthBase.cs" />
-    <Compile Include="Models\OAuthLinkedIn.cs" />
-    <Compile Include="Models\Usuario.cs" />
-    <Compile Include="Models\Vaga.cs" />
+    <Compile Include="Models\Administrator.cs" />
+    <Compile Include="Models\Company.cs" />
+    <Compile Include="Models\Context\ContextDataNH.cs" />
+    <Compile Include="Models\Context\IContextData.cs" />
+    <Compile Include="Models\DownloadCurriculum.cs" />
+    <Compile Include="Models\JobCandidate.cs" />
+    <Compile Include="Models\Mappings\AdministratorMap.cs" />
+    <Compile Include="Models\Mappings\CompanyMap.cs" />
+    <Compile Include="Models\Mappings\DownloadCurriculumMap.cs" />
+    <Compile Include="Models\Mappings\JobCandidateMap.cs" />
+    <Compile Include="Models\Mappings\ShowProfileMap.cs" />
+    <Compile Include="Models\Mappings\UserMap.cs" />
+    <Compile Include="Models\Mappings\VacancyMap.cs" />
+    <Compile Include="Models\ShowProfile.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\Vacancy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\DotNetOpenAuth.Core.dll" />
+    <Content Include="bin\DotNetOpenAuth.Core.UI.dll" />
+    <Content Include="bin\DotNetOpenAuth.Core.UI.xml" />
+    <Content Include="bin\DotNetOpenAuth.Core.xml" />
+    <Content Include="bin\DotNetOpenAuth.InfoCard.dll" />
+    <Content Include="bin\DotNetOpenAuth.InfoCard.UI.dll" />
+    <Content Include="bin\DotNetOpenAuth.InfoCard.UI.xml" />
+    <Content Include="bin\DotNetOpenAuth.InfoCard.xml" />
+    <Content Include="bin\DotNetOpenAuth.OAuth.Common.dll" />
+    <Content Include="bin\DotNetOpenAuth.OAuth.Common.xml" />
+    <Content Include="bin\DotNetOpenAuth.OAuth.Consumer.dll" />
+    <Content Include="bin\DotNetOpenAuth.OAuth.Consumer.xml" />
+    <Content Include="bin\DotNetOpenAuth.OAuth.dll" />
+    <Content Include="bin\DotNetOpenAuth.OAuth.ServiceProvider.dll" />
+    <Content Include="bin\DotNetOpenAuth.OAuth.ServiceProvider.xml" />
+    <Content Include="bin\DotNetOpenAuth.OAuth.xml" />
+    <Content Include="bin\DotNetOpenAuth.OpenId.dll" />
+    <Content Include="bin\DotNetOpenAuth.OpenId.Provider.dll" />
+    <Content Include="bin\DotNetOpenAuth.OpenId.Provider.UI.dll" />
+    <Content Include="bin\DotNetOpenAuth.OpenId.Provider.UI.xml" />
+    <Content Include="bin\DotNetOpenAuth.OpenId.Provider.xml" />
+    <Content Include="bin\DotNetOpenAuth.OpenId.RelyingParty.dll" />
+    <Content Include="bin\DotNetOpenAuth.OpenId.RelyingParty.UI.dll" />
+    <Content Include="bin\DotNetOpenAuth.OpenId.RelyingParty.UI.xml" />
+    <Content Include="bin\DotNetOpenAuth.OpenId.RelyingParty.xml" />
+    <Content Include="bin\DotNetOpenAuth.OpenId.UI.dll" />
+    <Content Include="bin\DotNetOpenAuth.OpenId.UI.xml" />
+    <Content Include="bin\DotNetOpenAuth.OpenId.xml" />
+    <Content Include="bin\DotNetOpenAuth.OpenIdInfoCard.UI.dll" />
+    <Content Include="bin\DotNetOpenAuth.OpenIdInfoCard.UI.xml" />
+    <Content Include="bin\DotNetOpenAuth.OpenIdOAuth.dll" />
+    <Content Include="bin\DotNetOpenAuth.OpenIdOAuth.xml" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\FluentNHibernate.dll" />
+    <Content Include="bin\FluentNHibernate.xml" />
+    <Content Include="bin\IdezJobsWeb.dll" />
+    <Content Include="bin\IdezJobsWeb.pdb" />
+    <Content Include="bin\Iesi.Collections.dll" />
+    <Content Include="bin\Iesi.Collections.xml" />
+    <Content Include="bin\Mono.Math.dll" />
+    <Content Include="bin\Mono.Math.xml" />
+    <Content Include="bin\Mono.Security.dll" />
+    <Content Include="bin\NauckIT.PostgreSQLProvider.dll" />
+    <Content Include="bin\NHibernate.dll" />
+    <Content Include="bin\NHibernate.xml" />
+    <Content Include="bin\Npgsql.dll" />
+    <Content Include="bin\Npgsql.xml" />
+    <Content Include="bin\Org.Mentalis.Security.Cryptography.dll" />
+    <Content Include="bin\Org.Mentalis.Security.Cryptography.xml" />
+    <Content Include="bin\Telerik.Web.Mvc.dll" />
     <Content Include="Content\2012.1.214\Black\editor.png" />
     <Content Include="Content\2012.1.214\Black\imagebrowser.png" />
     <Content Include="Content\2012.1.214\Black\loading.gif" />
@@ -569,6 +644,47 @@
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="LinkedIn.OAuth.Delete.When.ReadMe.txt" />
+    <Content Include="obj\Debug\IdezJobsWeb.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\IdezJobsWeb.dll" />
+    <Content Include="obj\Debug\IdezJobsWeb.pdb" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.EditorLocalization.bg-BG.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.EditorLocalization.da-DK.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.EditorLocalization.de-DE.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.EditorLocalization.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.EditorLocalization.en-US.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.EditorLocalization.fr-FR.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.EditorLocalization.nl-NL.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.EditorLocalization.pl-PL.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.EditorLocalization.pt-BR.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.EditorLocalization.pt-PT.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.EditorLocalization.ru-RU.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.EditorLocalization.uk-UA.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.EditorLocalization.zh-CN.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.GridLocalization.bg-BG.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.GridLocalization.da-DK.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.GridLocalization.de-DE.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.GridLocalization.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.GridLocalization.en-US.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.GridLocalization.es-ES.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.GridLocalization.fr-FR.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.GridLocalization.nl-NL.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.GridLocalization.pl-PL.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.GridLocalization.pt-BR.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.GridLocalization.pt-PT.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.GridLocalization.ru-RU.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.GridLocalization.uk-UA.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.GridLocalization.zh-CN.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.UploadLocalization.bg-BG.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.UploadLocalization.da-DK.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.UploadLocalization.en-US.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.UploadLocalization.fr-FR.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.UploadLocalization.nl-NL.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.UploadLocalization.pl-PL.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.UploadLocalization.pt-BR.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.UploadLocalization.pt-PT.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.UploadLocalization.ru-RU.designer.cs.dll" />
+    <Content Include="obj\Debug\TempPE\App_GlobalResources.UploadLocalization.zh-CN.designer.cs.dll" />
     <Content Include="Scripts\2012.1.214\jquery-1.7.1.min.js" />
     <Content Include="Scripts\2012.1.214\jquery.validate.min.js" />
     <Content Include="Scripts\2012.1.214\telerik.all.min.js" />
@@ -630,22 +746,104 @@
     <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Administrativa\Controllers\" />
-    <Folder Include="Areas\Administrativa\Models\" />
-    <Folder Include="Areas\Administrativa\Views\Shared\" />
-    <Folder Include="Areas\UsuarioComum\Controllers\" />
-    <Folder Include="Areas\UsuarioComum\Models\" />
-    <Folder Include="Areas\UsuarioComum\Views\Shared\" />
-    <Folder Include="Models\Mappings\" />
+    <Folder Include="Areas\Administrative\Models\" />
+    <Folder Include="Areas\Business\Models\" />
+    <Folder Include="Areas\CommonUser\Controllers\" />
+    <Folder Include="Areas\CommonUser\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Administrative\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\CommonUser\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Business\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Business\Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Business\Views\Shared\_LogOnPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Business\Views\Shared\Error.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Business\Views\Vacancy\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Administrative\Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Administrative\Views\Shared\_LogOnPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Administrative\Views\Shared\Error.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Administrative\Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Business\Views\Vacancy\Details.cshtml" />
+    <Content Include="Areas\Business\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Business\Views\Home\Sucess.cshtml" />
+    <Content Include="Areas\Business\Views\Vacancy\Edit.cshtml" />
+    <Content Include="Areas\Business\Views\Vacancy\Delete.cshtml" />
+    <Content Include="Areas\Business\Views\Vacancy\Create.cshtml" />
+    <Content Include="Areas\Administrative\Views\Vacancy\Create.cshtml" />
+    <Content Include="Areas\Administrative\Views\Vacancy\Delete.cshtml" />
+    <Content Include="Areas\Administrative\Views\Vacancy\Details.cshtml" />
+    <Content Include="Areas\Administrative\Views\Vacancy\Edit.cshtml" />
+    <Content Include="Areas\Administrative\Views\Vacancy\Index.cshtml" />
+    <Content Include="Areas\Administrative\Views\Vacancy\ListVacancy.cshtml" />
+    <Content Include="Areas\Business\Views\Vacancy\ListVacancy.cshtml" />
+    <Content Include="Areas\Administrative\Views\Home\Sucess.cshtml" />
+    <Content Include="Areas\Administrative\Views\Company\Index.cshtml" />
+    <Content Include="Areas\Administrative\Views\Company\Details.cshtml" />
+    <Content Include="Areas\Administrative\Views\Company\Create.cshtml" />
+    <Content Include="Areas\Administrative\Views\Company\Edit.cshtml" />
+    <Content Include="Areas\Administrative\Views\Company\Delete.cshtml" />
+    <Content Include="Areas\Administrative\Views\Company\ListCompany.cshtml" />
+    <Content Include="Areas\Administrative\Views\Company\ListDetails.cshtml" />
+    <Content Include="Areas\Administrative\Views\Vacancy\ListVacancyDetails.cshtml" />
+    <Content Include="Areas\Administrative\Views\Company\JobsAvailable.cshtml" />
+    <Content Include="Areas\Administrative\Views\User\Index.cshtml" />
+    <Content Include="Areas\Administrative\Views\User\Details.cshtml" />
+    <Content Include="Areas\Administrative\Views\User\Create.cshtml" />
+    <Content Include="Areas\Administrative\Views\User\Edit.cshtml" />
+    <Content Include="Areas\Administrative\Views\User\Delete.cshtml" />
+    <Content Include="Areas\Administrative\Views\User\ListDetails.cshtml" />
+    <Content Include="Areas\CommonUser\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\CommonUser\Views\Shared\_LogOnPartial.cshtml" />
+    <Content Include="Areas\CommonUser\Views\Shared\Error.cshtml" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\LogOn.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Home\Linkedin.cshtml" />
+    <Content Include="Views\Home\ViewLinkedin.cshtml" />
+    <Content Include="Views\Account\undefined1.cshtml" />
+    <Content Include="Views\Account\undefined.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\UploadLocalization.zh-CN.resx">
@@ -868,18 +1066,6 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>EditorLocalization.bg-BG.designer.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Home\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\Administrativa\Views\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Areas\UsuarioComum\Views\Web.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

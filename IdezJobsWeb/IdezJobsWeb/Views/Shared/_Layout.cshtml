@@ -21,13 +21,29 @@
             </div>
 @Html.Telerik( ).Menu( ).Name("Menu_Principal").Items(raiz =>
 {
-    raiz.Add( ).Text("Página Inicial").Action("PaginaInicial", "Home");   
-    raiz.Add( ).Text("Fazer Login").Action("Entrar","ContaUsuario" );
-    raiz.Add( ).Text("Sair").Action("Sair", "ContaUsuario");
+    raiz.Add( ).Text("Página Inicial").Action("Index", "Home");   
+    raiz.Add( ).Text("Fazer Login").Action("LogOn","Account" );
+    raiz.Add( ).Text("Sair").Action("LogOff", "Account");
+
+    if(Roles.IsUserInRole("Administrador"))
+     {
+         raiz.Add( ).Text("Area Administracao").Action("Index", "Home", new { area = "Administrative" });
+     }
+
+     if (Roles.IsUserInRole("Escritorio"))
+     {
+         raiz.Add( ).Text("Area Gerencial").Action("Index", "Home", new { area = "Escritorio" });
+     }
+
+     if (Roles.IsUserInRole("OperadorCaixa"))
+    {
+        raiz.Add( ).Text("OperadorCaixa").Action("Index", "Home", new { area = "OperadorCaixa" });
+    }
         
     
 })
     @RenderBody()
+    
 
     @Html.Telerik().ScriptRegistrar().jQuery(false)
 </body>

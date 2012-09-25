@@ -1,0 +1,60 @@
+﻿@model IEnumerable<IdezJobsWeb.Models.Vacancy>
+
+@{
+    ViewBag.Title = "JobsAvailable";
+    Layout = "~/Areas/Administrative/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Vagas Na Empresa:</h3>
+<h2> @ViewBag.Empresa </h2>
+
+<p>
+    @Html.ActionLink("Adicionar Nova", "Create", "Vacancy")
+</p>
+<table>
+	<tr>
+		<th>
+			Data Registro:
+		</th>
+		<th>
+			Data Limite Cadastro:
+		</th>
+		<th>
+			Descrição:
+		</th>
+		<th>
+			Empresa:
+		</th>
+		<th>
+			Número de Vagas:
+		</th>
+		<th>
+			Perfil da Vaga:
+		</th>
+		<th>
+		</th>
+	</tr>
+	@foreach (var item in Model) {
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.RegistrionDate)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.RegistrationDeadline)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Description)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.CompanyName)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.JobsNumber)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.ProfileJobs)
+			</td>
+			
+		</tr>
+}
+</table
