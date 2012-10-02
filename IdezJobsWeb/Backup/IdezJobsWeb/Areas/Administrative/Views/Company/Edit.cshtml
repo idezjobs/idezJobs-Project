@@ -1,0 +1,63 @@
+﻿@model IdezJobsWeb.Models.Company
+@{
+	ViewBag.Title = "Alterar";
+	Layout = "~/Areas/Administrative/Views/Shared/_Layout.cshtml";
+}
+<h2>
+	Alterar Empresa</h2>
+@using (Html.BeginForm( ))
+{
+	@Html.ValidationSummary(true)
+	<fieldset>
+		<legend>Editar Empresa</legend>
+		@Html.HiddenFor(model => model.Id)
+		<div class="editor-label">
+			@Html.LabelFor(model => model.Name)
+		</div>
+		<div class="editor-field">
+			@Html.EditorFor(model => model.Name)
+			@Html.ValidationMessageFor(model => model.Name)
+		</div>
+		<div class="editor-label">
+			@Html.LabelFor(model => model.Email)
+		</div>
+		<div class="editor-field">
+			@Html.EditorFor(model => model.Email)
+			@Html.ValidationMessageFor(model => model.Email)
+		</div>
+		<div class="editor-label">
+			@Html.LabelFor(model => model.Address)
+		</div>
+		<div class="editor-field">
+			@Html.EditorFor(model => model.Address)
+			@Html.ValidationMessageFor(model => model.Address)
+		</div>
+		<div class="editor-label">
+			@Html.LabelFor(model => model.Neighborhood)
+		</div>
+		<div class="editor-field">
+			@Html.EditorFor(model => model.Neighborhood)
+			@Html.ValidationMessageFor(model => model.Neighborhood)
+		</div>
+		<div class="editor-label">
+			@Html.LabelFor(model => model.City)
+		</div>
+		<div class="editor-field">
+			@Html.EditorFor(model => model.City)
+			@Html.ValidationMessageFor(model => model.City)
+		</div>
+		<div class="editor-label">
+			@Html.LabelFor(model => model.State)
+		</div>
+		<div class="editor-field">
+			@Html.EditorFor(model => model.State)
+			@Html.ValidationMessageFor(model => model.State)
+		</div>
+		<p>
+			<input type="submit" value="Salvar" id="ButtonAlterarEmpresa" />
+		</p>
+	</fieldset>
+}
+<div>
+	@Html.ActionLink("Back to List", "Index")
+</div>

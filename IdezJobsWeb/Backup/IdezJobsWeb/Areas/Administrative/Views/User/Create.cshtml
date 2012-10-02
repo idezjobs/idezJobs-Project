@@ -1,0 +1,63 @@
+﻿@model IdezJobsWeb.Models.User
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Administrative/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Adicionar Usuário</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Adicionar Usuário</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Type)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Type)
+            @Html.ValidationMessageFor(model => model.Type)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DateRegister)
+        </div>
+        <div class="editor-field">
+            @Html.Telerik().DatePickerFor(model => model.DateRegister)
+            @Html.ValidationMessageFor(model => model.DateRegister)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Token)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Token)
+            @Html.ValidationMessageFor(model => model.Token)
+        </div>
+
+        <p>
+            <input type="submit" value="Salvar" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Index", "Index")
+</div>

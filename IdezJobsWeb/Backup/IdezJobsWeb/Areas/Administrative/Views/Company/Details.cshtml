@@ -1,0 +1,56 @@
+﻿@model IdezJobsWeb.Models.Company
+@{
+	ViewBag.Title = "Detalhes";
+	Layout = "~/Areas/Administrative/Views/Shared/_Layout.cshtml";
+}
+<h2>Detalhes da Empresa</h2>
+<br />
+@if(ViewBag.NumeroVagas == null)
+	{
+	<h3>
+		Não existe vagas nessa empresa
+	</h3>
+	}
+	else
+	{
+	<h3>
+	<h2> Número de Vagas: @ViewBag.NumeroVagas </h2>
+	</h3>
+	}
+<fieldset>
+	<legend>Empresa</legend>
+	<div class="display-label">
+		Nome:</div>
+	<div class="display-field">
+		@Html.DisplayFor(model => model.Name)
+	</div>
+	<div class="display-label">
+		Email:</div>
+	<div class="display-field">
+		@Html.DisplayFor(model => model.Email)
+	</div>
+	<div class="display-label">
+		Endereço:</div>
+	<div class="display-field">
+		@Html.DisplayFor(model => model.Address)
+	</div>
+	<div class="display-label">
+		Bairro:</div>
+	<div class="display-field">
+		@Html.DisplayFor(model => model.Neighborhood)
+	</div>
+	<div class="display-label">
+		Cidade:</div>
+	<div class="display-field">
+		@Html.DisplayFor(model => model.City)
+	</div>
+	<div class="display-label">
+		Estado:</div>
+	<div class="display-field">
+		@Html.DisplayFor(model => model.State)
+	</div>
+</fieldset>
+<p>
+	@Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+	@Html.ActionLink("Index", "Index")
+</p>

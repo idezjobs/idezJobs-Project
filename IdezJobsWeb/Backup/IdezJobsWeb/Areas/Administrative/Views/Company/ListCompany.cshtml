@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Company>
+@{
+	ViewBag.Title = "Lista Empresas";
+	Layout = "~/Areas/Administrative/Views/Shared/_Layout.cshtml";
+}
+<h2>
+	Lista de Empresas
+</h2>
+@(Html.Telerik( ).Grid<Company>( ).Name("Grid").DataBinding(binfing => binfing.Ajax( ).Select("_ListCompany", "Company")).Columns(
+colunas =>
+{
+	colunas.Bound(c => c.Name).Title("Nome:").Width("16,66%");
+	colunas.Bound(c => c.Email).Title("Email:").Width("16,66%");
+	colunas.Bound(c => c.Address).Title("Endereço:").Width("16,66%");
+	colunas.Bound(c => c.Neighborhood).Title("Bairro:").Width("16,66%");
+	colunas.Bound(c => c.City).Title("Cidade:").Width("16,66%");
+	colunas.Bound(c => c.State).Title("Estado:").Width("16,66%");
+
+})
+.Pageable(paginas => paginas.PageSize(10))
+.Scrollable( )
+.Sortable( )
+.Selectable( )
+.Groupable( )
+.Filterable( )
+.Resizable(paginas => paginas.Columns(true))
+)

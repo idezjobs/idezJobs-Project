@@ -1,0 +1,46 @@
+﻿@model IdezJobsWeb.Models.Vacancy
+
+@{
+    ViewBag.Title = "Details Vacancy";
+    Layout ="~/Areas/Administrative/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalhes da Vaga:</h2>
+
+<fieldset>
+    <legend>Detalhes da Vaga:</legend>
+
+    <div class="display-label">Data Registro:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RegistrionDate)
+    </div>
+
+    <div class="display-label">Data Limite Cadastro:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RegistrationDeadline)
+    </div>
+
+    <div class="display-label">Descrição:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">Nome Empresa:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CompanyName)
+    </div>
+
+    <div class="display-label">Número de Vagas:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.JobsNumber)
+    </div>
+
+    <div class="display-label">Perfil da Vaga:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProfileJobs)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Index", "Index")
+</p>
