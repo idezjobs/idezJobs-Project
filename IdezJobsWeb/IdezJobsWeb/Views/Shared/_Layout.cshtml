@@ -30,14 +30,14 @@
          raiz.Add( ).Text("Area Administracao").Action("Index", "Home", new { area = "Administrative" });
      }
 
-     if (Roles.IsUserInRole("Escritorio"))
+     if (Roles.IsUserInRole("NomePapel"))
      {
-         raiz.Add( ).Text("Area Gerencial").Action("Index", "Home", new { area = "Escritorio" });
+         raiz.Add( ).Text("Area Gerencial").Action("Index", "Home", new { area = "NomeArea" });
      }
 
-     if (Roles.IsUserInRole("OperadorCaixa"))
+     if (Roles.IsUserInRole("NomePapel"))
     {
-        raiz.Add( ).Text("OperadorCaixa").Action("Index", "Home", new { area = "OperadorCaixa" });
+        raiz.Add( ).Text("OperadorCaixa").Action("Index", "Home", new { area = "NomeArea" });
     }
         
     

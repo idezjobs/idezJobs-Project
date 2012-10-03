@@ -37,6 +37,9 @@ namespace IdezJobsWeb.Models
 		[Display(Name = "Perfil da Vaga:")]
 		public virtual string ProfileJobs { get; set; }
 
+		[Required(ErrorMessage="O status da vaga não pode ser vazio")]
+		public virtual StatusVacancy StatusVacancy {get; set;}
+
 
 
 	}

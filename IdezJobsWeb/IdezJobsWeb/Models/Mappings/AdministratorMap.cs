@@ -10,7 +10,6 @@ namespace IdezJobsWeb.Models.Mappings
 	{
 		public AdministratorMap( )
 		{
-			//a
 			Table("IdezJobs_Administrator");
 			Id(x => x.Id, "Id");
 			Map(x => x.Name, "Name").Not.Nullable( ).Length(51);
