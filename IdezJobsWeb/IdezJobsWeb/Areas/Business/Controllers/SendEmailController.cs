@@ -11,13 +11,20 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 {
 	public class SendEmailController : MailerBase
 	{
-		public EmailResult EmailParaFaculdade( )
+		public EmailResult EmailParaFaculdade(List<User> list)
 		{
-			From = "Ademivieira@gmail.com";
-			To.Add("IdezJobs@gmail.com");
-			Subject = "Assunto Teste";
-			return Email("Email enviado com sucesso");
+			foreach (var item in list)
+			{
+				From = "IdezJobs@gmail.com";
+				To.Add(item.Email);
+				Subject = "Assunto Teste";
+				
 
+			}
+
+			return Email("EmailParaFaculdade");
 		}
+
+
 	}
 }
