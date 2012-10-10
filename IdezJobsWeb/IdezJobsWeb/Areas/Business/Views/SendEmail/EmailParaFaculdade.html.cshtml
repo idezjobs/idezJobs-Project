@@ -1,0 +1,42 @@
+﻿@model IdezJobsWeb.Models.Email
+
+@{
+    ViewBag.Title = "EmailParaFaculdade";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+
+<h2>EmailParaFaculdade</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Email</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmailUser)
+        </div>
+        <div class="editor-field">
+            @Html.Telerik().EditorFor(model => model.EmailUser)
+            @Html.ValidationMessageFor(model => model.EmailUser)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Subject)
+        </div>
+        <div class="editor-field">
+            @Html.Telerik().EditorFor(model => model.Subject)
+            @Html.ValidationMessageFor(model => model.Subject)
+        </div>
+
+        <p>
+            <input type="submit" value="Salvar" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

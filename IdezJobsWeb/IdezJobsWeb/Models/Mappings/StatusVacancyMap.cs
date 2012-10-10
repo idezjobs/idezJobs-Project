@@ -12,7 +12,7 @@ namespace IdezJobsWeb.Models.Mappings
 		{
 			Table("IdezJobs_StatusVacancy");
 			Id(x => x.Id,"Id");
-			Map(x => x.StatusVacancy,"StatusVacancy").Not.Nullable().Length(55).Unique();
+			Map(x => x.Status,"StatusVacancy").Not.Nullable().Length(55).Unique();
 		}
 	}
 }

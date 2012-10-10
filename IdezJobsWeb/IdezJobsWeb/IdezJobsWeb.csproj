@@ -34,6 +34,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ActionMailer.Net">
+      <HintPath>..\packages\ActionMailer.0.7.4\lib\Net40\ActionMailer.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="ActionMailer.Net.Mvc">
+      <HintPath>..\packages\ActionMailer.0.7.4\lib\Net40\ActionMailer.Net.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetOpenAuth.Core, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetOpenAuth.Core.4.1.0.12182\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
     </Reference>
@@ -331,7 +337,9 @@
     <Compile Include="Areas\Administrative\Controllers\UserController.cs" />
     <Compile Include="Areas\Administrative\Controllers\VacancyController.cs" />
     <Compile Include="Areas\Business\BusinessAreaRegistration.cs" />
+    <Compile Include="Areas\Business\Controllers\FazerPublicacaoEmailController.cs" />
     <Compile Include="Areas\Business\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Business\Controllers\SendEmailController.cs" />
     <Compile Include="Areas\Business\Controllers\VacancyController.cs" />
     <Compile Include="Areas\CommonUser\CommonUserAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -349,6 +357,7 @@
     <Compile Include="Models\Mappings\CompanyMap.cs" />
     <Compile Include="Models\Mappings\EmailMap.cs" />
     <Compile Include="Models\Mappings\JobCandidateMap.cs" />
+    <Compile Include="Models\Mappings\SendEmailMap.cs" />
     <Compile Include="Models\Mappings\ShowProfileMap.cs" />
     <Compile Include="Models\Mappings\StatusVacancyMap.cs" />
     <Compile Include="Models\Mappings\UserMap.cs" />
@@ -837,6 +846,9 @@
     <Content Include="Areas\CommonUser\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\CommonUser\Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Areas\CommonUser\Views\Shared\Error.cshtml" />
+    <Content Include="Areas\Business\Views\FazerPublicacaoEmail\Index.cshtml" />
+    <Content Include="Areas\Business\Views\FazerPublicacaoEmail\EnviarEmailParaFaculdade.cshtml" />
+    <Content Include="Areas\Business\Views\SendEmail\EmailParaFaculdade.html.cshtml" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />

@@ -12,6 +12,7 @@ namespace IdezJobsWeb.Models
 		[Required(ErrorMessage="O nome não pode ser vazio"), StringLength(50, ErrorMessage = "O nome não pode ter mais de cinquenta caracteres")]
 		[Display(Name="Nome:")]
 		public virtual string NameSendEmail { get; set; }
+	
 		public virtual IList<Email> EmailList { get; set; }
 	}
 }

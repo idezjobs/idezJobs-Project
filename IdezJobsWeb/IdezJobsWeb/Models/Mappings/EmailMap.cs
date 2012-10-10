@@ -12,9 +12,9 @@ namespace IdezJobsWeb.Models.Mappings
 		{
 			Table("IdezJobs_Email");
 			Id(x => x.Id, "Id");
-			Map(x => x.Email, "Email").Not.Nullable( );
-			Map(x => x.Subject, "Subject").Nullable( ).Default("Sem Assunto");
-			Map(x => x.FileAnexo, "Anexo").Nullable( );
+			Map(x => x.EmailUser, "EmailUser").Not.Nullable( );
+			Map(x => x.Subject, "Subject").Nullable( );
+			
 		}
 	}
 }

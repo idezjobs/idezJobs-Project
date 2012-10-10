@@ -14,8 +14,9 @@ namespace IdezJobsWeb.Models
 		[Required(ErrorMessage = "O email não pode ser vazio")]
 		[DataType(DataType.EmailAddress)]
 		[Display(Name = "Email:")]
-		public virtual string Email { get; set; }
+		public virtual string EmailUser { get; set; }
+		[Display(Name="Assunto:")]
 		public virtual string Subject { get; set; }
-		public virtual FileUpload FileAnexo { get; set; }
+		
 	}
 }
