@@ -6,13 +6,13 @@ using FluentNHibernate.Mapping;
 
 namespace IdezJobsWeb.Models.Mappings
 {
-	public class StatusVacancyMap : ClassMap<StatusVacancy>
+	public class ProfileVacancyMap : ClassMap<ProfileVacancy>
 	{
-		public StatusVacancyMap( )
+		public ProfileVacancyMap( )
 		{
-			Table("IdezJobs_StatusVacancy");
+			Table("IdezJobs_ProfileVacancy");
 			Id(x => x.Id,"Id");
-			Map(x => x.Status,"StatusVacancy").Not.Nullable().Length(55).Unique();
+			Map(x => x.Myprofile,"MyProfile").Not.Nullable().Length(60);
 		}
 	}
 }

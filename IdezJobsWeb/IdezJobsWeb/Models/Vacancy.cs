@@ -18,9 +18,10 @@ namespace IdezJobsWeb.Models
 		//data limite cadastro
 		[Required(ErrorMessage = "A data limite cadastro da vaga não pode ser vazia")]
 		[Display(Name = "Data Limite Cadastro:")]
+	
 		public virtual DateTime RegistrationDeadline { get; set; }
 
-		[Required(ErrorMessage = "A descrição não pode ser vazia"), StringLength(50, ErrorMessage = "A descrição não pode ter mais de cinquenta caracteres", MinimumLength = 6)]
+		[Required(ErrorMessage = "A descrição não pode ser vazia"), StringLength(200, ErrorMessage = "A descrição não pode ter mais de cinquenta caracteres", MinimumLength = 6)]
 		[Display(Name = "Descrição:")]
 		public virtual string Description { get; set; }
 
@@ -33,14 +34,15 @@ namespace IdezJobsWeb.Models
 		public virtual int JobsNumber { get; set; }
 
 		//perfil  da vagas
-		[Required(ErrorMessage = "O perfil da vaga não pode ser vazio"), StringLength(50, ErrorMessage = "A descrição do perfil não pode ter mais de cinquenta caracteres", MinimumLength = 5)]
 		[Display(Name = "Perfil da Vaga:")]
-		public virtual string ProfileJobs { get; set; }
+		public virtual ProfileVacancy ProfileVacancy { get; set; }
+		 [Display(Name = "Status:")]
+		public virtual Status Status {get;set;}
 
-		[Required(ErrorMessage="O status da vaga não pode ser vazio")]
-		public virtual StatusVacancy StatusVacancy {get; set;}
+		
+		
 
-
-
-	}
+		 
+	   }
+	
 }

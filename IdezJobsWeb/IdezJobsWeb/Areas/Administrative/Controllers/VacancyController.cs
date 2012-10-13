@@ -10,6 +10,8 @@ using Telerik.Web.Mvc;
 namespace IdezJobsWeb.Areas.Administrative.Controllers
 {
 	//Vaga
+
+	[Authorize(Roles="Administrador")]
 	public class VacancyController : Controller
 	{
 		private IContextData _ContextDataVacancy = new ContextDataNH( );

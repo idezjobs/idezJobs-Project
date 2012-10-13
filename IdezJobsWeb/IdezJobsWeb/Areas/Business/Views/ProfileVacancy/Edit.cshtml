@@ -1,0 +1,28 @@
+﻿@model IdezJobsWeb.Models.ProfileVacancy
+@{
+	ViewBag.Title = "Edit";
+	Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+<h2>
+	Editar Perfil de Vaga</h2>
+@using (Html.BeginForm( ))
+{
+	@Html.ValidationSummary(true)
+	<fieldset>
+		<legend>ProfileVacancy</legend>
+		@Html.HiddenFor(model => model.Id)
+		<div class="editor-label">
+			@Html.LabelFor(model => model.Myprofile)
+		</div>
+		<div class="editor-field">
+			@Html.EditorFor(model => model.Myprofile)
+			@Html.ValidationMessageFor(model => model.Myprofile)
+		</div>
+		<p>
+			<input type="submit" value="Salvar Alterações" />
+		</p>
+	</fieldset>
+}
+<div>
+	@Html.ActionLink("Index", "Index")
+</div>

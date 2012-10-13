@@ -59,9 +59,24 @@ namespace IdezJobsWeb
 
 						ctx.Add<Administrator>(Administ);
 						ctx.SaveChanges( );
+						
+						Status s1 = new Status();
+						s1.Description = "Aberto";
+						ctx.Add<Status>(s1);
+						ctx.SaveChanges();
 
+
+						Status s2 = new Status( );
+						s2.Description = "Fechado";
+						ctx.Add<Status>(s2);
+						ctx.SaveChanges( );
+						
+							
 
 						Roles.AddUserToRole("IdezJobs", "Administrador");
+
+					
+
 						ctx.Dispose( );
 					}
 				}

@@ -1,0 +1,31 @@
+﻿@model IdezJobsWeb.Models.ProfileVacancy
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Perfil da Vaga</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Myprofile)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Myprofile,"Perfil da Vaga:")
+            @Html.ValidationMessageFor(model => model.Myprofile)
+        </div>
+
+        <p>
+            <input type="submit" value="Salvar" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Index", "Index")
+</div>

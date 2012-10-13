@@ -31,6 +31,9 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 			return Content("Consegui enviar seu email");
 		}
 
+
+
+
 		public IList<User> listaEmail( )
 		{
 			List<User> lista = new List<User>( );

@@ -4,46 +4,142 @@
 }
 <h2>
 	Seja Bem Vindo Ao IdezJobs</h2>
-</br>
 <h3>
 	Faça Login Usando o Linkedin
 </h3>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
 <head>
-	<title>Perfil do Usuário</title>
-	<script type="text/javascript" src="http://platform.linkedin.com/in.js">
-		api_key: ixvlxp7r4eqh
-		authorize: true
-	</script>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link media="all" type="text/css" href="http://developer.linkedinlabs.com/tutorials/css/jqueryui.css"
-		rel="stylesheet" />
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.5b1.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/jquery-ui.min.js"></script>
+	<title>LinkedIn JavaScript API Sample Application</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript">
-
-		function loadData() {
-			IN.API.Profile("me")
-    .fields(["id", "firstName", "lastName", "pictureUrl", "headline"])
-    .result(function (result) {
-    	profile = result.values[0];
-    	profHTML = "<p><a href=\"" + profile.publicProfileUrl + "\">";
-    	profHTML += "<img class=img_border align=\"left\" src=\"" + profile.pictureUrl + "\"></a>";
-    	profHTML += "<a href=\"" + profile.publicProfileUrl + "\">";
-    	profHTML += "<h2 class=myname>" + profile.firstName + " " + profile.lastName + "</a> </h2>";
-    	profHTML += "<span class=myheadline>" + profile.headline + "</span>";
-    	$("#profile").html(profHTML);
-    });
-   }
-  
- 
+  $('#loginbadge').css({background-color: "#EAFD43"})
 	</script>
+	<!-- NOTE: be sure to set onLoad: onLinkedInLoad -->
+	<script type="text/javascript">
+		function onLinkedInLoad() {
+			IN.Event.on(IN, "auth", function () { onLinkedInLogin(); });
+			IN.Event.on(IN, "logout", function () { onLinkedInLogout(); });
+		}
+
+		function onLinkedInLogout() {
+			setLoginBadge(false);
+		}
+
+		function profile() {
+
+			IN.API.Profile("me")
+    .field(["id", "firstName", "lastName", "pictureUrl", "publicUrl", "headline", "industry"])
+    .result(function (result) {
+    	this.publicProfileUrl = result.values[0].lastName
+    	this.id = result.values[0].id;
+    	this.firstName = result.values[0].firstName;
+    	this.pictureUrl = result.values[0].pictureUrl;
+    	this.publicUrl = result.values[0].publicUrl;
+    	this.headline = result.values[0].headline;
+    	this.industry = result.values[0].industry;
+    })
+
+			function getPublicProfile() {
+
+			}
+		}
+
+		function onLinkedInLogin() {
+			// we pass field selectors as a single parameter (array of strings)
+			IN.API.Profile("me")
+    .fields(["id", "firstName", "lastName", "pictureUrl", "publicProfileUrl", "headline", "industry"])
+    .result(function (result) {
+    	setLoginBadge(result.values[0]);
+    	saveUser(result.values[0]);
+    	alert(result.values[0].publicProfileUrl);
+    })
+    .error(function (err) {
+    	alert(err);
+    });
+
+		}
+
+		function setLoginBadge(profile) {
+			var cont = 0;
+
+			if (!profile) {
+				profHTML = "<p>You are not logged in</p>";
+			}
+			else {
+				var pictureUrl = profile.pictureUrl || "http://static02.linkedin.com/scds/common/u/img/icon/icon_no_photo_80x80.png";
+				profHTML = "<p><a href=\"" + profile.publicProfileUrl + "\">";
+				profHTML = profHTML + "<img align=\"baseline\" src=\"" + pictureUrl + "\"></a>";
+				profHTML = profHTML + "&nbsp; Welcome <a href=\"" + profile.publicProfileUrl + "\">";
+				profHTML = profHTML + profile.firstName + " " + profile.lastName + "</a>! <a href=\"#\" onclick=\"IN.User.logout(); return false;\"><img src='../../css/img/logout.png' width='20' height='20' title='Logout'/></a></p>";
+				profHTML = profHTML + "Atualmente atua como: " + profile.headline;
+				profHTML = profHTML + "<br />Industria: " + profile.industry;
+				profHTML = profHTML + "<br />ID: " + profile.id;
+				profHTML = profHTML + "<br /><br /><a id='consulta' href='#consultar'>Consultar</a>"
+			}
+
+			document.getElementById("loginbadge").innerHTML = profHTML;
+		}
+
+
+		function searchCandidates(parametros) {
+			//realizo consulta no banco para retornar todos os ids registrados
+		}
+
+		function includeFilters(profile) {
+			var parameters = {
+				pictureUrl: pictureUrl,
+				publicProfileUrl: profile.publicProfileUrl,
+				lastName: profile.lastName,
+				headline: profile.headline,
+				industry: profile.industry
+			}
+
+			return parameters;
+		}
+
+		function saveUser(profile) {
+			document.getElementById("iduser").value = profile.id;
+			alert(document.getElementById("iduser").value);
+		}
+
+	</script>
+	<!-- Load in the JavaScript framework and register a callback function -->
+	<script type="text/javascript" src="http://platform.linkedin.com/in.js">		/*
+		api_key: ixvlxp7r4eqh
+		onLoad: onLinkedInLoad
+		authorize: true
+		*/</script>
+	<script type="text/javascript" src="sigin.js"></script>
 </head>
-<body class="yui3-skin-sam  yui-skin-sam">
-	<div id="profile">
+<body>
+	<script type="IN/Apply" data-companyid="2762439" data-jobtitle="Chief Cat Wrangler" data-email="yago@teksoft.com.br">
+	</script>
+	<script type="IN/Login"></script>
+	<div id="loginbadge">
 	</div>
-	<script type="IN/Login" data-onauth="loadData"></script>
-	
+	<form name="saveId">
+	<input type="hidden" name="iduser" id="iduser" />
+	</form>
+	<br />
+	<br />
+	<br />
+	<div id="publicUrl" style="display: hidden;" onload="getPublicProfile();">
+	</div>
+	<script type="text/javascript">		alert("URL: " + getPublicProfile("ilYL3eecz6"));</script>
+	<script type='IN/MemberProfile' data-id='"+ profile.publicProfileUrl +"' data-format='inline'></script>
+	<div id="consultar" style="display: none;">
+		<form>
+		<input type="checkbox" />
+		PHP
+		<input type="checkbox" />
+		PEARL
+		<input type="checkbox" />
+		PYTHON
+		<input type="checkbox" />
+		MYSQL
+		</form>
+	</div>
 </body>
 </html>
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
