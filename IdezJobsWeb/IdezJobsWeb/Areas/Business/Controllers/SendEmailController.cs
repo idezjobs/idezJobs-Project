@@ -17,12 +17,16 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 			{
 				From = "IdezJobs@gmail.com";
 				To.Add(item.Email);
-				Subject = "Assunto Teste";
-				
+				Subject = "Seja Bem Vindo ";
 
+				@ViewBag.Nome = item.Name;
+
+				@ViewBag.nu = list.Count;
+
+				return Email("EmailParaFaculdade", list);
 			}
 
-			return Email("EmailParaFaculdade");
+			return Email("EmailParaFaculdade", list);
 		}
 
 
