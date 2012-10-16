@@ -65,7 +65,8 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 
 
 			}
-
+			ViewBag.PerfilVaga = new SelectList(_ContextDataVacancy.GetAll<ProfileVacancy>( ), "Id", "Myprofile",vacancy.ProfileVacancy);
+			ViewBag.StatusVaga = new SelectList(_ContextDataVacancy.GetAll<Status>( ), "Code", "Description",vacancy.Status);
 			return View( );
 		}
 

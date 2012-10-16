@@ -11,7 +11,7 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 {
 	//Vaga
 
-	[Authorize(Roles="Administrador")]
+	[Authorize(Roles = "Administrador")]
 	public class VacancyController : Controller
 	{
 		private IContextData _ContextDataVacancy = new ContextDataNH( );
@@ -69,13 +69,19 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 			if (ModelState.IsValid)
 			{
 
-				if (vacancy.RegistrationDeadline > DateTime.Now.Date)
+				if (vacancy.RegistrationDeadline.Date <= DateTime.Now.Date)
 				{
 					ModelState.AddModelError("", "A data deve ser maior que a data atual.");
 				}
 
+
 				vacancy.ProfileVacancy = _ContextDataVacancy.Get<ProfileVacancy>(vacancy.ProfileVacancy.Id);
+
 				vacancy.Status = _ContextDataVacancy.Get<Status>(vacancy.Status.Code);
+				if (vacancy.Status == null)
+				{
+					ModelState.AddModelError("", "O Status não pode ser vazio.");
+				}
 				_ContextDataVacancy.Add<Vacancy>(vacancy);
 
 				_ContextDataVacancy.SaveChanges( );
@@ -84,6 +90,9 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 
 
 			}
+
+			ViewBag.PerfilVaga = new SelectList(_ContextDataVacancy.GetAll<ProfileVacancy>( ), "Id", "Myprofile",vacancy.ProfileVacancy.Id);
+			ViewBag.StatusVaga = new SelectList(_ContextDataVacancy.GetAll<Status>( ), "Code", "Description",vacancy.Status.Code);
 
 			return View( );
 		}
@@ -123,7 +132,7 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 		{
 			Vacancy VacancyDelete = _ContextDataVacancy.Get<Vacancy>(vacancy.Id);
 
-			_ContextDataVacancy.Delete<Vacancy>(vacancy);
+			_ContextDataVacancy.Delete<Vacancy>(VacancyDelete);
 			_ContextDataVacancy.SaveChanges( );
 			return RedirectToAction("Sucess", "Home");
 		}

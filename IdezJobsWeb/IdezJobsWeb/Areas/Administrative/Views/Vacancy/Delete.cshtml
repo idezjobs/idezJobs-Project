@@ -11,6 +11,7 @@
 @using (Html.BeginForm()) {
 <fieldset>
     @Html.HiddenFor(model => model.Id)
+	@Html.HiddenFor(model => model.ProfileVacancy.Id)
     <legend>Detalhes da Vaga:</legend>
     <div class="display-label">
         Data Registro:</div>
@@ -36,7 +37,7 @@
     </div>
     <div class="display-label">Perfil da Vaga:</div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.ProfileJobs)
+        @Html.DisplayFor(model => model.ProfileVacancy.Myprofile)
     </div>
 </fieldset>
 

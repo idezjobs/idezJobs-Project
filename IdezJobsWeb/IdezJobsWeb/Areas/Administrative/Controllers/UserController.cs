@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using IdezJobsWeb.Models;
 using IdezJobsWeb.Models.Context;
+using System.Web.Security;
 
 namespace IdezJobsWeb.Areas.Administrative.Controllers
 {
@@ -49,12 +50,22 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 		[HttpPost]
 		public ActionResult Create(User user)
 		{
+			user.DateRegister = DateTime.Now;
 			if (ModelState.IsValid)
 			{
-				_ContextData.Add<User>(user);
-				_ContextData.SaveChanges( );
-				return RedirectToAction("Sucess", "Home");
 
+				MembershipCreateStatus createStatus;
+				Membership.CreateUser(user.Name, user.Name.Trim() + "123", user.Email, null, null, true, null, out createStatus);
+				if (createStatus == MembershipCreateStatus.Success)
+				{
+					_ContextData.Add<User>(user);
+					_ContextData.SaveChanges( );
+					return RedirectToAction("Sucess", "Home");
+				}
+				else
+				{
+					ModelState.AddModelError("", "Não foi possível criar o usuário");
+				}
 			}
 			return View( );
 		}

@@ -4,7 +4,7 @@
 	Layout = "~/Areas/Administrative/Views/Shared/_Layout.cshtml";
 }
 <h2>
-	Adicionar Novo</h2>
+	Adicionar Nova Vaga</h2>
 @using (Html.BeginForm( ))
 {
 	@Html.ValidationSummary(true)
@@ -43,14 +43,14 @@
 		</div>
 		<div class="editor-field">
 			@Html.DropDownListFor(model => model.Status.Code, (IEnumerable<SelectListItem>)ViewBag.StatusVaga, "Selecione O Status da Vaga")
-			@Html.ValidationMessageFor(model => model.Status)
+			@Html.ValidationMessageFor(model => model.Status.Description)
 		</div>
 		<div class="editor-label">
 			@Html.LabelFor(model => model.ProfileVacancy, "Perfil da Vaga:")
 		</div>
 		<div class="editor-field">
 			@Html.DropDownListFor(model => model.ProfileVacancy.Id, (IEnumerable<SelectListItem>)ViewBag.PerfilVaga, "Selecione Perfil")@Html.ActionLink("Novo" ,"Create","ProfileVacancy")
-			@Html.ValidationMessageFor(model => model.ProfileVacancy)
+			@Html.ValidationMessageFor(model => model.ProfileVacancy.Myprofile)
 		</div>	
 		<p>
 			<input type="submit" value="Salvar" />

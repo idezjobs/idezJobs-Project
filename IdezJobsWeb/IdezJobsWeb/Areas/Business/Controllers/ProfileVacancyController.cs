@@ -90,5 +90,14 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 			return View( );
 		}
 
+		public ActionResult ListProfileVacancy( )
+		{
+			IList<ProfileVacancy> listProfile = null;
+			listProfile = _ContextoProfile.GetAll<ProfileVacancy>().ToList();
+
+
+			return View(listProfile);
+		}
+
 	}
 }

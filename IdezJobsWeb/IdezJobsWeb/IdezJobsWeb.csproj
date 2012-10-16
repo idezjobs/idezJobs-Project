@@ -332,6 +332,7 @@
       <DependentUpon>UploadLocalization.zh-CN.resx</DependentUpon>
     </Compile>
     <Compile Include="Areas\Administrative\AdministrativeAreaRegistration.cs" />
+    <Compile Include="Areas\Administrative\Controllers\AccountController.cs" />
     <Compile Include="Areas\Administrative\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Administrative\Controllers\HomeController.cs" />
     <Compile Include="Areas\Administrative\Controllers\ProfileVacancyController.cs" />
@@ -880,6 +881,11 @@
     <Content Include="Areas\Administrative\Views\ProfileVacancy\Index.cshtml" />
     <Content Include="Areas\Administrative\Views\ProfileVacancy\ListProfileVacancy.cshtml" />
     <Content Include="Areas\Administrative\Views\ProfileVacancy\Sucess.cshtml" />
+    <Content Include="Areas\Administrative\Views\Account\ChangePassword.cshtml" />
+    <Content Include="Areas\Administrative\Views\Account\ChangePasswordSuccess.cshtml" />
+    <Content Include="Areas\Administrative\Views\Account\Register.cshtml" />
+    <Content Include="Areas\Administrative\Views\Account\undefined.cshtml" />
+    <Content Include="Areas\Administrative\Views\Account\undefined1.cshtml" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />

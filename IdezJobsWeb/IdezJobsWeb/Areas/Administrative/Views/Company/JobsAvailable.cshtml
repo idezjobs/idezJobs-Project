@@ -11,7 +11,7 @@
 <p>
     @Html.ActionLink("Adicionar Nova", "Create", "Vacancy")
 </p>
-<table>
+<table class="table table-bordered">
 	<tr>
 		<th>
 			Data Registro:
@@ -31,8 +31,7 @@
 		<th>
 			Perfil da Vaga:
 		</th>
-		<th>
-		</th>
+		
 	</tr>
 	@foreach (var item in Model) {
 		<tr>
@@ -52,7 +51,7 @@
 				@Html.DisplayFor(modelItem => item.JobsNumber)
 			</td>
 			<td>
-				@Html.DisplayFor(modelItem => item.ProfileJobs)
+				@Html.DisplayFor(modelItem => item.ProfileVacancy.Myprofile)
 			</td>
 			
 		</tr>

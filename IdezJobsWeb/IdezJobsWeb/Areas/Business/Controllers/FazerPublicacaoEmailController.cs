@@ -27,23 +27,25 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 		[HttpPost]
 		public ActionResult SendMailForJobs(Email email)
 		{
-
-			try
-			{												
-				WebMail.Send(email.EmailUser, email.Subject, email.Body);
-
-			}
-			catch (Exception e)
+			if (ModelState.IsValid)
 			{
+				try
+				{
+					WebMail.Send(email.EmailUser, email.Subject, email.Body);
 
-				ModelState.AddModelError("", "Erro:" + e.ToString( ));
-			} 
+				}
+				catch (Exception e)
+				{
 
-			_ContextoEmail.Add<Email>(email);
-			_ContextoEmail.SaveChanges( ); 
+					ModelState.AddModelError("", "Erro:" + e.ToString( ));
+				}
 
-			return RedirectToAction("SucessEmail");
+				_ContextoEmail.Add<Email>(email);
+				_ContextoEmail.SaveChanges( );
 
+				return RedirectToAction("SucessEmail");
+			}
+			return View( );
 		}
 
 		public ActionResult SucessEmail( )

@@ -36,9 +36,7 @@
 			menude.Add( ).Text("Listar Perfis").Action("ListProfileVacancy", "ProfileVacancy");
 
 
-		});
-
-		
+		});		
 
 
 		submenu.Add( ).Text("Usuários").Items(menude =>
@@ -66,13 +64,13 @@
 	raiz.Add( ).Text("Relatórios").Items(submenu =>
 	{
 		submenu.Add( ).Text("Ver Vagas Cadastradas").Action("ListVacancy", "Vacancy");
-		submenu.Add( ).Text("Ver Empresas Cadastradas").Action("ListCompany", "Company");
+		
 
 	});
 
 	raiz.Add( ).Text("Configuração").Items(submenu =>
 	{
-		submenu.Add( ).Text("Trocar Senha").Action("TrocarSenha", "Configuracao");
+		submenu.Add( ).Text("Trocar Senha").Action("ChangePassword", "Account", new {area = "Administrative"});
 
 	});
 

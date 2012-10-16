@@ -72,11 +72,11 @@
 	});
 	raiz.Add( ).Text("Configuração").Items(submenu =>
 	{
-		submenu.Add( ).Text("Trocar Senha").Action("TrocarSenha", "Configuracao");
+		submenu.Add( ).Text("Trocar Senha").Action("ChangePassword", "Account");
 
 	});
 
-	raiz.Add( ).Text("Sair").Action("LogOff", "Home");
+	raiz.Add( ).Text("Sair").Action("LogOff", "Account");
 
 
 })
