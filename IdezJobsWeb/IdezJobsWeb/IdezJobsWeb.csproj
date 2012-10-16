@@ -334,6 +334,7 @@
     <Compile Include="Areas\Administrative\AdministrativeAreaRegistration.cs" />
     <Compile Include="Areas\Administrative\Controllers\CompanyController.cs" />
     <Compile Include="Areas\Administrative\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administrative\Controllers\ProfileVacancyController.cs" />
     <Compile Include="Areas\Administrative\Controllers\UserController.cs" />
     <Compile Include="Areas\Administrative\Controllers\VacancyController.cs" />
     <Compile Include="Areas\Business\BusinessAreaRegistration.cs" />
@@ -341,6 +342,7 @@
     <Compile Include="Areas\Business\Controllers\HomeController.cs" />
     <Compile Include="Areas\Business\Controllers\ProfileVacancyController.cs" />
     <Compile Include="Areas\Business\Controllers\SendEmailController.cs" />
+    <Compile Include="Areas\Business\Controllers\UserController.cs" />
     <Compile Include="Areas\Business\Controllers\VacancyController.cs" />
     <Compile Include="Areas\CommonUser\CommonUserAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -822,7 +824,10 @@
     <Content Include="Areas\Business\Views\Home\Sucess.cshtml" />
     <Content Include="Areas\Business\Views\Vacancy\Edit.cshtml" />
     <Content Include="Areas\Business\Views\Vacancy\Delete.cshtml" />
-    <Content Include="Areas\Administrative\Views\Vacancy\Create.cshtml" />
+    <Content Include="Areas\Administrative\Views\Vacancy\Create.cshtml">
+      <SubType>
+      </SubType>
+    </Content>
     <Content Include="Areas\Administrative\Views\Vacancy\Delete.cshtml" />
     <Content Include="Areas\Administrative\Views\Vacancy\Details.cshtml" />
     <Content Include="Areas\Administrative\Views\Vacancy\Edit.cshtml" />
@@ -862,6 +867,19 @@
     <Content Include="Areas\Business\Views\Vacancy\ListVacancyDetails.cshtml" />
     <Content Include="Areas\Business\Views\FazerPublicacaoEmail\SendMailForJobs.cshtml" />
     <Content Include="Areas\Business\Views\FazerPublicacaoEmail\SucessEmail.cshtml" />
+    <Content Include="Areas\Business\Views\User\Create.cshtml" />
+    <Content Include="Areas\Business\Views\User\Delete.cshtml" />
+    <Content Include="Areas\Business\Views\User\Details.cshtml" />
+    <Content Include="Areas\Business\Views\User\Edit.cshtml" />
+    <Content Include="Areas\Business\Views\User\Index.cshtml" />
+    <Content Include="Areas\Business\Views\User\ListDetails.cshtml" />
+    <Content Include="Areas\Administrative\Views\ProfileVacancy\Create.cshtml" />
+    <Content Include="Areas\Administrative\Views\ProfileVacancy\Delete.cshtml" />
+    <Content Include="Areas\Administrative\Views\ProfileVacancy\Details.cshtml" />
+    <Content Include="Areas\Administrative\Views\ProfileVacancy\Edit.cshtml" />
+    <Content Include="Areas\Administrative\Views\ProfileVacancy\Index.cshtml" />
+    <Content Include="Areas\Administrative\Views\ProfileVacancy\ListProfileVacancy.cshtml" />
+    <Content Include="Areas\Administrative\Views\ProfileVacancy\Sucess.cshtml" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />

@@ -54,6 +54,8 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 
 		public ActionResult Create( )
 		{
+			ViewBag.PerfilVaga = new SelectList(_ContextDataVacancy.GetAll<ProfileVacancy>( ), "Id", "Myprofile").ToList( );
+			ViewBag.StatusVaga = new SelectList(_ContextDataVacancy.GetAll<Status>( ), "Code", "Description").ToList( );
 			return View( );
 		}
 
@@ -61,16 +63,31 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 		[HttpPost]
 		public ActionResult Create(Vacancy vacancy)
 		{
+			vacancy.RegistrionDate = DateTime.Now;
+			ModelState["ProfileVacancy.Myprofile"].Errors.Clear( );
+
 			if (ModelState.IsValid)
 			{
+
+				if (vacancy.RegistrationDeadline > DateTime.Now.Date)
+				{
+					ModelState.AddModelError("", "A data deve ser maior que a data atual.");
+				}
+
+				vacancy.ProfileVacancy = _ContextDataVacancy.Get<ProfileVacancy>(vacancy.ProfileVacancy.Id);
+				vacancy.Status = _ContextDataVacancy.Get<Status>(vacancy.Status.Code);
 				_ContextDataVacancy.Add<Vacancy>(vacancy);
+
 				_ContextDataVacancy.SaveChanges( );
 
 				return RedirectToAction("Sucess", "Home");
+
+
 			}
 
 			return View( );
 		}
+
 
 
 

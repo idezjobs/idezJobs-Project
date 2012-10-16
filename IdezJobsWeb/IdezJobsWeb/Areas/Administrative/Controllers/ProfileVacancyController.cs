@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using IdezJobsWeb.Models;
 using IdezJobsWeb.Models.Context;
+using IdezJobsWeb.Models;
 
-namespace IdezJobsWeb.Areas.Business.Controllers
+namespace IdezJobsWeb.Areas.Administrative.Controllers
 {
-	[Authorize(Roles = "Administrador")]
 	public class ProfileVacancyController : Controller
 	{
 		private IContextData _ContextoProfile = new ContextDataNH( );
@@ -89,6 +88,9 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 		{
 			return View( );
 		}
+
+
+
 
 	}
 }

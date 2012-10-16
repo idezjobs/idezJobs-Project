@@ -1,0 +1,27 @@
+﻿@model IdezJobsWeb.Models.ProfileVacancy
+
+@{
+    ViewBag.Title = "Delete";
+	Layout = "~/Areas/Administrative/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>@User.Identity.Name,  tem certeza que deseja excluir esse registro?</h3>
+
+@using (Html.BeginForm()) {
+<fieldset>
+    <legend>Perfil Vaga</legend>
+
+	@Html.HiddenFor(model => model.Id)
+    <div class="display-label">Perfil da Vaga:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Myprofile,"Perfil da Vaga")
+    </div>
+</fieldset>
+
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Index", "Index")
+    </p>
+}
