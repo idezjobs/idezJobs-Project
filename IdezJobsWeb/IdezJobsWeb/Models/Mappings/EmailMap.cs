@@ -14,6 +14,7 @@ namespace IdezJobsWeb.Models.Mappings
 			Id(x => x.Id, "Id");
 			Map(x => x.EmailUser, "EmailUser").Not.Nullable( );
 			Map(x => x.Subject, "Subject").Nullable( );
+			Map(x => x.Body,"Body").Nullable();
 			
 		}
 	}

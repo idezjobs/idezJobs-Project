@@ -29,6 +29,11 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 			return Email("EmailParaFaculdade", list);
 		}
 
+		public EmailResult EmailParaCandidato(List<User> list)
+		{
+			return Email("EmailParaCandidato", list);
+		}
+
 
 	}
 }

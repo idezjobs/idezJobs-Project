@@ -49,19 +49,18 @@
 
 		});
 
-		//submenu.Add( ).Text("Conta Corrente").Items(menude =>
-		//{
-		//    menude.Add( ).Text("Cadastrar Conta Corrente").Action("CadastrarContaCorrente", "ContaCorrente");
-		//    menude.Add( ).Text("Listar Conta Corrente").Action("ListarContaCorrente", "ContaCorrente");
+		
+		
 
 
-		//}); 		
+	});
 
+	
 
-
-
-
-
+	raiz.Add( ).Text("Email").Items(submenu =>
+	{
+		submenu.Add( ).Text("Enviar Email").Action("SendMailForJobs", "FazerPublicacaoEmail");
+		
 	});
 
 	raiz.Add( ).Text("Relatórios").Items(submenu =>
@@ -69,9 +68,8 @@
 		submenu.Add( ).Text("Ver Vagas Cadastradas").Action("ListVacancy", "Vacancy", new { area = "Administrative" });
 		submenu.Add( ).Text("Ver Empresas Cadastradas").Action("ListCompany", "Company", new { area = "Administrative" });
 
-
-
 	});
+
 	raiz.Add( ).Text("Configuração").Items(submenu =>
 	{
 		submenu.Add( ).Text("Trocar Senha").Action("TrocarSenha", "Configuracao");

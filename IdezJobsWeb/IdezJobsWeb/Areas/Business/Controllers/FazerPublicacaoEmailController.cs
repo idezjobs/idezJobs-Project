@@ -4,28 +4,63 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using IdezJobsWeb.Models;
+using System.Web.Helpers;
+using IdezJobsWeb.Models.Context;
 
 
 namespace IdezJobsWeb.Areas.Business.Controllers
 {
-	[Authorize(Roles = "Administrador")]
+
 	public class FazerPublicacaoEmailController : Controller
 	{
-		//
-		// GET: /Business/FazerPublicacaoEmail/
-
+		private IContextData _ContextoEmail = new ContextDataNH( );
 		public ActionResult Index( )
 		{
 			return View( );
 		}
 
+		public ActionResult SendMailForJobs( )
+		{
+			return View( );
+		}
+
+		[HttpPost]
+		public ActionResult SendMailForJobs(Email email)
+		{
+
+			try
+			{												
+				WebMail.Send(email.EmailUser, email.Subject, email.Body);
+
+			}
+			catch (Exception e)
+			{
+
+				ModelState.AddModelError("", "Erro:" + e.ToString( ));
+			} 
+
+			_ContextoEmail.Add<Email>(email);
+			_ContextoEmail.SaveChanges( ); 
+
+			return RedirectToAction("SucessEmail");
+
+		}
+
+		public ActionResult SucessEmail( )
+		{
+			return View( );
+		}
+
+
+
+
 		public ActionResult EnviarEmail( )
 		{
-			SendEmailController enviar = new SendEmailController();
-			foreach (var item in listaEmail().ToList())
+			SendEmailController enviar = new SendEmailController( );
+			foreach (var item in listaEmail( ).ToList( ))
 			{
-			  ViewBag.nome1 = item.Name;
-			  ViewBag.email1 = item.Email;
+				ViewBag.nome1 = item.Name;
+				ViewBag.email1 = item.Email;
 				enviar.EmailParaFaculdade(listaEmail( ).ToList( )).Deliver( );
 			}
 			return Content("Consegui enviar seu email");
@@ -60,7 +95,7 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 			usuario2.DateRegister = new DateTime(1988, 08, 10);
 			usuario2.Name = "paty";
 			usuario2.Type = "Teste";
-						
+
 			lista.Add(usuario2);
 
 
@@ -74,8 +109,8 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 			lista.Add(usuario3);
 
 
-		
-			return lista.ToList();
+
+			return lista.ToList( );
 
 		}
 

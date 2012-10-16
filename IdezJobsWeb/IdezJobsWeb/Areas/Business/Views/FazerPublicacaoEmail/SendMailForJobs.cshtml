@@ -1,0 +1,46 @@
+﻿@model IdezJobsWeb.Models.Email
+
+@{
+    ViewBag.Title = "SendMailForJobs";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Enviar Um Novo Email</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Email</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmailUser,"Email:")
+        </div>
+        <div class="editor-field">
+            @Html.Telerik().AutoCompleteFor(model => model.EmailUser)
+            @Html.ValidationMessageFor(model => model.EmailUser)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Subject, "Assunto:")
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Subject)
+            @Html.ValidationMessageFor(model => model.Subject)
+        </div>
+		<div class="editor-label">
+			@Html.LabelFor(model => model.Subject, "Corpo:")
+		</div>
+		<div class="editor-field">
+			@Html.Telerik().EditorFor(model => model.Body)
+			@Html.ValidationMessageFor(model => model.Body)
+		</div> 		
+
+        <p>
+            <input type="submit" value="Enviar" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

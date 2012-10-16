@@ -17,6 +17,11 @@ namespace IdezJobsWeb.Models
 		public virtual string EmailUser { get; set; }
 		[Display(Name="Assunto:")]
 		public virtual string Subject { get; set; }
+		public virtual string Body {get; set;}
+		[NotMapped]
+		public virtual FileUpload Annex { get; set; }
+		
+	
 		
 	}
 }

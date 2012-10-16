@@ -360,14 +360,12 @@
     <Compile Include="Models\Mappings\JobCandidateMap.cs" />
     <Compile Include="Models\Mappings\ProfileMap.cs" />
     <Compile Include="Models\Mappings\ProfileVacancyMap.cs" />
-    <Compile Include="Models\Mappings\SendEmailMap.cs" />
     <Compile Include="Models\Mappings\ShowProfileMap.cs" />
     <Compile Include="Models\Mappings\StatusMap.cs" />
     <Compile Include="Models\Mappings\UserMap.cs" />
     <Compile Include="Models\Mappings\VacancyMap.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\ProfileVacancy.cs" />
-    <Compile Include="Models\SendEmail.cs" />
     <Compile Include="Models\ShowProfile.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\User.cs" />
@@ -862,6 +860,8 @@
     <Content Include="Areas\Business\Views\ProfileVacancy\Sucess.cshtml" />
     <Content Include="Areas\Business\Views\Vacancy\Create.cshtml" />
     <Content Include="Areas\Business\Views\Vacancy\ListVacancyDetails.cshtml" />
+    <Content Include="Areas\Business\Views\FazerPublicacaoEmail\SendMailForJobs.cshtml" />
+    <Content Include="Areas\Business\Views\FazerPublicacaoEmail\SucessEmail.cshtml" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
