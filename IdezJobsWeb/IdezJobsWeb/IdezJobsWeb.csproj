@@ -339,6 +339,7 @@
     <Compile Include="Areas\Administrative\Controllers\UserController.cs" />
     <Compile Include="Areas\Administrative\Controllers\VacancyController.cs" />
     <Compile Include="Areas\Business\BusinessAreaRegistration.cs" />
+    <Compile Include="Areas\Business\Controllers\AccountController.cs" />
     <Compile Include="Areas\Business\Controllers\FazerPublicacaoEmailController.cs" />
     <Compile Include="Areas\Business\Controllers\HomeController.cs" />
     <Compile Include="Areas\Business\Controllers\ProfileVacancyController.cs" />
@@ -886,6 +887,10 @@
     <Content Include="Areas\Administrative\Views\Account\Register.cshtml" />
     <Content Include="Areas\Administrative\Views\Account\undefined.cshtml" />
     <Content Include="Areas\Administrative\Views\Account\undefined1.cshtml" />
+    <Content Include="Areas\Business\Views\Account\ChangePassword.cshtml" />
+    <Content Include="Areas\Business\Views\Account\ChangePasswordSuccess.cshtml" />
+    <Content Include="Areas\Business\Views\Account\undefined.cshtml" />
+    <Content Include="Areas\Business\Views\Account\undefined1.cshtml" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />

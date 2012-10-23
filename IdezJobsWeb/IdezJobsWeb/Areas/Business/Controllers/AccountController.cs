@@ -6,62 +6,19 @@ using System.Web.Mvc;
 using System.Web.Security;
 using IdezJobsWeb.Models;
 
-namespace IdezJobsWeb.Areas.Administrative.Controllers
+namespace IdezJobsWeb.Areas.Business.Controllers
 {
 	[HandleError(View = "Error")]
-	[Authorize(Roles = "Administrador")]
-	public class AccountController : Controller
-	{
-		//
-		// GET: /Administrative/Account/
+	[Authorize(Roles = "Company")]
+    public class AccountController : Controller
+    {
+        //
+        // GET: /Business/Account/
 
-		public ActionResult Index( )
-		{
-			return View( );
+        public ActionResult Index()
+        {
+            return View();
 		}
-
-		public ActionResult LogOff( )
-		{
-			FormsAuthentication.SignOut( );
-
-			return RedirectToAction("Index", "Home");
-		}
-
-
-
-		public ActionResult Register( )
-		{
-			return View( );
-		}
-
-
-
-		[HttpPost]
-		public ActionResult Register(RegisterUserCollege model)
-		{
-			if (ModelState.IsValid)
-			{
-
-				MembershipCreateStatus createStatus;
-				Membership.CreateUser(model.UserName, model.Password, model.Email, null, null, true, null, out createStatus);
-
-				if (createStatus == MembershipCreateStatus.Success)
-				{
-					FormsAuthentication.SetAuthCookie(model.UserName, false);
-					return RedirectToAction("Index", "Home");
-				}
-				else
-				{
-					ModelState.AddModelError("", ErrorCodeToString(createStatus));
-				}
-			}
-
-
-			return View(model);
-		}
-
-
-
 		[Authorize]
 		public ActionResult ChangePassword( )
 		{

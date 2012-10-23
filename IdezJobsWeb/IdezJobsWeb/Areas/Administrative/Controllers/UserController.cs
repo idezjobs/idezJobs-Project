@@ -9,6 +9,8 @@ using System.Web.Security;
 
 namespace IdezJobsWeb.Areas.Administrative.Controllers
 {
+	[HandleError(View = "Error")]
+	[Authorize(Roles = "Administrador")]
 	public class UserController : Controller
 	{
 		private IContextData _ContextData = new ContextDataNH( );
@@ -51,15 +53,21 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 		public ActionResult Create(User user)
 		{
 			user.DateRegister = DateTime.Now;
+
+			user.Token = user.Name.GetHashCode( ).ToString( );
+			user.Type = "Administrador";
 			if (ModelState.IsValid)
 			{
 
 				MembershipCreateStatus createStatus;
-				Membership.CreateUser(user.Name, user.Name.Trim() + "123", user.Email, null, null, true, null, out createStatus);
+				Membership.CreateUser(user.Name, user.Name.Trim( ) + "idezjobs", user.Email, null, null, true, null, out createStatus);
 				if (createStatus == MembershipCreateStatus.Success)
 				{
 					_ContextData.Add<User>(user);
 					_ContextData.SaveChanges( );
+
+					Roles.AddUserToRole(user.Name, user.Type);
+
 					return RedirectToAction("Sucess", "Home");
 				}
 				else

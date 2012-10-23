@@ -16,18 +16,18 @@ namespace IdezJobsWeb.Models.Mappings
 			Map(x => x.RegistrationDeadline, "RegistrationDeadline").Not.Nullable( );
 			Map(x => x.Description, "Description").Not.Nullable( ).Not.Nullable( ).Length(200);
 			Map(x => x.CompanyName, "CompanyName").Not.Nullable( ).Length(50);
-			Map(x => x.JobsNumber, "JobsNumber").Not.Nullable( );			
+			Map(x => x.JobsNumber, "JobsNumber").Not.Nullable( );
 
-			References(x => x.ProfileVacancy,"ProfileVacancy")
-			.Cascade.SaveUpdate()
+			References(x => x.ProfileVacancy, "ProfileVacancy")
+			.Cascade.SaveUpdate( )
 			.ForeignKey("fk_Vacancy_ProfileVacancy")
-			.Not.Nullable();
+			.Not.Nullable( );
 
 
-			References(x => x.Status,"Status")
-			.Cascade.SaveUpdate()
+			References(x => x.Status, "Status")
+			.Cascade.SaveUpdate( )
 			.ForeignKey("fk_Vacancy_Status")
-			.Not.Nullable();
+			.Not.Nullable( );
 
 		}
 	}

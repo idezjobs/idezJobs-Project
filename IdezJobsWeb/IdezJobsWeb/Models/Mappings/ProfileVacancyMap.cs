@@ -11,8 +11,8 @@ namespace IdezJobsWeb.Models.Mappings
 		public ProfileVacancyMap( )
 		{
 			Table("IdezJobs_ProfileVacancy");
-			Id(x => x.Id,"Id");
-			Map(x => x.Myprofile,"MyProfile").Not.Nullable().Length(60);
+			Id(x => x.Id, "Id");
+			Map(x => x.Myprofile, "MyProfile").Not.Nullable( ).Length(60);
 		}
 	}
 }

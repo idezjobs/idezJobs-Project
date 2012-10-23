@@ -12,16 +12,16 @@ namespace IdezJobsWeb.Models
 	{
 		public virtual long Id { get; set; }
 
-		[Required(ErrorMessage = "O nome não pode ser vazio"), StringLength(50,ErrorMessage="O nome não pode ter mais de cinquenta caracteres")]
-		[Display(Name="Nome:")]
+		[Required(ErrorMessage = "O nome não pode ser vazio"), StringLength(50, ErrorMessage = "O nome não pode ter mais de cinquenta caracteres")]
+		[Display(Name = "Nome:")]
 		public virtual string Name { get; set; }
 
 		[Required(ErrorMessage = "O tipo não pode ser vazio"), StringLength(50, ErrorMessage = "O tipo não pode ter mais de cinquenta caracteres", MinimumLength = 3)]
-		[Display(Name="Tipo Usuário:")]
+		[Display(Name = "Tipo Usuário:")]
 		public virtual string Type { get; set; }
 
 		[Required(ErrorMessage = "O email não pode ser vazio"), DataType(DataType.EmailAddress)]
-		[Display(Name="Email:")]
+		[Display(Name = "Email:")]
 		public virtual string Email { get; set; }
 
 		[Display(Name = "Data Registro:")]
@@ -49,16 +49,16 @@ namespace IdezJobsWeb.Models
 
 	public class RegisterUserCollege
 	{
-		[Required(ErrorMessage="O nome não pode ser vazio")]
+		[Required(ErrorMessage = "O nome não pode ser vazio")]
 		[Display(Name = "Nome:")]
 		public string UserName { get; set; }
 
-		[Required(ErrorMessage="O email não pode ser vazio")]
+		[Required(ErrorMessage = "O email não pode ser vazio")]
 		[DataType(DataType.EmailAddress)]
 		[Display(Name = "Email:")]
 		public string Email { get; set; }
 
-		[Required(ErrorMessage="A senha é obrigatória")]
+		[Required(ErrorMessage = "A senha é obrigatória")]
 		[StringLength(100, ErrorMessage = "O {0} deve ter pelo menos {2} caracteres.", MinimumLength = 6)]
 		[DataType(DataType.Password)]
 		[Display(Name = "Senha:")]
@@ -66,7 +66,7 @@ namespace IdezJobsWeb.Models
 
 		[Required(ErrorMessage = "A senha é obrigatória")]
 		[StringLength(100, ErrorMessage = "O {0} deve ter pelo menos {2} caracteres.", MinimumLength = 6)]
-		[DataType(DataType.Password)] 		
+		[DataType(DataType.Password)]
 		[Display(Name = "Confirmar Senha:")]
 		public string ConfirmPassword { get; set; }
 	}
@@ -89,7 +89,7 @@ namespace IdezJobsWeb.Models
 		[StringLength(100, ErrorMessage = "O {0} deve ter pelo menos {2} caracteres.", MinimumLength = 6)]
 		[DataType(DataType.Password)]
 		[Compare("NewPassword", ErrorMessage = "A nova senha e a confirmação de senha não conferem.")]
-		[Display(Name="Confirmar Senha:")]
+		[Display(Name = "Confirmar Senha:")]
 		public string ConfirmPassword { get; set; }
 	}
 }

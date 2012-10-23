@@ -6,11 +6,12 @@ using System.Web.Mvc;
 using IdezJobsWeb.Models;
 using IdezJobsWeb.Models.Context;
 using Telerik.Web.Mvc;
+using System.Web.Security;
 
 namespace IdezJobsWeb.Areas.Administrative.Controllers
 {
-   [HandleError(View="Error")]
-   [Authorize(Roles = "Administrador")]
+	[HandleError(View = "Error")]
+	[Authorize(Roles = "Administrador")]
 	public class CompanyController : Controller
 	{
 		private IContextData _ContextData = new ContextDataNH( );
@@ -81,9 +82,21 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				_ContextData.Add<Company>(company);
-				_ContextData.SaveChanges( );
-				return RedirectToAction("Index", "Home");
+				MembershipCreateStatus createStatus;
+				Membership.CreateUser(company.Name, company.Name + "IdezJobs", company.Email, null, null, true, null, out createStatus);
+
+				if (createStatus == MembershipCreateStatus.Success)
+				{
+
+					_ContextData.Add<Company>(company);
+					_ContextData.SaveChanges( );
+
+					Roles.AddUserToRole(company.Name, "Company");
+					return RedirectToAction("Index", "Home");
+
+
+
+				}
 			}
 			return View( );
 		}

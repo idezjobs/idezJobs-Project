@@ -15,13 +15,13 @@ namespace IdezJobsWeb.Models
 		[DataType(DataType.EmailAddress)]
 		[Display(Name = "Email:")]
 		public virtual string EmailUser { get; set; }
-		[Display(Name="Assunto:")]
+		[Display(Name = "Assunto:")]
 		public virtual string Subject { get; set; }
-		public virtual string Body {get; set;}
+		public virtual string Body { get; set; }
 		[NotMapped]
 		public virtual FileUpload Annex { get; set; }
-		
-	
-		
+
+
+
 	}
 }

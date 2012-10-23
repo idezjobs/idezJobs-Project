@@ -9,6 +9,8 @@ using IdezJobsWeb.Models;
 
 namespace IdezJobsWeb.Areas.Business.Controllers
 {
+	[HandleError(View = "Error")]
+	[Authorize(Roles = "Company")]
 	public class SendEmailController : MailerBase
 	{
 		public EmailResult EmailParaFaculdade(List<User> list)

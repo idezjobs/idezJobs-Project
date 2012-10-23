@@ -11,6 +11,7 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 {
 	//Vaga
 
+	[HandleError(View = "Error")]
 	[Authorize(Roles = "Administrador")]
 	public class VacancyController : Controller
 	{

@@ -9,15 +9,17 @@ using IdezJobsWeb.Models;
 
 namespace IdezJobsWeb.Areas.Business.Controllers
 {
-    public class UserController : Controller
-    {
+	[HandleError(View = "Error")]
+	[Authorize(Roles = "Company")]
+	public class UserController : Controller
+	{
 		private IContextData _ContextData = new ContextDataNH( );
-        // GET: /Business/User/
+		// GET: /Business/User/
 
-        public ActionResult Index()
-        {
-            return View();
-        }
+		public ActionResult Index( )
+		{
+			return View( );
+		}
 		//
 		// GET: /Administrative/User/Details/5
 

@@ -36,30 +36,11 @@
 			menude.Add( ).Text("Listar Perfis").Action("ListProfileVacancy", "ProfileVacancy");
 
 
-		});		
-
-
-		submenu.Add( ).Text("Usuários").Items(menude =>
-		{
-			menude.Add( ).Text("Cadastrar Usuários").Action("Create", "User");
-			menude.Add( ).Text("Listar Usuários").Action("ListDetails", "User");
-
-
-		});
-
-		
-		
+		});	
 
 
 	});
-
 	
-
-	raiz.Add( ).Text("Email").Items(submenu =>
-	{
-		submenu.Add( ).Text("Enviar Email").Action("SendMailForJobs", "FazerPublicacaoEmail");
-		
-	});
 
 	raiz.Add( ).Text("Relatórios").Items(submenu =>
 	{
@@ -70,7 +51,7 @@
 
 	raiz.Add( ).Text("Configuração").Items(submenu =>
 	{
-		submenu.Add( ).Text("Trocar Senha").Action("ChangePassword", "Account", new {area = "Administrative"});
+		submenu.Add( ).Text("Trocar Senha").Action("ChangePassword", "Account", new {area = "Business"});
 
 	});
 

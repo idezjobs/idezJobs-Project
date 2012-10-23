@@ -20,14 +20,7 @@
             @Html.ValidationMessageFor(model => model.Name)
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Type)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Type)
-            @Html.ValidationMessageFor(model => model.Type)
-        </div>
-
+       
         <div class="editor-label">
             @Html.LabelFor(model => model.Email)
         </div>
@@ -36,14 +29,7 @@
             @Html.ValidationMessageFor(model => model.Email)
         </div>	     
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Token)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Token)
-            @Html.ValidationMessageFor(model => model.Token)
-        </div>
-
+     
         <p>
             <input type="submit" value="Salvar" />
         </p>

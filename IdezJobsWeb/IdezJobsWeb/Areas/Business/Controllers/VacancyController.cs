@@ -8,7 +8,8 @@ using IdezJobsWeb.Models.Context;
 
 namespace IdezJobsWeb.Areas.Business.Controllers
 {
-	//Vaga
+	[HandleError(View = "Error")]
+	[Authorize(Roles = "Company")]
 	public class VacancyController : Controller
 	{
 		private IContextData _ContextDataVacancy = new ContextDataNH( );
@@ -65,8 +66,8 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 
 
 			}
-			ViewBag.PerfilVaga = new SelectList(_ContextDataVacancy.GetAll<ProfileVacancy>( ), "Id", "Myprofile",vacancy.ProfileVacancy);
-			ViewBag.StatusVaga = new SelectList(_ContextDataVacancy.GetAll<Status>( ), "Code", "Description",vacancy.Status);
+			ViewBag.PerfilVaga = new SelectList(_ContextDataVacancy.GetAll<ProfileVacancy>( ), "Id", "Myprofile", vacancy.ProfileVacancy);
+			ViewBag.StatusVaga = new SelectList(_ContextDataVacancy.GetAll<Status>( ), "Code", "Description", vacancy.Status);
 			return View( );
 		}
 
@@ -112,7 +113,7 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 		public ActionResult ListVacancyDetails( )
 		{
 			IList<Vacancy> list = null;
-			list = _ContextDataVacancy.GetAll<Vacancy>().ToList();
+			list = _ContextDataVacancy.GetAll<Vacancy>( ).ToList( );
 			return View(list);
 		}
 	}

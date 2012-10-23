@@ -11,8 +11,8 @@ namespace IdezJobsWeb.Models.Mappings
 		public StatusMap( )
 		{
 			Table("IdezJobs_Status");
-			Id(x => x.Code,"Code");
-			Map(x => x.Description,"Description").Not.Nullable().Length(40);
+			Id(x => x.Code, "Code");
+			Map(x => x.Description, "Description").Not.Nullable( ).Length(40);
 		}
 	}
 }

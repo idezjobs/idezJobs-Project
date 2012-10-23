@@ -8,7 +8,8 @@ using IdezJobsWeb.Models.Context;
 
 namespace IdezJobsWeb.Areas.Business.Controllers
 {
-	[Authorize(Roles = "Administrador")]
+	[HandleError(View = "Error")]
+	[Authorize(Roles = "Company")]
 	public class ProfileVacancyController : Controller
 	{
 		private IContextData _ContextoProfile = new ContextDataNH( );
@@ -93,7 +94,7 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 		public ActionResult ListProfileVacancy( )
 		{
 			IList<ProfileVacancy> listProfile = null;
-			listProfile = _ContextoProfile.GetAll<ProfileVacancy>().ToList();
+			listProfile = _ContextoProfile.GetAll<ProfileVacancy>( ).ToList( );
 
 
 			return View(listProfile);

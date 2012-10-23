@@ -10,7 +10,7 @@ namespace IdezJobsWeb.Models.Mappings
 	{
 		public ProfileMap( )
 		{
-	        Table("IdezJobs_Profile");
+			Table("IdezJobs_Profile");
 			Id(x => x.Code, "Code");
 			Map(x => x.Id, "Id");
 			Map(x => x.FirstName, "FirstName");

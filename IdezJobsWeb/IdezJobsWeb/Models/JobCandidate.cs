@@ -9,8 +9,8 @@ namespace IdezJobsWeb.Models
 	//Candidato Vaga
 	public class JobCandidate
 	{
-		
-	
+
+
 		public virtual long Id { get; set; }
 
 		[Required(ErrorMessage = "Descreva alguma informação adicional"), StringLength(100, ErrorMessage = "A descrição não pode ter mais de cem caracteres", MinimumLength = 10)]

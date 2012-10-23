@@ -10,7 +10,8 @@ using IdezJobsWeb.Models.Context;
 
 namespace IdezJobsWeb.Areas.Business.Controllers
 {
-
+	[HandleError(View = "Error")]
+	[Authorize(Roles = "Company")]
 	public class FazerPublicacaoEmailController : Controller
 	{
 		private IContextData _ContextoEmail = new ContextDataNH( );

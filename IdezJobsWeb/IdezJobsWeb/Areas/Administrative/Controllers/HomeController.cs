@@ -7,6 +7,8 @@ using System.Web.Security;
 
 namespace IdezJobsWeb.Areas.Administrative.Controllers
 {
+	[HandleError(View = "Error")]
+	[Authorize(Roles = "Administrador")]
 	public class HomeController : Controller
 	{
 		//
