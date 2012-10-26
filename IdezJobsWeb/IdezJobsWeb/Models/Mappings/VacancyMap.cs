@@ -29,6 +29,13 @@ namespace IdezJobsWeb.Models.Mappings
 			.ForeignKey("fk_Vacancy_Status")
 			.Not.Nullable( );
 
+
+			References(x => x.StudentList, "StudentList")
+			.Cascade.SaveUpdate( )
+			.ForeignKey("fk_Vacancy_StudentList")
+			.Nullable( );
+
+
 		}
 	}
 }

@@ -17,69 +17,33 @@
 		@Html.Partial("_LogOnPartial")
 	</div>
 	@Html.Telerik( ).Menu( ).Name("Menu").Items(raiz =>
-{
-	raiz.Add( ).Text("Página Incial").Action("Index", "Home");
+   {
+	   raiz.Add( ).Text("Página Incial").Action("Index", "Home");
 
-	raiz.Add( ).Text("Cadastro").Items(submenu =>
-	{
-		submenu.Add( ).Text("Vagas").Items(menude =>
-		{
-			menude.Add( ).Text("Cadastrar Vagas").Action("Create", "Vacancy");
-			menude.Add( ).Text("Listar Vagas").Action("ListVacancyDetails", "Vacancy");
-
-
-		});
+	   raiz.Add( ).Text("Ofertas de Emprego").Items(submenu =>
+	   {
+		   submenu.Add( ).Text("Vagas").Items(menude =>
+		   {
+			   menude.Add( ).Text("Listar Vagas").Action("ListVacancyDetails", "Vacancy");
 
 
-		submenu.Add( ).Text("Empresas").Items(menude =>
-		{
-			menude.Add( ).Text("Cadastrar Empresas").Action("Create", "Company");
-			menude.Add( ).Text("Listar Empresas").Action("ListDetails", "Company");
+		   });
+	   });
 
-
-		});
-
-		submenu.Add( ).Text("Usuários").Items(menude =>
-		{
-			menude.Add( ).Text("Cadastrar Usuários").Action("Create", "User");
-			menude.Add( ).Text("Listar Usuários").Action("ListDetails", "User");
-
-
-		});
-
-		//submenu.Add( ).Text("Conta Corrente").Items(menude =>
-		//{
-		//    menude.Add( ).Text("Cadastrar Conta Corrente").Action("CadastrarContaCorrente", "ContaCorrente");
-		//    menude.Add( ).Text("Listar Conta Corrente").Action("ListarContaCorrente", "ContaCorrente");
-
-
-		//}); 		
+	   raiz.Add( ).Text("Relatórios").Items(submenu =>
+	   {
+		   submenu.Add( ).Text("Ver Vagas Cadastradas").Action("ListVacancy", "Vacancy", new { area = "Administrative" });
+		   submenu.Add( ).Text("Ver Empresas Cadastradas").Action("ListCompany", "Company", new { area = "Administrative" });
 
 
 
+	   });
 
 
-
-	});
-
-	raiz.Add( ).Text("Relatórios").Items(submenu =>
-	{
-		submenu.Add( ).Text("Ver Vagas Cadastradas").Action("ListVacancy", "Vacancy", new { area = "Administrative" });
-		submenu.Add( ).Text("Ver Empresas Cadastradas").Action("ListCompany", "Company", new { area = "Administrative" });
+	   raiz.Add( ).Text("Sair").Action("LogOff", "Home");
 
 
-
-	});
-	raiz.Add( ).Text("Configuração").Items(submenu =>
-	{
-		submenu.Add( ).Text("Trocar Senha").Action("TrocarSenha", "Configuracao");
-
-	});
-
-	raiz.Add( ).Text("Sair").Action("LogOff", "Home");
-
-
-})
+   })
 	@RenderBody( )
 	@Html.Telerik( ).ScriptRegistrar( ).jQuery(false)
 </body>

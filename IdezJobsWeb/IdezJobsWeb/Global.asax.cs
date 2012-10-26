@@ -47,6 +47,7 @@ namespace IdezJobsWeb
 					ctx.setup( );
 					System.Web.Security.Roles.CreateRole("Administrador");
 					System.Web.Security.Roles.CreateRole("Company");
+					System.Web.Security.Roles.CreateRole("Student");
 
 					MembershipCreateStatus status;
 					Membership.CreateUser("IdezJobs", "JobsIdezypa", "idezjobs@gmail.com", null, null, true, out status);

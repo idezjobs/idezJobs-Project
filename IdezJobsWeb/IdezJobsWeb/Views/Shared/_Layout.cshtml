@@ -32,6 +32,11 @@
 		raiz.Add( ).Text("Área Empresa").Action("Index", "Home", new { area = "Business" });
 	}
 
+	if (Roles.IsUserInRole("Student"))
+	{
+		raiz.Add( ).Text("Área Estudante").Action("Index", "Home", new { area = "CommonUser" });
+	}
+
 
 
 })

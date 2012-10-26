@@ -3,7 +3,7 @@
 	ViewBag.Title = "IdezJobs";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+}
 <h2>
 	Seja Bem Vindo Ao IdezJobs</h2>
 <h3>
@@ -29,32 +29,43 @@
 		}
 
 		function profile() {
+
 			IN.API.Profile("me")
-			.field(["id", "firstName", "lastName", "pictureUrl", "publicUrl", "headline", "industry"])
-			.result(function (result) {
-    			this.publicProfileUrl = result.values[0].lastName
-    			this.id = result.values[0].id;
-    			this.firstName = result.values[0].firstName;
-    			this.pictureUrl = result.values[0].pictureUrl;
-    			this.publicUrl = result.values[0].publicUrl;
-    			this.headline = result.values[0].headline;
-    			this.industry = result.values[0].industry;
-			})
+    .field(["id", "firstName", "lastName", "pictureUrl", "publicUrl", "headline", "industry"])
+    .result(function (result) {
+    	this.publicProfileUrl = result.values[0].lastName
+    	this.id = result.values[0].id;
+    	this.firstName = result.values[0].firstName;
+    	this.pictureUrl = result.values[0].pictureUrl;
+    	this.publicUrl = result.values[0].publicUrl;
+    	this.headline = result.values[0].headline;
+    	this.industry = result.values[0].industry;
+    })
+
+			function getPublicProfile() {
+
+			}
 		}
 
 		function onLinkedInLogin() {
 			// we pass field selectors as a single parameter (array of strings)
-			IN.API.Profile("me")
-			.fields(["id", "firstName", "lastName", "pictureUrl", "publicProfileUrl", "headline", "industry"])
-			.result(function (result) {
-    			setLoginBadge(result.values[0]);
-    			saveUser(result.values[0]);
-    			alert(result.values[0].publicProfileUrl);
-			})
-			.error(function (err) {
-    			alert(err);
-			});
+		    IN.API.Profile("me")
+    .fields(["id", "firstName", "lastName", "pictureUrl", "publicProfileUrl", "headline", "industry"])
+    .result(function (result) {
+        setLoginBadge(result.values[0]);
+        var dados = {
+            id: result.values[0].id
+        };
+        alert("Primeira chamada: " + JSON.stringify(dados));
+        $.ajax({
+            type: "GET",
+            url: "http://localhost:1677/Account/saveUser/" + result.values[0].id,
+            success: function () {
+                alert(json.stringify(dados));
+            }
+        });
 
+    });
 		}
 
 		function setLoginBadge(profile) {
@@ -68,7 +79,7 @@
 				profHTML = "<p><a href=\"" + profile.publicProfileUrl + "\">";
 				profHTML = profHTML + "<img align=\"baseline\" src=\"" + pictureUrl + "\"></a>";
 				profHTML = profHTML + "&nbsp; Welcome <a href=\"" + profile.publicProfileUrl + "\">";
-				profHTML = profHTML + profile.firstName + " " + profile.lastName + "</a>! <a href=\"#\" onclick=\"IN.User.logout(); return false;\"><!--<img src='../../css/img/logout.png' width='20' height='20' title='Logout'/>--><br /></br>Logout</a></p>";
+				profHTML = profHTML + profile.firstName + " " + profile.lastName + "</a>! <a href=\"#\" onclick=\"IN.User.logout(); return false;\"><img src='../../css/img/logout.png' width='20' height='20' title='Logout'/></a></p>";
 				profHTML = profHTML + "Atualmente atua como: " + profile.headline;
 				profHTML = profHTML + "<br />Industria: " + profile.industry;
 				profHTML = profHTML + "<br />ID: " + profile.id;
@@ -78,8 +89,21 @@
 			document.getElementById("loginbadge").innerHTML = profHTML;
 		}
 
-		function getProfileInfo(profile) {
 
+		function searchCandidates(parametros) {
+			//realizo consulta no banco para retornar todos os ids registrados
+		}
+
+		function includeFilters(profile) {
+			var parameters = {
+				pictureUrl: pictureUrl,
+				publicProfileUrl: profile.publicProfileUrl,
+				lastName: profile.lastName,
+				headline: profile.headline,
+				industry: profile.industry
+			}
+
+			return parameters;
 		}
 
 		function saveUser(profile) {
@@ -93,52 +117,41 @@
 		api_key: ixvlxp7r4eqh
 		onLoad: onLinkedInLoad
 		authorize: true
-	*/</script>
+		*/</script>
 	<script type="text/javascript" src="sigin.js"></script>
 </head>
 <body>
-	<script type="IN/Apply" data-companyid="2762439" data-jobtitle="Chief Cat Wrangler" data-email="yago@teksoft.com.br"></script>
-	
+	<script type="IN/Apply" data-companyid="2762439" data-jobtitle="Chief Cat Wrangler" data-email="yago@teksoft.com.br">
+	</script>
 	<script type="IN/Login"></script>
-	
-	<div id="loginbadge"></div>
-	
-	<br /><br /><br />
-
-	<div id="publicUrl" style="display: hidden;" onload="getPublicProfile();"></div>
-	
+	<div id="loginbadge">
+	</div>
+	<form name="saveId">
+	<input type="hidden" name="iduser" id="iduser" />
+	</form>
+	<br />
+	<br />
+	<br />
+	<div id="publicUrl" style="display: hidden;" onload="getPublicProfile();">
+	</div>
 	<script type="text/javascript">		alert("URL: " + getPublicProfile("ilYL3eecz6"));</script>
 	<script type='IN/MemberProfile' data-id='"+ profile.publicProfileUrl +"' data-format='inline'></script>
-	
-	<form name="atualizaDados">
-		<input name="botao" type="button" onclick="getData()" value="Pegar Dados" />
-		<input name="nome" type="hidden" value="" />
-		<input name="publicProfile" type="hidden" value="" />
-		<input name="pictureURL" type="hidden" value="" />
-		<input name="iduser" type="hidden" />
-		<input name="" type="hidden" value="" />
-		<input name="" type="hidden" value="" />
-		<input name="" type="hidden" value="" />
-		<input name="" type="hidden" value="" />
-	</form>
-
+	<div id="consultar" style="display: none;">
+		<form>
+		<input type="checkbox" />
+		PHP
+		<input type="checkbox" />
+		PEARL
+		<input type="checkbox" />
+		PYTHON
+		<input type="checkbox" />
+		MYSQL
+		</form>
+	</div>
 </body>
 </html>
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
-
-<script type="text/javascript">
-	function testAjax() {
-		$.ajax({
-			url: "LogOn.cshtml",
-			context: document.body
-		}).done(function () {
-			
-		}
-		)};
-	}
-</script>
-
 @Html.ValidationSummary(true, "Login was unsuccessful. Please correct the errors and try again.")
 @using (Html.BeginForm( ))
 {

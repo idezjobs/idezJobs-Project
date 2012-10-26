@@ -9,11 +9,20 @@ using DotNetOpenAuth.OAuth;
 using DotNetOpenAuth.Messaging;
 using DotNetOpenAuth.OAuth.ChannelElements;
 using System.IO;
+using System.Web.Services;
 
 namespace IdezJobsWeb.Controllers
 {
 	public class AccountController : Controller
 	{
+		[WebMethod]
+		public ActionResult saveUser(string id)
+		{
+
+			Console.WriteLine("Teste: " + id);
+			return View( );
+
+		}
 
 		public ActionResult LogOn( )
 		{
