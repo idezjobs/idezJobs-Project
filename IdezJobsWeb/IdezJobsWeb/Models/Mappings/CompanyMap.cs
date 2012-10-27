@@ -18,6 +18,7 @@ namespace IdezJobsWeb.Models.Mappings
 			Map(x => x.Address, "Address").Nullable( ).Length(101);
 			Map(x => x.Neighborhood, "Neighborhood").Nullable( ).Length(51);
 			Map(x => x.State, "State").Nullable( ).Length(51);
+			Map(x => x.Operation,"Operation").Nullable().Length(51);
 
 			HasMany(x => x.ListVacancyBusiness)
 			.KeyColumn("ListVacancy")

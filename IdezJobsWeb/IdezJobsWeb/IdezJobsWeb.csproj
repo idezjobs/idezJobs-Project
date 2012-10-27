@@ -894,6 +894,9 @@
     <Content Include="Areas\Business\Views\Account\undefined1.cshtml" />
     <Content Include="Areas\CommonUser\Views\Home\Index.cshtml" />
     <Content Include="Areas\CommonUser\Views\Vacancy\Index.cshtml" />
+    <Content Include="Areas\CommonUser\Views\Vacancy\ListVacancyOpen.cshtml" />
+    <Content Include="Areas\CommonUser\Views\Home\Sucess.cshtml" />
+    <Content Include="Areas\CommonUser\Views\Vacancy\Register.cshtml" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />

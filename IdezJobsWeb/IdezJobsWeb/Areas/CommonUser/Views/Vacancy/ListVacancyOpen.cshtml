@@ -1,0 +1,54 @@
+﻿@model IEnumerable<IdezJobsWeb.Models.Vacancy>
+
+@{
+    ViewBag.Title = "ListVacancyOpen";
+    Layout = "~/Areas/CommonUser/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de Vagas Abertas</h2>
+
+
+<table class="table table-bordered">
+    <tr>
+      
+        <th>
+            Data Limite Inscrição:
+        </th>
+        <th>
+            Descrição da Vaga:
+        </th>
+        <th>
+            Empresa:
+        </th>
+        <th>
+            Número de Vagas:
+        </th>
+		<th>
+		 Operações:
+		</th>
+       
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.RegistrationDeadline)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobsNumber)
+        </td>
+        <td>
+            @Html.ActionLink("Inscrever-me", "Register", new { id=item.Id })
+          
+        </td>
+    </tr>
+}
+
+</table>

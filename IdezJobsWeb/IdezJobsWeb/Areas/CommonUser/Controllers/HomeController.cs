@@ -17,5 +17,10 @@ namespace IdezJobsWeb.Areas.CommonUser.Controllers
             return View();
         }
 
+		public ActionResult Sucess( )
+		{
+			return View( );
+		}
+
     }
 }

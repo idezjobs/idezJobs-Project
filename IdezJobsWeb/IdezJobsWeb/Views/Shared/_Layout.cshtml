@@ -17,8 +17,8 @@
 		@Html.Partial("_LogOnPartial")
 	</div>
 	@Html.Telerik( ).Menu( ).Name("Menu_Principal").Items(raiz =>
-{
-	raiz.Add( ).Text("Página Inicial").Action("Index", "Home");
+   {
+	raiz.Add( ).Text("Pagina Inicial").Action("Index", "Home");
 	raiz.Add( ).Text("Fazer Login").Action("LogOn", "Account");
 	raiz.Add( ).Text("Sair").Action("LogOff", "Account");
 
@@ -36,7 +36,6 @@
 	{
 		raiz.Add( ).Text("Área Estudante").Action("Index", "Home", new { area = "CommonUser" });
 	}
-
 
 
 })

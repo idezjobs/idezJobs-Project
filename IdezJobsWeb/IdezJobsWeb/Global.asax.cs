@@ -7,6 +7,7 @@ using System.Web.Routing;
 using IdezJobsWeb.Models;
 using IdezJobsWeb.Models.Context;
 using System.Web.Security;
+using IdezJobsWeb.Controllers;
 
 namespace IdezJobsWeb
 {
@@ -40,6 +41,10 @@ namespace IdezJobsWeb
 			RegisterGlobalFilters(GlobalFilters.Filters);
 			RegisterRoutes(RouteTable.Routes);
 
+			HomeController 	UpdateVacancy = new HomeController();
+			UpdateVacancy.Update( );
+			
+
 			if (System.Web.Security.Roles.GetAllRoles( ).Length == 0)
 			{
 				using (IContextData ctx = new ContextDataNH( ))
@@ -51,6 +56,8 @@ namespace IdezJobsWeb
 
 					MembershipCreateStatus status;
 					Membership.CreateUser("IdezJobs", "JobsIdezypa", "idezjobs@gmail.com", null, null, true, out status);
+					Membership.CreateUser("Estudante", "senha123", "estudante@gmail.com", null, null, true, out status);
+					Membership.CreateUser("Empresa", "emprsa123", "empresa@gmail.com", null, null, true, out status);
 					if (status == MembershipCreateStatus.Success)
 					{
 						Administrator Administ = new Administrator( );
@@ -61,23 +68,44 @@ namespace IdezJobsWeb
 
 						ctx.Add<Administrator>(Administ);
 						ctx.SaveChanges( );
-						
-						Status s1 = new Status();
+
+
+						User userEstudante = new User( );
+						userEstudante.DateRegister = DateTime.Now;
+						userEstudante.Email = "estudante@gmail.com";
+						userEstudante.Name = "Estudante";
+						userEstudante.Token = "Token";
+						userEstudante.Type = "Estudante";
+
+						ctx.Add<User>(userEstudante);
+						ctx.SaveChanges( );
+
+						User userEmpresa = new User( );
+						userEmpresa.DateRegister = DateTime.Now;
+						userEmpresa.Email = "empresa@gmail.com";
+						userEmpresa.Name = "Empresa";
+						userEmpresa.Token = "Token Empresa";
+						userEmpresa.Type = "Company";
+
+						ctx.Add<User>(userEmpresa);
+						ctx.SaveChanges( );
+
+
+						Status s1 = new Status( );
 						s1.Description = "Aberto";
 						ctx.Add<Status>(s1);
-						ctx.SaveChanges();
+						ctx.SaveChanges( );
 
 
 						Status s2 = new Status( );
 						s2.Description = "Fechado";
 						ctx.Add<Status>(s2);
 						ctx.SaveChanges( );
-						
-							
+
 
 						Roles.AddUserToRole("IdezJobs", "Administrador");
-
-					
+						Roles.AddUserToRole("Estudante", "Student");
+						Roles.AddUserToRole("Empresa", "Company");
 
 						ctx.Dispose( );
 					}

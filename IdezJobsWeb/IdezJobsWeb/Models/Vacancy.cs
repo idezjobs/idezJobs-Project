@@ -40,15 +40,9 @@ namespace IdezJobsWeb.Models
 		[Required(ErrorMessage = "O Status da vaga não pode ser vazio")]
 		public virtual Status Status { get; set; }
 
-		/// <summary>
-		/// Uma Vaga tem uma lista de Estudantes que estão interessados 
-		/// na mesma, para o estudante se cadastar na vaga o mesmo deve fazer login usando o 
-		/// Linkedin, no menu selecionar ver vagas disponíveis, o sistema irá mostrar 
-		/// uma lista de vagas então o estudante escolhe uma vaga de cada vez e se inscreve na mesma.
-		/// </summary>
-		public virtual IList<User> StudentList { get; set; }
 
 
+		
 	}
 
 }

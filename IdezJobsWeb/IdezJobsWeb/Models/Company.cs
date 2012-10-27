@@ -31,6 +31,9 @@ namespace IdezJobsWeb.Models
 		[Display(Name = "Estado:"), StringLength(50, ErrorMessage = "O nome do estado não pode ter mais de cinquenta caracteres")]
 		public virtual string State { get; set; }
 
+		[Display(Name = "Area de Atuacao"), StringLength(50, ErrorMessage = "A area de atuação não pode ter mais de cinquenta caracteres")]	  
+		public virtual string Operation { get; set; }
+
 		public virtual IList<Vacancy> ListVacancyBusiness { get; set; }
 
 
