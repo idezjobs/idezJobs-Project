@@ -18,6 +18,7 @@ namespace IdezJobsWeb.Models.Mappings
 			Map(x => x.PictureUrl, "PictureUrl");
 			Map(x => x.PublicUrl, "PublicUrl");
 			Map(x => x.Headline, "Headline");
+			Map(x => x.Interest,"Interest");
 
 		}
 	}

@@ -8,22 +8,29 @@ namespace IdezJobsWeb.Models
 {
 	public class Profile
 	{
-		[Display(Name="Codigo:")]
+		[Display(Name = "Codigo:")]
 		public virtual long Code { get; set; }
-		[Display(Name="Id Linkedin:")]
+		[Display(Name = "Id Linkedin:")]
 		public virtual string Id { get; set; }
-		[Display(Name="Primeiro Nome:")]
+		[Display(Name = "Primeiro Nome:")]
 		public virtual string FirstName { get; set; }
-		[Display(Name="Segundo Nome:")]
+		[Display(Name = "Segundo Nome:")]
 		public virtual string LastName { get; set; }
-		[Display(Name="Imagem Publica:")]
+		[Display(Name = "Imagem Publica:")]
+		[DataType(DataType.ImageUrl)]
 		public virtual string PictureUrl { get; set; }
-		[Display(Name="URL Publica:")]
+		[Display(Name = "URL Publica:")]
+		[DataType(DataType.Url)]
 		public virtual string PublicUrl { get; set; }
-		[Display(Name="Estuda:")]
+		[Display(Name = "Estuda:")]
 		public virtual string Headline { get; set; }
-		[Display(Name="Trabalha:")]
+		[Display(Name = "Trabalha:")]
 		public virtual string Industry { get; set; }
+		[Display(Name = "Interesse:")]
+		public virtual string Interest { get; set; }
+
+
+
 
 
 

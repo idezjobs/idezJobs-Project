@@ -83,7 +83,7 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 			if (ModelState.IsValid)
 			{
 				MembershipCreateStatus createStatus;
-				Membership.CreateUser(company.Name, company.Name + "IdezJobs", company.Email, null, null, true, null, out createStatus);
+				Membership.CreateUser(company.Name, company.Name.Trim() + "IdezJobs", company.Email, null, null, true, null, out createStatus);
 
 				if (createStatus == MembershipCreateStatus.Success)
 				{

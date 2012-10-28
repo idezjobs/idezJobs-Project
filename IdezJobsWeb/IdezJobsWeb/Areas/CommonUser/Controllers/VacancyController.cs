@@ -39,6 +39,10 @@ namespace IdezJobsWeb.Areas.CommonUser.Controllers
 			Jobs.JobCandidato = _ContextoVaga.Get<Vacancy>(RegisterVacancy.Id);
 			Jobs.UserJobs = _ContextoVaga.Get<User>(UserIdBase);
 
+			_ContextoVaga.Add<JobCandidate>(Jobs);
+			_ContextoVaga.SaveChanges();
+
+
 			return RedirectToAction("Sucess", "Home");
 			
 		}

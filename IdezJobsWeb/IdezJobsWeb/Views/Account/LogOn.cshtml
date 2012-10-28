@@ -31,7 +31,7 @@
 		function profile() {
 
 			IN.API.Profile("me")
-    .field(["id", "firstName", "lastName", "pictureUrl", "publicUrl", "headline", "industry"])
+    .field(["id", "firstName", "lastName", "pictureUrl", "publicUrl", "headline", "industry", "interests"])
     .result(function (result) {
     	this.publicProfileUrl = result.values[0].lastName
     	this.id = result.values[0].id;
@@ -40,6 +40,7 @@
     	this.publicUrl = result.values[0].publicUrl;
     	this.headline = result.values[0].headline;
     	this.industry = result.values[0].industry;
+    	this.interests = result.values[0].interests;
     })
 
 			function getPublicProfile() {
@@ -50,7 +51,7 @@
 		function onLinkedInLogin() {
 			// we pass field selectors as a single parameter (array of strings)
 		    IN.API.Profile("me")
-    .fields(["id", "firstName", "lastName", "pictureUrl", "publicProfileUrl", "headline", "industry"])
+    .fields(["id", "firstName", "lastName", "pictureUrl", "publicProfileUrl", "headline", "industry","interests"])
     .result(function (result) {
         setLoginBadge(result.values[0]);
         var dados = {
@@ -83,6 +84,7 @@
 				profHTML = profHTML + "Atualmente atua como: " + profile.headline;
 				profHTML = profHTML + "<br />Industria: " + profile.industry;
 				profHTML = profHTML + "<br />ID: " + profile.id;
+				profHTML = profHTML + "<br /> Interesse: " + profile.interests;
 				profHTML = profHTML + "<br /><br /><a id='consulta' href='#consultar'>Consultar</a>"
 			}
 
