@@ -1,0 +1,10 @@
+﻿@model IdezJobsWeb.Models.Vacancy
+
+@{
+    ViewBag.Title = "Duplicity";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Atenção!, você não pode se increver em uma vaga mais de uma vez</h3>
+
+@Html.ActionLink("Voltar Para Lista de Vagas", "ListVacancyOpen")

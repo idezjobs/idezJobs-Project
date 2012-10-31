@@ -49,9 +49,18 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 							  .Where(x => x.Id == item.UserJobs.Id.ToString( )).ToList( );
 
 			}
+			if(listaPerfil == null)
+			{
+				return RedirectToAction("ErroVaga");
+			}
 
 			return View(listaPerfil);
 
+		}
+
+		public ActionResult ErroVaga( )
+		{
+			return View( );
 		}
 
 		public ActionResult Details(int id)

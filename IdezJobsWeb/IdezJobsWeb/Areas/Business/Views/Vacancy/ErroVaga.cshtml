@@ -1,0 +1,13 @@
+﻿@model IdezJobsWeb.Models.Vacancy
+
+@{
+    ViewBag.Title = "ErroVaga";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Ocorreu um erro enquanto processava sua requisição, por gentileza tente novamente mais tarde.</h3>
+</br>
+@Html.ActionLink("Voltar Para Página Inicial","Index","Home")
+</br>
+@Html.ActionLink("Voltar Para Lista de Vagas","ListVacancy","Vacancy")
+

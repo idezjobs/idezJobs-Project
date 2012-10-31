@@ -10,18 +10,58 @@ using DotNetOpenAuth.Messaging;
 using DotNetOpenAuth.OAuth.ChannelElements;
 using System.IO;
 using System.Web.Services;
+using IdezJobsWeb.Models.Context;
+using System.Web.Script.Serialization;
 
 namespace IdezJobsWeb.Controllers
 {
 	public class AccountController : Controller
 	{
-		[WebMethod]
-		public ActionResult saveUser(string id)
+		private IContextData _ContextoAccount = new ContextDataNH( );
+
+		[HttpPost]
+		public ActionResult saveUser(string id, string firstName, string lastName, string pictureUrl, string publicProfileUrl, string headline, string industry, string interests)
 		{
 
-			Console.WriteLine("Teste: " + id);
-			return View( );
+			var idBase = _ContextoAccount.GetAll<Profile>( )
+						  .Where(x => x.Id == id).ToList( );
 
+			if (idBase.Count( ) >= 1)
+			{
+				Profile pUpdate = _ContextoAccount.GetAll<Profile>( )
+								  .Where(x => x.Id == id).First( );
+				pUpdate.Id = id;
+				pUpdate.FirstName = firstName;
+				pUpdate.LastName = lastName;
+				pUpdate.PictureUrl = pictureUrl;
+				pUpdate.PublicUrl = publicProfileUrl;
+				pUpdate.Headline = headline;
+				pUpdate.Industry = industry;
+				pUpdate.Interest = interests;
+				TryUpdateModel(pUpdate);
+				_ContextoAccount.SaveChanges();
+
+				return Json(new { codigo = 1, msg = "Dados atualizados com sucesso!" });
+			}
+			else
+			{
+				Profile p = new Profile( );
+				p.Id = id;
+				p.FirstName = firstName;
+				p.LastName = lastName;
+				p.PictureUrl = pictureUrl;
+				p.PublicUrl = publicProfileUrl;
+				p.Headline = headline;
+				p.Industry = industry;
+				p.Interest = interests;
+				_ContextoAccount.Add<Profile>(p);
+				_ContextoAccount.SaveChanges( );
+
+				return Json(new { codigo = 1, msg = "Dados inseridos com sucesso!" });
+
+			}
+
+		   		   			
 		}
 
 		public ActionResult LogOn( )

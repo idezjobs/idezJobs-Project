@@ -31,17 +31,17 @@
 		function profile() {
 
 			IN.API.Profile("me")
-    .field(["id", "firstName", "lastName", "pictureUrl", "publicUrl", "headline", "industry", "interests"])
-    .result(function (result) {
-    	this.publicProfileUrl = result.values[0].lastName
-    	this.id = result.values[0].id;
-    	this.firstName = result.values[0].firstName;
-    	this.pictureUrl = result.values[0].pictureUrl;
-    	this.publicUrl = result.values[0].publicUrl;
-    	this.headline = result.values[0].headline;
-    	this.industry = result.values[0].industry;
-    	this.interests = result.values[0].interests;
-    })
+			.field(["id", "firstName", "lastName", "pictureUrl", "publicUrl", "headline", "industry", "interests"])
+			.result(function (result) {
+    			this.publicProfileUrl = result.values[0].lastName
+    			this.id = result.values[0].id;
+    			this.firstName = result.values[0].firstName;
+    			this.pictureUrl = result.values[0].pictureUrl;
+    			this.publicUrl = result.values[0].publicUrl;
+    			this.headline = result.values[0].headline;
+    			this.industry = result.values[0].industry;
+    			this.interests = result.values[0].interests;
+			})
 
 			function getPublicProfile() {
 
@@ -50,23 +50,33 @@
 
 		function onLinkedInLogin() {
 			// we pass field selectors as a single parameter (array of strings)
-		    IN.API.Profile("me")
-    .fields(["id", "firstName", "lastName", "pictureUrl", "publicProfileUrl", "headline", "industry","interests"])
-    .result(function (result) {
-        setLoginBadge(result.values[0]);
-        var dados = {
-            id: result.values[0].id
-        };
-        alert("Primeira chamada: " + JSON.stringify(dados));
-        $.ajax({
-            type: "GET",
-            url: "http://localhost:1677/Account/saveUser/" + result.values[0].id,
-            success: function () {
-                alert(json.stringify(dados));
-            }
-        });
+			IN.API.Profile("me")
+			.fields(["id", "firstName", "lastName", "pictureUrl", "publicProfileUrl", "headline", "industry", "interests"])
+			.result(function (result) {
+				console.log(result);
+				setLoginBadge(result.values[0]);
+				var dados = {
+					id: result.values[0].id
+				};
+				alert("Primeira chamada: " + JSON.stringify(dados));
+				$.ajax({
+					type: "POST",
+					url: "http://localhost:1677/Account/saveUser/",
+					data: result.values[0],
+					dataType: 'json',
+					success: function (result) {
+						//alert(json.stringify(dados));
+						if (result.codigo == 1) {
+							console.log(result.msg);
+						}
+						else {
+							console.log("Ocorreu algum erro!");
+							console.log(result);
+						}
+					}
+				});
 
-    });
+			});
 		}
 
 		function setLoginBadge(profile) {
@@ -123,7 +133,8 @@
 	<script type="text/javascript" src="sigin.js"></script>
 </head>
 <body>
-	<script type="IN/Apply" data-companyid="2762439" data-jobtitle="Chief Cat Wrangler" data-email="yago@teksoft.com.br">
+	<script type="IN/Apply" data-companyid="2762439" data-jobtitle="Chief Cat Wrangler"
+		data-email="yago@teksoft.com.br">
 	</script>
 	<script type="IN/Login"></script>
 	<div id="loginbadge">

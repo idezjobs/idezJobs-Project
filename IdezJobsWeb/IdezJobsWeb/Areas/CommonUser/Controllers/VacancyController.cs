@@ -38,16 +38,30 @@ namespace IdezJobsWeb.Areas.CommonUser.Controllers
 			Jobs.AdditionalInformation = "Data da Inscrição: " + DateTime.Now;
 			Jobs.JobCandidato = _ContextoVaga.Get<Vacancy>(RegisterVacancy.Id);
 			Jobs.UserJobs = _ContextoVaga.Get<User>(UserIdBase);
+			var verificaVaga = _ContextoVaga.GetAll<JobCandidate>( )
+							   .Where(x => x.JobCandidato.Id == id && x.UserJobs.Id == UserIdBase).ToList( );
+			if (verificaVaga.Count( ) >= 1)
+			{
+				return RedirectToAction("Duplicity");
+			}
+			else
+			{
+				_ContextoVaga.Add<JobCandidate>(Jobs);
+				_ContextoVaga.SaveChanges( );
 
-			_ContextoVaga.Add<JobCandidate>(Jobs);
-			_ContextoVaga.SaveChanges();
+			}
 
 
 			return RedirectToAction("Sucess", "Home");
-			
+
 		}
 
-		
+		public ActionResult Duplicity( )
+		{
+			return View( );
+		}
+
+
 
 
 
