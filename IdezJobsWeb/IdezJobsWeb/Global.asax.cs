@@ -41,8 +41,8 @@ namespace IdezJobsWeb
 			RegisterGlobalFilters(GlobalFilters.Filters);
 			RegisterRoutes(RouteTable.Routes);
 
-			HomeController 	UpdateVacancy = new HomeController();
-			UpdateVacancy.Update( );
+		//	HomeController 	UpdateVacancy = new HomeController();
+			//UpdateVacancy.Update( );
 			
 
 			if (System.Web.Security.Roles.GetAllRoles( ).Length == 0)
@@ -57,7 +57,7 @@ namespace IdezJobsWeb
 					MembershipCreateStatus status;
 					Membership.CreateUser("IdezJobs", "JobsIdezypa", "idezjobs@gmail.com", null, null, true, out status);
 					Membership.CreateUser("Estudante", "senha123", "estudante@gmail.com", null, null, true, out status);
-					Membership.CreateUser("Empresa", "emprsa123", "empresa@gmail.com", null, null, true, out status);
+					Membership.CreateUser("Empresa", "empresa123", "empresa@gmail.com", null, null, true, out status);
 					if (status == MembershipCreateStatus.Success)
 					{
 						Administrator Administ = new Administrator( );

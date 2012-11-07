@@ -1,0 +1,37 @@
+﻿@model IEnumerable<IdezJobsWeb.Models.Vacancy>
+@{
+	ViewBag.Title = "ResultSearch";
+	Layout = "~/Areas/CommonUser/Views/Shared/_Layout.cshtml";
+}
+<h2>
+	Vagas com termo: </h2>
+<p>
+	
+</p>
+<table class="table table-bordered">
+	<tr>
+		<th>
+			Data Limite Inscrição:
+		</th>
+		<th>
+			Descrição:
+		</th>
+		<th>
+			Número de Vagas:
+		</th>
+	</tr>
+	@foreach (var item in Model)
+ {
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.RegistrationDeadline)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Description)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.JobsNumber)
+			</td>
+		</tr>
+ }
+</table>

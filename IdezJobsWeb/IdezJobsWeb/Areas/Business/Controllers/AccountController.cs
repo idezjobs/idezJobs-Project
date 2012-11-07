@@ -10,15 +10,23 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 {
 	[HandleError(View = "Error")]
 	[Authorize(Roles = "Company")]
-    public class AccountController : Controller
-    {
-        //
-        // GET: /Business/Account/
+	public class AccountController : Controller
+	{
+		//
+		// GET: /Business/Account/
 
-        public ActionResult Index()
-        {
-            return View();
+		public ActionResult Index( )
+		{
+			return View( );
 		}
+
+		public ActionResult LogOff( )
+		{
+			FormsAuthentication.SignOut( );
+
+			return RedirectToAction("Index", "Home");
+		}
+
 		[Authorize]
 		public ActionResult ChangePassword( )
 		{

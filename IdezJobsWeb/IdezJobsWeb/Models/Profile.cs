@@ -27,7 +27,11 @@ namespace IdezJobsWeb.Models
 		[Display(Name = "Trabalha:")]
 		public virtual string Industry { get; set; }
 		[Display(Name = "Interesse:")]
-		public virtual string Interest { get; set; }
+		public virtual string Interests { get; set; }
+		[Display(Name = "Endereco Email:")]
+		public virtual string EmailAddress { get; set; } 		
+		[Display(Name = "Id Local do Usuario")]
+		public virtual string IdUser { get; set; }
 
 
 

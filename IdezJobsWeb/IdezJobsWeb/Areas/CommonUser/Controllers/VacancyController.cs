@@ -61,6 +61,27 @@ namespace IdezJobsWeb.Areas.CommonUser.Controllers
 			return View( );
 		}
 
+		public ActionResult SearchVacancyOpen( )
+		{
+			return View( );
+		}
+
+		[HttpPost]
+		public ActionResult SearchVacancyOpen(string description)
+		{
+			return View("ResultSearch", _ContextoVaga.GetAll<Vacancy>( ).Where(x => x.Description.Contains(description)));
+		}
+
+		public ActionResult ResultSearch( )
+		{
+			return View( );
+		}
+
+		public ActionResult VerVagaAcordoPerfil( )
+		{
+		    
+			return View( );
+		}
 
 
 

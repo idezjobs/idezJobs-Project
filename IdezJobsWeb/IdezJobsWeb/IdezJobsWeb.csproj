@@ -900,6 +900,8 @@
     <Content Include="Areas\Business\Views\Vacancy\Inscritos.cshtml" />
     <Content Include="Areas\Business\Views\Vacancy\ErroVaga.cshtml" />
     <Content Include="Areas\CommonUser\Views\Vacancy\Duplicity.cshtml" />
+    <Content Include="Areas\CommonUser\Views\Vacancy\SearchVacancyOpen.cshtml" />
+    <Content Include="Areas\CommonUser\Views\Vacancy\ResultSearch.cshtml" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />

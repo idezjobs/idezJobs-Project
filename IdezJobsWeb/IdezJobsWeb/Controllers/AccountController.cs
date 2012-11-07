@@ -12,6 +12,7 @@ using System.IO;
 using System.Web.Services;
 using IdezJobsWeb.Models.Context;
 using System.Web.Script.Serialization;
+using IdezJobsWeb.Models;
 
 namespace IdezJobsWeb.Controllers
 {
@@ -20,8 +21,9 @@ namespace IdezJobsWeb.Controllers
 		private IContextData _ContextoAccount = new ContextDataNH( );
 
 		[HttpPost]
-		public ActionResult saveUser(string id, string firstName, string lastName, string pictureUrl, string publicProfileUrl, string headline, string industry, string interests)
+		public ActionResult saveUser(string id, string firstName, string lastName, string pictureUrl, string publicProfileUrl, string headline, string industry, string interests, string emailAddress)
 		{
+			User usuario = new Models.User( );
 
 			var idBase = _ContextoAccount.GetAll<Profile>( )
 						  .Where(x => x.Id == id).ToList( );
@@ -37,9 +39,10 @@ namespace IdezJobsWeb.Controllers
 				pUpdate.PublicUrl = publicProfileUrl;
 				pUpdate.Headline = headline;
 				pUpdate.Industry = industry;
-				pUpdate.Interest = interests;
+				pUpdate.Interests = interests;
+				pUpdate.EmailAddress = emailAddress;
 				TryUpdateModel(pUpdate);
-				_ContextoAccount.SaveChanges();
+				_ContextoAccount.SaveChanges( );
 
 				return Json(new { codigo = 1, msg = "Dados atualizados com sucesso!" });
 			}
@@ -53,15 +56,55 @@ namespace IdezJobsWeb.Controllers
 				p.PublicUrl = publicProfileUrl;
 				p.Headline = headline;
 				p.Industry = industry;
-				p.Interest = interests;
-				_ContextoAccount.Add<Profile>(p);
-				_ContextoAccount.SaveChanges( );
+				p.Interests = interests;
+				p.EmailAddress = emailAddress;
+
+				usuario.DateRegister = DateTime.Now;
+				usuario.Email = p.EmailAddress;
+				usuario.Name = p.FirstName;
+				usuario.Type = "Student";
+				usuario.Token = p.Id;
+
+				
+				MembershipCreateStatus status;
+
+				Membership.CreateUser(p.FirstName, p.FirstName + p.Id, p.EmailAddress, null, null, true, out status);
+				if (status == MembershipCreateStatus.Success)
+				{
+					_ContextoAccount.Add<User>(usuario);
+					_ContextoAccount.SaveChanges( );
+
+					_ContextoAccount.Add<Profile>(p);
+					_ContextoAccount.SaveChanges( );
+
+
+					if (Membership.ValidateUser(p.FirstName, p.FirstName + p.Id))
+					{
+
+						FormsAuthentication.SetAuthCookie(p.FirstName, false);
+						//if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
+						//	&& !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+						//	{
+						//	return Redirect(returnUrl);
+						//}
+						//	else
+						//{
+						return RedirectToAction("Index", "Home");
+						//}
+					 }
+					else
+					{
+						ModelState.AddModelError("", "O nome do usuário ou a senha estão incorretos.");
+					} 
+
+				}
+
 
 				return Json(new { codigo = 1, msg = "Dados inseridos com sucesso!" });
 
 			}
 
-		   		   			
+
 		}
 
 		public ActionResult LogOn( )

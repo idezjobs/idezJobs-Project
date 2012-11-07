@@ -24,7 +24,7 @@
 	{
 		submenu.Add( ).Text("Vagas").Items(menude =>
 		{
-			menude.Add( ).Text("Cadastrar Vagas").Action("Create", "Vacancy");
+			menude.Add( ).Text("Cadastrar Vagas").Action("Create", "Vacancy", new {area = "Administrative"});
 			menude.Add( ).Text("Listar Vagas").Action("ListVacancyDetails", "Vacancy");
 
 

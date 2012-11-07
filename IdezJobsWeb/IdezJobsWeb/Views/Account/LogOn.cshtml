@@ -51,7 +51,7 @@
 		function onLinkedInLogin() {
 			// we pass field selectors as a single parameter (array of strings)
 			IN.API.Profile("me")
-			.fields(["id", "firstName", "lastName", "pictureUrl", "publicProfileUrl", "headline", "industry", "interests"])
+			.fields(["id", "firstName", "lastName", "pictureUrl", "publicProfileUrl", "headline", "industry", "interests", "emailAddress", "honors"])
 			.result(function (result) {
 				console.log(result);
 				setLoginBadge(result.values[0]);
@@ -93,9 +93,11 @@
 				profHTML = profHTML + profile.firstName + " " + profile.lastName + "</a>! <a href=\"#\" onclick=\"IN.User.logout(); return false;\"><img src='../../css/img/logout.png' width='20' height='20' title='Logout'/></a></p>";
 				profHTML = profHTML + "Atualmente atua como: " + profile.headline;
 				profHTML = profHTML + "<br />Industria: " + profile.industry;
-				profHTML = profHTML + "<br />ID: " + profile.id;
+				profHTML = profHTML + "<br />Id: " + profile.headline;
+				profHTML = profHTML + "<br />Email: " + profile.emailAddress;
 				profHTML = profHTML + "<br /> Interesse: " + profile.interests;
-				profHTML = profHTML + "<br /><br /><a id='consulta' href='#consultar'>Consultar</a>"
+				
+				
 			}
 
 			document.getElementById("loginbadge").innerHTML = profHTML;
@@ -127,6 +129,7 @@
 	<!-- Load in the JavaScript framework and register a callback function -->
 	<script type="text/javascript" src="http://platform.linkedin.com/in.js">		/*
 		api_key: ixvlxp7r4eqh
+		scope: r_fullprofile r_emailaddress r_basicprofile
 		onLoad: onLinkedInLoad
 		authorize: true
 		*/</script>
