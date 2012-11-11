@@ -69,6 +69,7 @@ namespace IdezJobsWeb.Areas.CommonUser.Controllers
 		[HttpPost]
 		public ActionResult SearchVacancyOpen(string description)
 		{
+			string descriptonUpper = description.ToUpper( );
 			return View("ResultSearch", _ContextoVaga.GetAll<Vacancy>( ).Where(x => x.Description.Contains(description)));
 		}
 
@@ -77,10 +78,27 @@ namespace IdezJobsWeb.Areas.CommonUser.Controllers
 			return View( );
 		}
 
-		public ActionResult VerVagaAcordoPerfil( )
+		public ActionResult ShowVacancyProfile( )
 		{
-		    
-			return View( );
+			string MyName = User.Identity.Name;
+			string MyToken = (from c in _ContextoVaga.GetAll<User>( )
+							.Where(x => x.Name == MyName)
+							  select c.Token).First( );
+
+			string MyProfile = (from c in _ContextoVaga.GetAll<Profile>( )
+							.Where(x => x.Id == MyToken)
+								select c.Interests).First( );
+
+			IList<Vacancy> listVacancy = _ContextoVaga.GetAll<Vacancy>( )
+										.Where(x => x.Description.Contains(MyProfile))
+										.ToList( );
+
+			if (listVacancy == null)
+			{
+				ModelState.AddModelError("", "Não existem vagas para o seu perfil");
+			}
+
+			return View(listVacancy);
 		}
 
 

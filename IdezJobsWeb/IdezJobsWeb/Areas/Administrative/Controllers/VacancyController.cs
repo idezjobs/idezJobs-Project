@@ -56,6 +56,7 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 		public ActionResult Create( )
 		{
 			ViewBag.PerfilVaga = new SelectList(_ContextDataVacancy.GetAll<ProfileVacancy>( ), "Id", "Myprofile").ToList( );
+			ViewBag.Company = new SelectList(_ContextDataVacancy.GetAll<Company>(),"Id","Name").ToList();
 			ViewBag.StatusVaga = new SelectList(_ContextDataVacancy.GetAll<Status>( ), "Code", "Description").ToList( );
 			return View( );
 		}
@@ -66,6 +67,10 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 		{
 			vacancy.RegistrionDate = DateTime.Now;
 			ModelState["ProfileVacancy.Myprofile"].Errors.Clear( );
+			ModelState["CompanyName.Name"].Errors.Clear();
+			ModelState["CompanyName.Email"].Errors.Clear( );
+			ModelState["Status"].Errors.Clear( );
+
 
 			if (ModelState.IsValid)
 			{
@@ -75,10 +80,10 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 					ModelState.AddModelError("", "A data deve ser maior que a data atual.");
 				}
 
-
 				vacancy.ProfileVacancy = _ContextDataVacancy.Get<ProfileVacancy>(vacancy.ProfileVacancy.Id);
-
-				vacancy.Status = _ContextDataVacancy.Get<Status>(vacancy.Status.Code);
+				vacancy.CompanyName = _ContextDataVacancy.Get<Company>(vacancy.CompanyName.Id);
+				vacancy.Status = _ContextDataVacancy.GetAll<Status>( ).Where(x => x.Description == "Aberto").First( );
+				
 				if (vacancy.Status == null)
 				{
 					ModelState.AddModelError("", "O Status não pode ser vazio.");
@@ -94,6 +99,8 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 
 			ViewBag.PerfilVaga = new SelectList(_ContextDataVacancy.GetAll<ProfileVacancy>( ), "Id", "Myprofile",vacancy.ProfileVacancy.Id);
 			ViewBag.StatusVaga = new SelectList(_ContextDataVacancy.GetAll<Status>( ), "Code", "Description",vacancy.Status.Code);
+			ViewBag.Company = new SelectList(_ContextDataVacancy.GetAll<Company>( ), "Id", "Name",vacancy.CompanyName.Id);
+
 
 			return View( );
 		}

@@ -41,8 +41,7 @@ namespace IdezJobsWeb
 			RegisterGlobalFilters(GlobalFilters.Filters);
 			RegisterRoutes(RouteTable.Routes);
 
-		//	HomeController 	UpdateVacancy = new HomeController();
-			//UpdateVacancy.Update( );
+		
 			
 
 			if (System.Web.Security.Roles.GetAllRoles( ).Length == 0)

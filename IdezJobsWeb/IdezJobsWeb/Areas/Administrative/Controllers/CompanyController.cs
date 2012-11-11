@@ -52,15 +52,15 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 		{
 			Company CompanyDetails = _ContextData.Get<Company>(id);
 			ViewBag.NumeroVagas = (from c in _ContextData.GetAll<Vacancy>( )
-								   .Where(x => x.CompanyName.Contains(CompanyDetails.Name))
-								   select c.JobsNumber).First( );
+			                       .Where(x => x.CompanyName.Id == CompanyDetails.Id)
+			                       select c.JobsNumber).First( );
 			return View(CompanyDetails);
 		}
 
 		public ActionResult JobsAvailable(string id)
 		{
 			IList<Vacancy> ListVancancyAvailable = _ContextData.GetAll<Vacancy>( )
-												  .Where(x => x.CompanyName == id)
+												  .Where(x => x.CompanyName.Name == id)
 												  .ToList( );
 			ViewBag.Empresa = id;
 			return View(ListVancancyAvailable);
@@ -83,7 +83,7 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 			if (ModelState.IsValid)
 			{
 				MembershipCreateStatus createStatus;
-				Membership.CreateUser(company.Name, company.Name.Trim() + "IdezJobs", company.Email, null, null, true, null, out createStatus);
+				Membership.CreateUser(company.Name, company.Name.Replace(" ","") + "IdezJobs", company.Email, null, null, true, null, out createStatus);
 
 				if (createStatus == MembershipCreateStatus.Success)
 				{

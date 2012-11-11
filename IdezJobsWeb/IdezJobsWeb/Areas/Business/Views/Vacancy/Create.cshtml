@@ -9,23 +9,16 @@
 {
 	@Html.ValidationSummary(true)
 	<fieldset>
-		<legend>Vagas</legend>
+		<legend>Adicionar Vaga:</legend>
 		<div class="editor-label">
-			@Html.LabelFor(model => model.RegistrationDeadline, "Data Limite Para Inscrição:")
+			@Html.LabelFor(model => model.RegistrationDeadline,"Data Limite Inscrição:")
 		</div>
 		<div class="editor-field">
-			@Html.Telerik( ).DatePickerFor(model => model.RegistrationDeadline)
+			@Html.Telerik().DatePickerFor(model => model.RegistrationDeadline)
 			@Html.ValidationMessageFor(model => model.RegistrationDeadline)
 		</div>
 		<div class="editor-label">
-			@Html.LabelFor(model => model.JobsNumber, "Número de Vagas:")
-		</div>
-		<div class="editor-field">
-			@Html.EditorFor(model => model.JobsNumber)
-			@Html.ValidationMessageFor(model => model.JobsNumber)
-		</div>
-		<div class="editor-label">
-			@Html.LabelFor(model => model.Description, "Descrição:")
+			@Html.LabelFor(model => model.Description,"Descrição:")
 		</div>
 		<div class="editor-field">
 			@Html.TextAreaFor(model => model.Description)
@@ -37,6 +30,28 @@
 		<div class="editor-field">
 			@Html.DropDownListFor(model => model.ProfileVacancy.Id, (IEnumerable<SelectListItem>)ViewBag.PerfilVaga, "Selecione Perfil")@Html.ActionLink("Novo", "Create", "ProfileVacancy")
 			@Html.ValidationMessageFor(model => model.ProfileVacancy)
+		</div>
+		
+		<div class="editor-label">
+			@Html.LabelFor(model => model.OfficeHours,"Horário de Trabalho:")
+		</div>
+		<div class="editor-field">
+			@Html.TextAreaFor(model => model.OfficeHours)
+			@Html.ValidationMessageFor(model => model.OfficeHours)
+		</div>
+		<div class="editor-label">
+			@Html.LabelFor(model => model.Benefits,"Benefícios:")
+		</div>
+		<div class="editor-field">
+			@Html.TextAreaFor(model => model.Benefits)
+			@Html.ValidationMessageFor(model => model.Benefits)
+		</div>
+		<div class="editor-label">
+			@Html.LabelFor(model => model.JobsNumber,"Números de Vagas:")
+		</div>
+		<div class="editor-field">
+			@Html.Telerik().NumericTextBoxFor(model => model.JobsNumber)
+			@Html.ValidationMessageFor(model => model.JobsNumber)
 		</div>
 		<p>
 			<input type="submit" value="Salvar" />

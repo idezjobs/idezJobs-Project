@@ -14,9 +14,10 @@ namespace IdezJobsWeb.Models.Mappings
 			Id(x => x.Id, "Id");
 			Map(x => x.RegistrionDate, "RegistrionDate").Not.Nullable( );
 			Map(x => x.RegistrationDeadline, "RegistrationDeadline").Not.Nullable( );
-			Map(x => x.Description, "Description").Not.Nullable( ).Not.Nullable( ).Length(200);
-			Map(x => x.CompanyName, "CompanyName").Not.Nullable( ).Length(50);
+			Map(x => x.Description, "Description").Not.Nullable( ).Not.Nullable( ).Length(200);			
 			Map(x => x.JobsNumber, "JobsNumber").Not.Nullable( );
+			Map(x => x.Benefits, "Beneficios").Nullable( );
+			Map(x => x.OfficeHours, "OfficeHours").Nullable( );
 
 			References(x => x.ProfileVacancy, "ProfileVacancy")
 			.Cascade.SaveUpdate( )
@@ -29,7 +30,12 @@ namespace IdezJobsWeb.Models.Mappings
 			.ForeignKey("fk_Vacancy_Status")
 			.Not.Nullable( );
 
-			
+			References(x => x.CompanyName,"Company")
+			.Cascade.SaveUpdate()
+			.ForeignKey("fk_Vacancy_Company")
+			.Nullable();
+
+
 		}
 	}
 }

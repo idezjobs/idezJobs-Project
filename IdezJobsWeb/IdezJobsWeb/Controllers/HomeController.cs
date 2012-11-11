@@ -10,14 +10,13 @@ namespace IdezJobsWeb.Controllers
 {
 	public class HomeController : Controller
 	{
-		
+
 
 		public ActionResult Index( )
 		{
+			Update( );
 			return View( );
-		}
-
-
+		} 
 
 
 		public void Update( )
@@ -31,13 +30,13 @@ namespace IdezJobsWeb.Controllers
 				foreach (var item in VacancyList)
 				{
 					Vacancy Va = Update.Get<Vacancy>(item.Id);
-					Va.Status = Update.GetAll<Status>().Where(x => x.Description == "Fechado").First();
+					Va.Status = Update.GetAll<Status>( ).Where(x => x.Description == "Fechado").First( );
 					Update.SaveChanges( );
 
 
 				}
 
-				Update.Dispose();
+				Update.Dispose( );
 
 			}
 		}

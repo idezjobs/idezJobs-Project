@@ -827,10 +827,6 @@
     <Content Include="Areas\Business\Views\Home\Sucess.cshtml" />
     <Content Include="Areas\Business\Views\Vacancy\Edit.cshtml" />
     <Content Include="Areas\Business\Views\Vacancy\Delete.cshtml" />
-    <Content Include="Areas\Administrative\Views\Vacancy\Create.cshtml">
-      <SubType>
-      </SubType>
-    </Content>
     <Content Include="Areas\Administrative\Views\Vacancy\Delete.cshtml" />
     <Content Include="Areas\Administrative\Views\Vacancy\Details.cshtml" />
     <Content Include="Areas\Administrative\Views\Vacancy\Edit.cshtml" />
@@ -902,6 +898,8 @@
     <Content Include="Areas\CommonUser\Views\Vacancy\Duplicity.cshtml" />
     <Content Include="Areas\CommonUser\Views\Vacancy\SearchVacancyOpen.cshtml" />
     <Content Include="Areas\CommonUser\Views\Vacancy\ResultSearch.cshtml" />
+    <Content Include="Areas\Administrative\Views\Vacancy\Create.cshtml" />
+    <Content Include="Areas\CommonUser\Views\Vacancy\ShowVacancyProfile.cshtml" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />

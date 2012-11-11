@@ -24,8 +24,7 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 		{
 			IList<Vacancy> listVancancy = null;
 			listVancancy = _ContextDataVacancy.GetAll<Vacancy>( )
-						   .Where(x => x.CompanyName == User.Identity.Name)
-							.OrderByDescending(x => x.RegistrionDate).ToList( );
+						  .ToList( );
 			return View(listVancancy);
 		}
 
@@ -49,7 +48,7 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 							  .Where(x => x.Id == item.UserJobs.Id.ToString( )).ToList( );
 
 			}
-			if(listaPerfil == null)
+			if (listaPerfil == null)
 			{
 				return RedirectToAction("ErroVaga");
 			}
@@ -82,8 +81,7 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 		public ActionResult Create(Vacancy vacancy)
 		{
 			vacancy.RegistrionDate = DateTime.Now;
-			ModelState["ProfileVacancy.Myprofile"].Errors.Clear( );
-			ModelState["CompanyName"].Errors.Clear( );
+			ModelState["ProfileVacancy.Myprofile"].Errors.Clear( );			
 			ModelState["Status"].Errors.Clear( );
 
 
@@ -99,7 +97,8 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 
 				vacancy.ProfileVacancy = _ContextDataVacancy.Get<ProfileVacancy>(vacancy.ProfileVacancy.Id);
 				vacancy.Status = _ContextDataVacancy.GetAll<Status>( ).Where(x => x.Description == "Aberto").First( );
-				vacancy.CompanyName = CompanyName;
+				vacancy.CompanyName = _ContextDataVacancy.GetAll<Company>()
+				                      .Where(x => x.Name == CompanyName).First();
 				_ContextDataVacancy.Add<Vacancy>(vacancy);
 
 				_ContextDataVacancy.SaveChanges( );
@@ -110,6 +109,7 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 			}
 			ViewBag.PerfilVaga = new SelectList(_ContextDataVacancy.GetAll<ProfileVacancy>( ), "Id", "Myprofile", vacancy.ProfileVacancy);
 			ViewBag.StatusVaga = new SelectList(_ContextDataVacancy.GetAll<Status>( ), "Code", "Description", vacancy.Status);
+
 			return View( );
 		}
 

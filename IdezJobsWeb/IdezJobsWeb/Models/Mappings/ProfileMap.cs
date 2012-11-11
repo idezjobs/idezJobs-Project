@@ -18,9 +18,10 @@ namespace IdezJobsWeb.Models.Mappings
 			Map(x => x.PictureUrl, "PictureUrl");
 			Map(x => x.PublicUrl, "PublicUrl");
 			Map(x => x.Headline, "Headline");
-			Map(x => x.Interests,"Interests");
+			Map(x => x.Interests,"Interests");					
 			Map(x => x.EmailAddress, "EmailAddress");			
 			Map(x => x.IdUser,"IdUser");
+			Map(x => x.Industry, "Industry");
 
 		}
 	}
