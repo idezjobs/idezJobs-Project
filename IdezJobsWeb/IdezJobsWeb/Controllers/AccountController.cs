@@ -38,9 +38,9 @@ namespace IdezJobsWeb.Controllers
 				pUpdate.LastName = lastName;
 				pUpdate.PictureUrl = pictureUrl;
 				pUpdate.PublicUrl = publicProfileUrl;
-				pUpdate.Headline = headline;
-				pUpdate.Industry = industry;
-				pUpdate.Interests = interests;
+				pUpdate.Headline = headline.ToUpper();
+				pUpdate.Industry = industry.ToUpper();
+				pUpdate.Interests = interests.ToUpper();
 				pUpdate.EmailAddress = emailAddress;
 				pUpdate.IdUser = (from c in _ContextoAccount.GetAll<User>( )
 							     .Where(x => x.Token == id)
@@ -76,9 +76,9 @@ namespace IdezJobsWeb.Controllers
 				p.LastName = lastName;
 				p.PictureUrl = pictureUrl;
 				p.PublicUrl = publicProfileUrl;
-				p.Headline = headline;
-				p.Industry = industry;
-				p.Interests = interests;
+				p.Headline = headline.ToUpper();
+				p.Industry = industry.ToUpper();
+				p.Interests = interests.ToUpper();
 				p.EmailAddress = emailAddress;
 				p.IdUser = (from c in _ContextoAccount.GetAll<User>()
 				             .Where(x => x.Token == id)

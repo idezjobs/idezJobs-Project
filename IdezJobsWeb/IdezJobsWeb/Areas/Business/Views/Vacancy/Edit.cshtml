@@ -1,61 +1,69 @@
 ﻿@model IdezJobsWeb.Models.Vacancy
 
 @{
-    ViewBag.Title = "Editar Vaga";
+    ViewBag.Title = "Edit";
     Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Editar Vaga:</h2>
+<h2>Alterar Vaga</h2>
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>
-        <legend>Vacancy</legend>
+        <legend>Vaga</legend>
 
         @Html.HiddenFor(model => model.Id)
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.RegistrionDate, "Data Registro:")
+            @Html.LabelFor(model => model.RegistrionDate,"Data Registro:")
         </div>
         <div class="editor-field">
-            @Html.Telerik().DatePickerFor(model => model.RegistrionDate)
+            @Html.EditorFor(model => model.RegistrionDate)
             @Html.ValidationMessageFor(model => model.RegistrionDate)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.RegistrationDeadline,"Data Limite Cadastro:")
+            @Html.LabelFor(model => model.RegistrationDeadline,"Data Limite Para Inscrição:")
         </div>
         <div class="editor-field">
-           @Html.Telerik().DatePickerFor(model => model.RegistrationDeadline)
+            @Html.EditorFor(model => model.RegistrationDeadline)
             @Html.ValidationMessageFor(model => model.RegistrationDeadline)
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Description, "Descrição:")
+            @Html.LabelFor(model => model.Description,"Descrição:")
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.Description)
+            @Html.EditorFor(model => model.Description)
             @Html.ValidationMessageFor(model => model.Description)
-        </div>        
+        </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.JobsNumber, "Número de Vagas:")
+            @Html.LabelFor(model => model.OfficeHours,"Horário de Trabalho:")
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(model => model.JobsNumber)
+            @Html.EditorFor(model => model.OfficeHours)
+            @Html.ValidationMessageFor(model => model.OfficeHours)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Benefits,"Benefícios:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Benefits)
+            @Html.ValidationMessageFor(model => model.Benefits)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.JobsNumber,"Número de Vagas:")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.JobsNumber)
             @Html.ValidationMessageFor(model => model.JobsNumber)
         </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.ProfileVacancy, "Perfil Vaga:")
-        </div>
-        <div class="editor-field">
-            @Html.TextBoxFor(model => model.ProfileVacancy.Myprofile)
-            @Html.ValidationMessageFor(model => model.ProfileVacancy)
-        </div>
-
         <p>
-            <input type="submit" value="Salvar" id="ButtonEditVacancy" />
+            <input type="submit" value="Salvar" />
         </p>
     </fieldset>
 }

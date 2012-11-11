@@ -70,7 +70,7 @@ namespace IdezJobsWeb.Areas.CommonUser.Controllers
 		public ActionResult SearchVacancyOpen(string description)
 		{
 			string descriptonUpper = description.ToUpper( );
-			return View("ResultSearch", _ContextoVaga.GetAll<Vacancy>( ).Where(x => x.Description.Contains(description)));
+			return View("ResultSearch", _ContextoVaga.GetAll<Vacancy>( ).Where(x => x.Description.Contains(descriptonUpper)));
 		}
 
 		public ActionResult ResultSearch( )
@@ -88,14 +88,18 @@ namespace IdezJobsWeb.Areas.CommonUser.Controllers
 			string MyProfile = (from c in _ContextoVaga.GetAll<Profile>( )
 							.Where(x => x.Id == MyToken)
 								select c.Interests).First( );
+			
+			string ListIntersectes = MyProfile;
+			string[] Letras = ListIntersectes.Split(new char[] { ' ' });
+			var Query = from w in Letras where w == "," select w;
 
-			IList<Vacancy> listVacancy = _ContextoVaga.GetAll<Vacancy>( )
-										.Where(x => x.Description.Contains(MyProfile))
-										.ToList( );
-
-			if (listVacancy == null)
+			IList<Vacancy> listVacancy = null;
+			
+			foreach (var item in Letras)
 			{
-				ModelState.AddModelError("", "Não existem vagas para o seu perfil");
+				listVacancy = _ContextoVaga.GetAll<Vacancy>( )
+							  .Where(x => x.Description.Contains(item.ToString())).ToList( );
+				
 			}
 
 			return View(listVacancy);

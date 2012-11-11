@@ -56,7 +56,7 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 		public ActionResult Create( )
 		{
 			ViewBag.PerfilVaga = new SelectList(_ContextDataVacancy.GetAll<ProfileVacancy>( ), "Id", "Myprofile").ToList( );
-			ViewBag.Company = new SelectList(_ContextDataVacancy.GetAll<Company>(),"Id","Name").ToList();
+			ViewBag.Company = new SelectList(_ContextDataVacancy.GetAll<Company>( ), "Id", "Name").ToList( );
 			ViewBag.StatusVaga = new SelectList(_ContextDataVacancy.GetAll<Status>( ), "Code", "Description").ToList( );
 			return View( );
 		}
@@ -67,7 +67,7 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 		{
 			vacancy.RegistrionDate = DateTime.Now;
 			ModelState["ProfileVacancy.Myprofile"].Errors.Clear( );
-			ModelState["CompanyName.Name"].Errors.Clear();
+			ModelState["CompanyName.Name"].Errors.Clear( );
 			ModelState["CompanyName.Email"].Errors.Clear( );
 			ModelState["Status"].Errors.Clear( );
 
@@ -79,11 +79,13 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 				{
 					ModelState.AddModelError("", "A data deve ser maior que a data atual.");
 				}
-
+				vacancy.Benefits = vacancy.Benefits.ToUpper( );
+				vacancy.Description = vacancy.Description.ToUpper( );
+				vacancy.OfficeHours = vacancy.OfficeHours.ToUpper( );
 				vacancy.ProfileVacancy = _ContextDataVacancy.Get<ProfileVacancy>(vacancy.ProfileVacancy.Id);
 				vacancy.CompanyName = _ContextDataVacancy.Get<Company>(vacancy.CompanyName.Id);
 				vacancy.Status = _ContextDataVacancy.GetAll<Status>( ).Where(x => x.Description == "Aberto").First( );
-				
+
 				if (vacancy.Status == null)
 				{
 					ModelState.AddModelError("", "O Status não pode ser vazio.");
@@ -97,9 +99,9 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 
 			}
 
-			ViewBag.PerfilVaga = new SelectList(_ContextDataVacancy.GetAll<ProfileVacancy>( ), "Id", "Myprofile",vacancy.ProfileVacancy.Id);
-			ViewBag.StatusVaga = new SelectList(_ContextDataVacancy.GetAll<Status>( ), "Code", "Description",vacancy.Status.Code);
-			ViewBag.Company = new SelectList(_ContextDataVacancy.GetAll<Company>( ), "Id", "Name",vacancy.CompanyName.Id);
+			ViewBag.PerfilVaga = new SelectList(_ContextDataVacancy.GetAll<ProfileVacancy>( ), "Id", "Myprofile", vacancy.ProfileVacancy.Id);
+			ViewBag.StatusVaga = new SelectList(_ContextDataVacancy.GetAll<Status>( ), "Code", "Description", vacancy.Status.Code);
+			ViewBag.Company = new SelectList(_ContextDataVacancy.GetAll<Company>( ), "Id", "Name", vacancy.CompanyName.Id);
 
 
 			return View( );
@@ -120,6 +122,9 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 		{
 
 			Vacancy VacancyEdit = _ContextDataVacancy.Get<Vacancy>(vacancy.Id);
+			VacancyEdit.OfficeHours = vacancy.OfficeHours.ToUpper( );
+			VacancyEdit.Benefits = vacancy.Benefits.ToUpper( );
+			VacancyEdit.Description = vacancy.Description.ToUpper( );
 			TryUpdateModel(VacancyEdit);
 			_ContextDataVacancy.SaveChanges( );
 			return RedirectToAction("Sucess", "Home");
