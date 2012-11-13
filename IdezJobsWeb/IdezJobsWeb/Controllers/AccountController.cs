@@ -24,6 +24,22 @@ namespace IdezJobsWeb.Controllers
 		public ActionResult saveUser(string id, string firstName, string lastName, string pictureUrl, string publicProfileUrl, string headline, string industry, string interests, string emailAddress)
 		{
 			User usuario = new Models.User( );
+			if(interests == null || interests.Equals("undefined"))
+			{
+			interests = "sem interesse";
+			}
+			else if (pictureUrl == null || pictureUrl.Equals("undefined"))
+			{
+			pictureUrl = "sem imagem";
+			}
+			else if( headline== null || headline.Equals("undefined"))
+			{
+			 headline = "sem informação de estudos";
+			}
+			else if(industry == null || industry.Equals("undefined"))
+			{
+			  industry = "no momento nao trabalha";
+			}
 			MembershipUser UsuarioExiste = FindUserByEmail(emailAddress);
 
 			var idBase = _ContextoAccount.GetAll<Profile>( )
@@ -38,9 +54,9 @@ namespace IdezJobsWeb.Controllers
 				pUpdate.LastName = lastName;
 				pUpdate.PictureUrl = pictureUrl;
 				pUpdate.PublicUrl = publicProfileUrl;
-				pUpdate.Headline = headline.ToUpper();
-				pUpdate.Industry = industry.ToUpper();
-				pUpdate.Interests = interests.ToUpper();
+				pUpdate.Headline = headline.ToLower();
+				pUpdate.Industry = industry.ToLower();
+				pUpdate.Interests = interests.ToLower();
 				pUpdate.EmailAddress = emailAddress;
 				pUpdate.IdUser = (from c in _ContextoAccount.GetAll<User>( )
 							     .Where(x => x.Token == id)
@@ -76,9 +92,9 @@ namespace IdezJobsWeb.Controllers
 				p.LastName = lastName;
 				p.PictureUrl = pictureUrl;
 				p.PublicUrl = publicProfileUrl;
-				p.Headline = headline.ToUpper();
-				p.Industry = industry.ToUpper();
-				p.Interests = interests.ToUpper();
+				p.Headline = headline.ToLower();
+				p.Industry = industry.ToLower();
+				p.Interests = interests.ToLower();
 				p.EmailAddress = emailAddress;
 				p.IdUser = (from c in _ContextoAccount.GetAll<User>()
 				             .Where(x => x.Token == id)

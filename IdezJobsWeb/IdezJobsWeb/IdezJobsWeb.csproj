@@ -900,6 +900,8 @@
     <Content Include="Areas\Administrative\Views\Vacancy\Create.cshtml" />
     <Content Include="Areas\CommonUser\Views\Vacancy\ShowVacancyProfile.cshtml" />
     <Content Include="Areas\Business\Views\Vacancy\Edit.cshtml" />
+    <Content Include="Areas\Business\Views\Vacancy\ShowProfile.cshtml" />
+    <Content Include="Areas\Business\Views\Vacancy\ShowUser.cshtml" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />

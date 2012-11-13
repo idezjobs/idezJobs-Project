@@ -17,6 +17,7 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 
 		public ActionResult Index( )
 		{
+		  
 			return View( );
 		}
 
@@ -81,7 +82,7 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 		public ActionResult Create(Vacancy vacancy)
 		{
 			vacancy.RegistrionDate = DateTime.Now;
-			ModelState["ProfileVacancy.Myprofile"].Errors.Clear( );			
+			ModelState["ProfileVacancy.Myprofile"].Errors.Clear( );
 			ModelState["Status"].Errors.Clear( );
 
 
@@ -94,13 +95,13 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 				{
 					ModelState.AddModelError("", "A data deve ser maior que a data atual.");
 				}
-				vacancy.Benefits = vacancy.Benefits.ToUpper();
-				vacancy.Description = vacancy.Description.ToUpper();
-				vacancy.OfficeHours = vacancy.OfficeHours.ToUpper();
+				vacancy.Benefits = vacancy.Benefits.ToLower( );
+				vacancy.Description = vacancy.Description.ToLower( );
+				vacancy.OfficeHours = vacancy.OfficeHours.ToLower( );
 				vacancy.ProfileVacancy = _ContextDataVacancy.Get<ProfileVacancy>(vacancy.ProfileVacancy.Id);
 				vacancy.Status = _ContextDataVacancy.GetAll<Status>( ).Where(x => x.Description == "Aberto").First( );
-				vacancy.CompanyName = _ContextDataVacancy.GetAll<Company>()
-				                      .Where(x => x.Name == CompanyName).First();
+				vacancy.CompanyName = _ContextDataVacancy.GetAll<Company>( )
+									  .Where(x => x.Name == CompanyName).First( );
 				_ContextDataVacancy.Add<Vacancy>(vacancy);
 
 				_ContextDataVacancy.SaveChanges( );
@@ -129,9 +130,9 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 		{
 
 			Vacancy VacancyEdit = _ContextDataVacancy.Get<Vacancy>(vacancy.Id);
-			VacancyEdit.OfficeHours = vacancy.OfficeHours.ToUpper();
-			VacancyEdit.Description = vacancy.Description.ToUpper();
-			VacancyEdit.Benefits = vacancy.Benefits.ToUpper();
+			VacancyEdit.OfficeHours = vacancy.OfficeHours.ToLower( );
+			VacancyEdit.Description = vacancy.Description.ToLower( );
+			VacancyEdit.Benefits = vacancy.Benefits.ToLower( );
 			TryUpdateModel(VacancyEdit);
 			_ContextDataVacancy.SaveChanges( );
 			return RedirectToAction("Sucess", "Home");
@@ -155,6 +156,51 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 			_ContextDataVacancy.Delete<Vacancy>(VacancyDelete);
 			_ContextDataVacancy.SaveChanges( );
 			return RedirectToAction("Sucess", "Home");
+		}
+
+		public ActionResult ShowProfile(int id)
+		{
+			var listaNumerosPerfis = (from c in _ContextDataVacancy.GetAll<JobCandidate>( )
+									.Where(x => x.JobCandidato.Id == id)
+									  select c.UserJobs.Id).ToList( );
+
+			IList<Profile> listaPerfis = null;
+			foreach (var item in listaNumerosPerfis)
+			{
+				listaPerfis = _ContextDataVacancy.GetAll<Profile>( )
+							  .Where(x => x.IdUser == item.ToString( ))
+							  .ToList( );
+
+			}
+			return View(listaPerfis);
+		}
+
+
+		public ActionResult ShowUser(int id)
+		{
+
+			string Description = (from c in _ContextDataVacancy.GetAll<Vacancy>( )
+								  .Where(x => x.Id == id)
+								  select c.Description.ToLower()).First( );
+			string[] Letras = Description.Split(new char[] { ' ' });
+
+			IList<Profile> profileUser = null;
+			IList<Profile> list = new List<Profile>( );
+			int achei = 0;
+			foreach (var item in Letras)
+			{
+				profileUser = _ContextDataVacancy.GetAll<Profile>( )
+							  .Where(x => x.Interests.ToLower().Contains(item.ToLower().ToString( ))).ToList( );
+
+				if (profileUser.Count( ) > 0)
+				{
+					achei++;
+					list = profileUser;
+				}
+
+			}
+
+			return View(list);
 		}
 
 

@@ -79,9 +79,9 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 				{
 					ModelState.AddModelError("", "A data deve ser maior que a data atual.");
 				}
-				vacancy.Benefits = vacancy.Benefits.ToUpper( );
-				vacancy.Description = vacancy.Description.ToUpper( );
-				vacancy.OfficeHours = vacancy.OfficeHours.ToUpper( );
+				vacancy.Benefits = vacancy.Benefits.ToLower();
+				vacancy.Description = vacancy.Description.ToLower();
+				vacancy.OfficeHours = vacancy.OfficeHours.ToLower();
 				vacancy.ProfileVacancy = _ContextDataVacancy.Get<ProfileVacancy>(vacancy.ProfileVacancy.Id);
 				vacancy.CompanyName = _ContextDataVacancy.Get<Company>(vacancy.CompanyName.Id);
 				vacancy.Status = _ContextDataVacancy.GetAll<Status>( ).Where(x => x.Description == "Aberto").First( );
@@ -122,9 +122,9 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 		{
 
 			Vacancy VacancyEdit = _ContextDataVacancy.Get<Vacancy>(vacancy.Id);
-			VacancyEdit.OfficeHours = vacancy.OfficeHours.ToUpper( );
-			VacancyEdit.Benefits = vacancy.Benefits.ToUpper( );
-			VacancyEdit.Description = vacancy.Description.ToUpper( );
+			VacancyEdit.OfficeHours = vacancy.OfficeHours.ToLower();
+			VacancyEdit.Benefits = vacancy.Benefits.ToLower();
+			VacancyEdit.Description = vacancy.Description.ToLower();
 			TryUpdateModel(VacancyEdit);
 			_ContextDataVacancy.SaveChanges( );
 			return RedirectToAction("Sucess", "Home");

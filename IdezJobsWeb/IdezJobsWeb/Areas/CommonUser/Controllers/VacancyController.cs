@@ -88,25 +88,29 @@ namespace IdezJobsWeb.Areas.CommonUser.Controllers
 			string MyProfile = (from c in _ContextoVaga.GetAll<Profile>( )
 							.Where(x => x.Id == MyToken)
 								select c.Interests).First( );
-			
+
 			string ListIntersectes = MyProfile;
 			string[] Letras = ListIntersectes.Split(new char[] { ' ' });
 			var Query = from w in Letras where w == "," select w;
 
 			IList<Vacancy> listVacancy = null;
-			
+			IList<Vacancy> CopyVacancy = _ContextoVaga.GetAll<Vacancy>( ).ToList( );
+			int achei = 0;
 			foreach (var item in Letras)
 			{
 				listVacancy = _ContextoVaga.GetAll<Vacancy>( )
-							  .Where(x => x.Description.Contains(item.ToString())).ToList( );
-				
+					  .Where(x => x.Description.Contains(item.ToString( ))).ToList( );
+
+				if (listVacancy.Count( ) > 0)
+				{
+					achei++;
+					CopyVacancy = listVacancy;
+				}
+
 			}
 
-			return View(listVacancy);
+			return View(CopyVacancy);
 		}
-
-
-
 
 	}
 }

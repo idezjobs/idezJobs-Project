@@ -12,9 +12,7 @@
 </p>
 <table class="table table-bordered">
     <tr>
-        <th>
-            Data Registro:
-        </th>
+       
         <th>
             Data Limite Cadastro:
         </th>
@@ -33,9 +31,7 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.RegistrionDate)
-        </td>
+        
         <td>
             @Html.DisplayFor(modelItem => item.RegistrationDeadline)
         </td>
@@ -50,7 +46,9 @@
             @Html.DisplayFor(modelItem => item.ProfileVacancy.Myprofile)
         </td>
         <td>
-           @Html.ActionLink("Ver Inscritos", "Inscritos", new {id = item.Id})
+           @Html.ActionLink("Ver Inscritos", "Inscritos", new {id = item.Id})|
+		   @Html.ActionLink("Perfil Dos Inscritos","ShowProfile",new {id = item.Id})|
+		   @Html.ActionLink("Encontre Usuários","ShowUser",new {id = item.Id})
         </td>
     </tr>
 }
