@@ -31,7 +31,7 @@ namespace IdezJobsWeb.Models
 		[Display(Name = "Endereco Email:")]
 		public virtual string EmailAddress { get; set; } 		
 		[Display(Name = "Id Local do Usuario")]
-		public virtual string IdUser { get; set; }
+		public virtual long IdUser { get; set; }
 
 
 

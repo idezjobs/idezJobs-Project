@@ -12,7 +12,7 @@ using System.IO;
 using System.Web.Services;
 using IdezJobsWeb.Models.Context;
 using System.Web.Script.Serialization;
-using IdezJobsWeb.Models;
+
 
 namespace IdezJobsWeb.Controllers
 {
@@ -60,7 +60,7 @@ namespace IdezJobsWeb.Controllers
 				pUpdate.EmailAddress = emailAddress;
 				pUpdate.IdUser = (from c in _ContextoAccount.GetAll<User>( )
 							     .Where(x => x.Token == id)
-								  select c.Id.ToString( )).First( ); 
+								  select c.Id).First( ); 
 
 				TryUpdateModel(pUpdate);
 				_ContextoAccount.SaveChanges( );
@@ -98,7 +98,7 @@ namespace IdezJobsWeb.Controllers
 				p.EmailAddress = emailAddress;
 				p.IdUser = (from c in _ContextoAccount.GetAll<User>()
 				             .Where(x => x.Token == id)
-							 select c.Id.ToString()).First(); 
+							 select c.Id).First(); 
 
 
 				MembershipCreateStatus status;

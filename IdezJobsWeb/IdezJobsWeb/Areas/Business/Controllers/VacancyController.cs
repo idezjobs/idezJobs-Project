@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using IdezJobsWeb.Models;
 using IdezJobsWeb.Models.Context;
+using Telerik.Web.Mvc;
 
 namespace IdezJobsWeb.Areas.Business.Controllers
 {
@@ -39,23 +40,36 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 
 		public ActionResult Inscritos(int id)
 		{
-			IList<JobCandidate> listaCandidatos = null;
-			listaCandidatos = _ContextDataVacancy.GetAll<JobCandidate>( )
-									 .Where(x => x.JobCandidato.Id == id).ToList( );
-			IList<Profile> listaPerfil = null;
-			foreach (var item in listaCandidatos)
-			{
-				listaPerfil = _ContextDataVacancy.GetAll<Profile>( )
-							  .Where(x => x.Id == item.UserJobs.Id.ToString( )).ToList( );
+			//IList<JobCandidate> listaCandidatos = null;
+			//listaCandidatos = _ContextDataVacancy.GetAll<JobCandidate>( )
+			//                         .Where(x => x.JobCandidato.Id == id).ToList( );
+			//IList<Profile> listaPerfil = null;
+			//foreach (var item in listaCandidatos)
+			//{
+			//    listaPerfil = _ContextDataVacancy.GetAll<Profile>( )
+			//                  .Where(x => x.Id == item.UserJobs.Id.ToString( )).ToList( );
 
-			}
-			if (listaPerfil == null)
-			{
-				return RedirectToAction("ErroVaga");
-			}
+			//}
+			//if (listaPerfil == null)
+			//{
+			//    return RedirectToAction("ErroVaga");
+			//}
 
-			return View(listaPerfil);
+			return View();
 
+		}
+
+		[GridAction]
+		public ActionResult Inscritos3(int id )
+		{
+		
+		 var listProfileInscritos = (from jb in _ContextDataVacancy.GetAll<JobCandidate>( )
+		                             .Where(x => x.JobCandidato.Id == id)
+		                             join pf in _ContextDataVacancy.GetAll<Profile>()
+									 on jb.UserJobs.Id equals pf.IdUser
+									 select new { FirstName = pf.FirstName, LastName = pf.LastName, PublicUrl = pf.PublicUrl, Headline = pf.Headline, Industry = pf.Industry });
+
+		 return View(new GridModel(listProfileInscritos.ToList()));
 		}
 
 		public ActionResult ErroVaga( )
@@ -168,7 +182,7 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 			foreach (var item in listaNumerosPerfis)
 			{
 				listaPerfis = _ContextDataVacancy.GetAll<Profile>( )
-							  .Where(x => x.IdUser == item.ToString( ))
+							  .Where(x => x.IdUser == item)
 							  .ToList( );
 
 			}

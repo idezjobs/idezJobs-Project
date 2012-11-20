@@ -66,7 +66,7 @@ namespace IdezJobsWeb.Controllers
 						foreach (var itemJobs in listJobs)
 						{
 							listProfile = Hir.GetAll<Profile>( )
-										  .Where(x => x.IdUser == itemJobs.UserJobs.Id.ToString( ))
+										  .Where(x => x.IdUser == itemJobs.UserJobs.Id)
 										  .ToList( );
 
 

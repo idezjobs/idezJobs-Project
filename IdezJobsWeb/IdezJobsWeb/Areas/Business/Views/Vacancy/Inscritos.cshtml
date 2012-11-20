@@ -5,14 +5,12 @@
 }
 <h2>
 	Inscritos</h2>
-<p>
+@*<p>
 	@Html.ActionLink("Create New", "Create")
 </p>
 <table>
 	<tr>
-		<th>
-			Code
-		</th>
+	
 		<th>
 			FirstName
 		</th>
@@ -38,9 +36,7 @@
  {
 
 		<tr>
-			<td>
-				@Html.DisplayFor(modelItem => item.Code)
-			</td>
+			
 			<td>
 				@Html.DisplayFor(modelItem => item.FirstName)
 			</td>
@@ -68,3 +64,21 @@
 
  }
 </table>
+*@
+@(Html.Telerik( ).Grid<Profile>( ).Name("GridProfile").DataBinding(binding => binding.Ajax( ).Select("Inscritos3", "Vacancy"))
+.Columns(colunas =>
+{
+	colunas.Bound(c => c.FirstName).Title("Nome:").Width("33%");
+	colunas.Bound(c => c.LastName).Title("Sobrenome:").Width("33%");
+	colunas.Bound(c => c.PublicUrl).Title("URL Pública:").Width("33%");
+	
+
+})
+.Pageable(paginas => paginas.PageSize(10))
+.Scrollable( )
+.Sortable( )
+.Selectable( )
+.Groupable( )
+.Filterable( )
+.Resizable(paginas => paginas.Columns(true))
+)
