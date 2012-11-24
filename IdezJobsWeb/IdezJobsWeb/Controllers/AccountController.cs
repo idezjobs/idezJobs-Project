@@ -68,7 +68,7 @@ namespace IdezJobsWeb.Controllers
 				if (Membership.ValidateUser(pUpdate.FirstName, pUpdate.FirstName + pUpdate.Id))
 				{
 					FormsAuthentication.SetAuthCookie(pUpdate.FirstName, false);
-					return RedirectToAction("Index", "Home", new { area = "CommonUser" });
+					return RedirectToAction("ListVacancyOpen", "Vacancy", new { area = "CommonUser" });
 				}
 
 
@@ -143,8 +143,7 @@ namespace IdezJobsWeb.Controllers
 		public ActionResult LogOn( )
 		{
 			return View( );
-		}
-
+		} 
 
 
 		[HttpPost]

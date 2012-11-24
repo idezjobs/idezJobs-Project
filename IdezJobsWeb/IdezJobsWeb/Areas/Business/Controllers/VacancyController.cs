@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using IdezJobsWeb.Models;
 using IdezJobsWeb.Models.Context;
 using Telerik.Web.Mvc;
+using System.Web.Helpers;
 
 namespace IdezJobsWeb.Areas.Business.Controllers
 {
@@ -18,7 +19,7 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 
 		public ActionResult Index( )
 		{
-		  
+
 			return View( );
 		}
 
@@ -32,9 +33,11 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 
 		public ActionResult ListVacancyDetails( )
 		{
+			string nomeUsuarioLogado = User.Identity.Name;
 			IList<Vacancy> list = null;
 			list = _ContextDataVacancy.GetAll<Vacancy>( )
-			 .OrderByDescending(x => x.RegistrionDate).ToList( );
+				  .Where(x => x.CompanyName.Name == nomeUsuarioLogado)
+				  .OrderByDescending(x => x.RegistrionDate).ToList( );
 			return View(list);
 		}
 
@@ -55,21 +58,21 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 			//    return RedirectToAction("ErroVaga");
 			//}
 
-			return View();
+			return View( );
 
 		}
 
 		[GridAction]
-		public ActionResult Inscritos3(int id )
+		public ActionResult Inscritos3(int id)
 		{
-		
-		 var listProfileInscritos = (from jb in _ContextDataVacancy.GetAll<JobCandidate>( )
-		                             .Where(x => x.JobCandidato.Id == id)
-		                             join pf in _ContextDataVacancy.GetAll<Profile>()
-									 on jb.UserJobs.Id equals pf.IdUser
-									 select new { FirstName = pf.FirstName, LastName = pf.LastName, PublicUrl = pf.PublicUrl, Headline = pf.Headline, Industry = pf.Industry });
 
-		 return View(new GridModel(listProfileInscritos.ToList()));
+			var listProfileInscritos = (from jb in _ContextDataVacancy.GetAll<JobCandidate>( )
+										.Where(x => x.JobCandidato.Id == id)
+										join pf in _ContextDataVacancy.GetAll<Profile>( )
+										on jb.UserJobs.Id equals pf.IdUser
+										select new { FirstName = pf.FirstName, LastName = pf.LastName, PublicUrl = pf.PublicUrl, Headline = pf.Headline, Industry = pf.Industry });
+
+			return View(new GridModel(listProfileInscritos.ToList( )));
 		}
 
 		public ActionResult ErroVaga( )
@@ -109,16 +112,35 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 				{
 					ModelState.AddModelError("", "A data deve ser maior que a data atual.");
 				}
-				vacancy.Benefits = vacancy.Benefits.ToLower( );
-				vacancy.Description = vacancy.Description.ToLower( );
-				vacancy.OfficeHours = vacancy.OfficeHours.ToLower( );
+				vacancy.Benefits = vacancy.Benefits;
+				vacancy.Description = vacancy.Description;
+				vacancy.OfficeHours = vacancy.OfficeHours;
 				vacancy.ProfileVacancy = _ContextDataVacancy.Get<ProfileVacancy>(vacancy.ProfileVacancy.Id);
 				vacancy.Status = _ContextDataVacancy.GetAll<Status>( ).Where(x => x.Description == "Aberto").First( );
 				vacancy.CompanyName = _ContextDataVacancy.GetAll<Company>( )
 									  .Where(x => x.Name == CompanyName).First( );
+				string Body = " Encontra-se disponível uma vaga na empresa:" + CompanyName + "\n<br/>" +
+							  "Com a seguinte descrição : " + vacancy.Description + "\n<br/>" +
+							  "Benefícios: " + vacancy.Benefits + "\n<br/>" +
+							  "Números de Vagas: " + vacancy.JobsNumber + "\n<br/>" +
+							  "Data de inscrição: " + " de: " + DateTime.Now.Date + " Até: " + vacancy.RegistrationDeadline.Date + "\n<br/>" +
+							   "Para Visualizar a Vaga Clique <a href='http://localhost:1677/CommonUser/Vacancy/ListVacancyOpen'>Aqui</a>";
+
+
+
 				_ContextDataVacancy.Add<Vacancy>(vacancy);
 
 				_ContextDataVacancy.SaveChanges( );
+
+				IList<Profile> ListMail = _ContextDataVacancy.GetAll<Profile>( ).ToList( );
+				foreach (var item in ListMail)
+				{
+					if (item.EmailAddress != null)
+					{
+						WebMail.Send(item.EmailAddress, "Vaga disponível na empresa : " + CompanyName, item.FirstName + Body);
+
+					}
+				}
 
 				return RedirectToAction("Sucess", "Home");
 
@@ -149,7 +171,7 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 			VacancyEdit.Benefits = vacancy.Benefits.ToLower( );
 			TryUpdateModel(VacancyEdit);
 			_ContextDataVacancy.SaveChanges( );
-			return RedirectToAction("Sucess", "Home");
+			return RedirectToAction("ListVacancyDetails", "Vacancy");
 		}
 
 
@@ -166,6 +188,12 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 		public ActionResult Delete(Vacancy vacancy)
 		{
 			Vacancy VacancyDelete = _ContextDataVacancy.Get<Vacancy>(vacancy.Id);
+			IList<JobCandidate> CandidateList = _ContextDataVacancy.GetAll<JobCandidate>( )
+												.Where(x => x.JobCandidato.Id == vacancy.Id).ToList( );
+			if (CandidateList.Count( ) >= 1)
+			{
+				return RedirectToAction("UsersJobs", "Vacancy");
+			}
 
 			_ContextDataVacancy.Delete<Vacancy>(VacancyDelete);
 			_ContextDataVacancy.SaveChanges( );
@@ -184,9 +212,28 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 				listaPerfis = _ContextDataVacancy.GetAll<Profile>( )
 							  .Where(x => x.IdUser == item)
 							  .ToList( );
-
 			}
-			return View(listaPerfis);
+
+			if (listaNumerosPerfis.Count( ) >= 1)
+			{
+
+				return View(listaPerfis);
+			}
+			else
+			{
+				return RedirectToAction("NoRecords", "Vacancy");
+			}
+
+		}
+
+		public ActionResult NoRecords( )
+		{
+			return View( );
+		}
+
+		public ActionResult UsersJobs( )
+		{
+			return View( );
 		}
 
 
@@ -195,26 +242,36 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 
 			string Description = (from c in _ContextDataVacancy.GetAll<Vacancy>( )
 								  .Where(x => x.Id == id)
-								  select c.Description.ToLower()).First( );
+								  select c.Description.ToLower( )).First( );
 			string[] Letras = Description.Split(new char[] { ' ' });
 
-			IList<Profile> profileUser = null;
-			IList<Profile> list = new List<Profile>( );
+			IList<Profile> profileUser = _ContextDataVacancy.GetAll<Profile>( ).ToList( );
+			IList<Profile> listCopy = new List<Profile>( );
 			int achei = 0;
-			foreach (var item in Letras)
+
+			foreach (var item in profileUser)
 			{
-				profileUser = _ContextDataVacancy.GetAll<Profile>( )
-							  .Where(x => x.Interests.ToLower().Contains(item.ToLower().ToString( ))).ToList( );
-
-				if (profileUser.Count( ) > 0)
+				string IntersectIndividual = (from c in _ContextDataVacancy.GetAll<Profile>( )
+								   .Where(x => x.Code ==item.Code)
+											  select c.Interests.ToLower( )).First( );
+				string[] PalavrasInteresseIndividual = IntersectIndividual.Split(new char[] { ' ' });
+				foreach (var palavrasDaDescricao in Letras)
 				{
-					achei++;
-					list = profileUser;
+					foreach (var itemInteresse in PalavrasInteresseIndividual)
+					{
+					 var list = (from c in profileUser
+						         where palavrasDaDescricao.ToLower().Contains(itemInteresse.ToLower())
+								 select c).ToList();
+
+					if (list.Count( ) > 0)
+					{
+						achei++;
+						listCopy = list;
+					}	
+					}
 				}
-
-			}
-
-			return View(list);
+			} 
+			return View(listCopy);
 		}
 
 

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Profile>
+@{
+	ViewBag.Title = "Hire";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+	@ViewBag.Pontucao</h2>
+<table class="table table-bordered">
+	<tr>
+		<th>
+			Nome:
+		</th>
+		<th>
+			Pontuação:
+		</th>
+	</tr>
+	@foreach (var item in Model)
+ {
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.FirstName)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Pontuacao)
+			</td>
+			<td>
+			</td>
+		</tr>
+ }
+</table>

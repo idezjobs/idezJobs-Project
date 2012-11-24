@@ -24,6 +24,7 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 
 		public ActionResult ListDetails( )
 		{
+			
 			IList<Company> listCompany = null;
 			listCompany = _ContextData.GetAll<Company>( ).ToList( );
 
@@ -92,7 +93,7 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 					_ContextData.SaveChanges( );
 
 					Roles.AddUserToRole(company.Name, "Company");
-					return RedirectToAction("Index", "Home");
+					return RedirectToAction("ListCompany", "Company");
 
 
 
@@ -119,7 +120,7 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 			Company CompanyEdit = _ContextData.Get<Company>(company.Id);
 			TryUpdateModel(CompanyEdit);
 			_ContextData.SaveChanges( );
-			return RedirectToAction("Sucess", "Home");
+			return RedirectToAction("ListCompany", "Company");
 		}
 
 		//

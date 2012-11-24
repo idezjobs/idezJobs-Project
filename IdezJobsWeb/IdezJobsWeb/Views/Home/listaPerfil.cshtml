@@ -1,0 +1,42 @@
+﻿@model IList<Profile>
+
+@{
+    ViewBag.Title = "listaPerfil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>listaPerfil</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+      
+        <th>
+            FirstName
+        </th>
+     
+        <th>
+            Pontuacao
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+      
+        <td>
+            @ViewBag.Pontuacao
+        </td>
+        <td>
+            
+        </td>
+    </tr>
+}
+
+</table>

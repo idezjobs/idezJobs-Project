@@ -21,6 +21,17 @@ namespace IdezJobsWeb.Controllers
 			return View( );
 		}
 
+		public ActionResult listaPerfil( )
+		{
+			IList<Profile> list = null;
+			using (IContextData c = new ContextDataNH())
+			{
+				list = c.GetAll<Profile>( ).ToList( );	
+			}
+
+			return View(list);
+		}
+
 
 
 		private void Update( )
@@ -45,7 +56,7 @@ namespace IdezJobsWeb.Controllers
 			}
 		}
 
-		private void Hire( )
+		public ActionResult Hire( )
 		{
 			using (IContextData Hir = new ContextDataNH( ))
 			{
@@ -74,24 +85,25 @@ namespace IdezJobsWeb.Controllers
 
 							string[] Letras = Description.Split(new char[] { ' ' });
 
-							foreach (var itemLe in Letras)
+							foreach (var itemProfile in listProfile)
 							{
-								listProfileCopy = (from c in listProfile
-												 .Where(x => x.Interests.ToLower( ).Contains(itemLe.ToLower( ).ToString( )))
-												   select c).ToList( );
-
-								if (listProfileCopy.Count( ) > 0)
+								foreach (var itemPalavras in Letras)
 								{
-									 
-									foreach (var itemEmail in listProfileCopy)
+									listProfileCopy = (from c in listProfile
+												 .Where(x => x.Interests.ToLower( ).Contains(itemPalavras.ToLower( ).ToString( )))
+												 .Where(x => x.Code == itemProfile.Code)
+													   select c).ToList( );
+
+									if (listProfileCopy.Count( ) >= 1)
 									{
-									 WebMail.Send(itemEmail.EmailAddress,"Parabéns você esta concorrendo a vaga de " + item.ProfileVacancy.Myprofile,"Aguarde o contato da empresa " + item.CompanyName.Name);
-									 
-									 										
+										itemProfile.Pontuacao = listProfileCopy.Count;
+										ViewBag.Pontuacao = listProfileCopy.Count;
+										return RedirectToAction("listaPerfil", listProfileCopy);
+
 									}
 
+
 								}
-							
 
 							}
 
@@ -104,7 +116,7 @@ namespace IdezJobsWeb.Controllers
 				}
 
 			}
-
+			return View( );
 
 		}
 

@@ -34,7 +34,7 @@
             @Html.LabelFor(model => model.Description,"Descrição:")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Description)
+            @Html.TextAreaFor(model => model.Description)
             @Html.ValidationMessageFor(model => model.Description)
         </div>
 
@@ -42,7 +42,7 @@
             @Html.LabelFor(model => model.OfficeHours,"Horário de Trabalho:")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.OfficeHours)
+            @Html.TextAreaFor(model => model.OfficeHours)
             @Html.ValidationMessageFor(model => model.OfficeHours)
         </div>
 
@@ -50,7 +50,7 @@
             @Html.LabelFor(model => model.Benefits,"Benefícios:")
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.Benefits)
+            @Html.TextAreaFor(model => model.Benefits)
             @Html.ValidationMessageFor(model => model.Benefits)
         </div>
 

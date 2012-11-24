@@ -58,7 +58,9 @@
 				var dados = {
 					id: result.values[0].id
 				};
-				alert("Primeira chamada: " + JSON.stringify(dados));
+				console.log("Primeira chamada: " + JSON.stringify(dados));
+
+
 				$.ajax({
 					type: "POST",
 					url: "http://localhost:1677/Account/saveUser/",
@@ -75,7 +77,7 @@
 						}
 					}
 				});
-
+				
 			});
 		}
 
@@ -135,7 +137,7 @@
 		*/</script>
 	<script type="text/javascript" src="sigin.js"></script>
 </head>
-<body>
+<body onload="window.opener.reload()">
 	<script type="IN/Apply" data-companyid="2762439" data-jobtitle="Chief Cat Wrangler"
 		data-email="yago@teksoft.com.br">
 	</script>

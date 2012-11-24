@@ -20,7 +20,7 @@ namespace IdezJobsWeb.Models
 		[Display(Name = "Data Limite Cadastro:")]
 		public virtual DateTime RegistrationDeadline { get; set; }
 
-		[Required(ErrorMessage = "A descrição não pode ser vazia"), StringLength(200, ErrorMessage = "A descrição não pode ter mais de cinquenta caracteres", MinimumLength = 6)]
+		[Required(ErrorMessage = "A descrição não pode ser vazia"), StringLength(255, ErrorMessage = "A descrição não pode ter mais de 255 caracteres", MinimumLength = 6)]
 		[Display(Name = "Requisitos:")]
 		public virtual string Description { get; set; }	
 

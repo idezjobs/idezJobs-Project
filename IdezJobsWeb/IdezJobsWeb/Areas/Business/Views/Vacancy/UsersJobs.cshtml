@@ -1,0 +1,9 @@
+﻿@model IdezJobsWeb.Models.Vacancy
+
+@{
+    ViewBag.Title = "UsersJobs";
+    Layout = "~/Areas/Business/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Atenção, Você não pode excluir esta vaga por que existem estudantes cadastrados nessa vaga.</h3> </br>
+@Html.ActionLink("Página Inicial","Index")
