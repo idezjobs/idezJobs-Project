@@ -373,6 +373,7 @@
     <Compile Include="Models\Mappings\VacancyMap.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\ProfileVacancy.cs" />
+    <Compile Include="Models\RemoveString.cs" />
     <Compile Include="Models\Score.cs" />
     <Compile Include="Models\ShowProfile.cs" />
     <Compile Include="Models\Status.cs" />
@@ -906,6 +907,7 @@
     <Content Include="Areas\Business\Views\Vacancy\ShowUser.cshtml" />
     <Content Include="Areas\Business\Views\Vacancy\UsersJobs.cshtml" />
     <Content Include="Areas\Business\Views\Vacancy\NoRecords.cshtml" />
+    <Content Include="Areas\Business\Views\Vacancy\SendMailUser.cshtml" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
     <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />

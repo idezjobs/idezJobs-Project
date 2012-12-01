@@ -34,6 +34,8 @@ namespace IdezJobsWeb.Models
 		public virtual long IdUser { get; set; }
 		[NotMapped]
 		public virtual int Pontuacao { get; set; }
+		public virtual string KeyWords { get; set; }
+
 
 
 

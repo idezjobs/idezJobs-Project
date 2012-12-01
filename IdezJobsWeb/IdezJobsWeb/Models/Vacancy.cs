@@ -45,6 +45,8 @@ namespace IdezJobsWeb.Models
 		[Display(Name = "Status:")]
 		[Required(ErrorMessage = "O Status da vaga não pode ser vazio")]
 		public virtual Status Status { get; set; }
+		[Display(Name="Palavras Chaves")]
+		public virtual string KeyWords { get; set; }
 
 
 

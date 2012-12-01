@@ -18,6 +18,7 @@ namespace IdezJobsWeb.Models.Mappings
 			Map(x => x.JobsNumber, "JobsNumber").Not.Nullable( );
 			Map(x => x.Benefits, "Beneficios").Nullable( );
 			Map(x => x.OfficeHours, "OfficeHours").Nullable( );
+			Map(x => x.KeyWords, "KeyWords").Nullable( );
 
 			References(x => x.ProfileVacancy, "ProfileVacancy")
 			.Cascade.SaveUpdate( )

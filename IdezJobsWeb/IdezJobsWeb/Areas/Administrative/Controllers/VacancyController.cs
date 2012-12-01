@@ -85,6 +85,7 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 				vacancy.ProfileVacancy = _ContextDataVacancy.Get<ProfileVacancy>(vacancy.ProfileVacancy.Id);
 				vacancy.CompanyName = _ContextDataVacancy.Get<Company>(vacancy.CompanyName.Id);
 				vacancy.Status = _ContextDataVacancy.GetAll<Status>( ).Where(x => x.Description == "Aberto").First( );
+				vacancy.KeyWords = RemoveString.GenerateKeyWords(vacancy.Description);
 
 				if (vacancy.Status == null)
 				{
@@ -125,6 +126,7 @@ namespace IdezJobsWeb.Areas.Administrative.Controllers
 			VacancyEdit.OfficeHours = vacancy.OfficeHours.ToLower();
 			VacancyEdit.Benefits = vacancy.Benefits.ToLower();
 			VacancyEdit.Description = vacancy.Description.ToLower();
+			VacancyEdit.KeyWords = RemoveString.GenerateKeyWords(vacancy.Description);
 			TryUpdateModel(VacancyEdit);
 			_ContextDataVacancy.SaveChanges( );
 			return RedirectToAction("Sucess", "Home");

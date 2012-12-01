@@ -6,6 +6,7 @@ C:\Users\AdemiVieira\Documents\Visual Studio 2010\Projects\IdezJobsWeb\IdezJobsW
 C:\Users\AdemiVieira\Documents\Visual Studio 2010\Projects\IdezJobsWeb\IdezJobsWeb\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\AdemiVieira\Documents\Visual Studio 2010\Projects\IdezJobsWeb\IdezJobsWeb\obj\Debug\IdezJobsWeb.dll
 C:\Users\AdemiVieira\Documents\Visual Studio 2010\Projects\IdezJobsWeb\IdezJobsWeb\obj\Debug\IdezJobsWeb.pdb
+C:\Users\AdemiVieira\Documents\GitHub\idezJobs-Project\IdezJobsWeb\IdezJobsWeb\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\AdemiVieira\Documents\GitHub\idezJobs-Project\IdezJobsWeb\IdezJobsWeb\bin\IdezJobsWeb.dll
 C:\Users\AdemiVieira\Documents\GitHub\idezJobs-Project\IdezJobsWeb\IdezJobsWeb\bin\IdezJobsWeb.pdb
 C:\Users\AdemiVieira\Documents\GitHub\idezJobs-Project\IdezJobsWeb\IdezJobsWeb\bin\ActionMailer.Net.dll
@@ -17,6 +18,5 @@ C:\Users\AdemiVieira\Documents\GitHub\idezJobs-Project\IdezJobsWeb\IdezJobsWeb\b
 C:\Users\AdemiVieira\Documents\GitHub\idezJobs-Project\IdezJobsWeb\IdezJobsWeb\bin\ActionMailer.Net.Mvc.pdb
 C:\Users\AdemiVieira\Documents\GitHub\idezJobs-Project\IdezJobsWeb\IdezJobsWeb\bin\ActionMailer.Net.Mvc.xml
 C:\Users\AdemiVieira\Documents\GitHub\idezJobs-Project\IdezJobsWeb\IdezJobsWeb\bin\Hammock.pdb
-C:\Users\AdemiVieira\Documents\GitHub\idezJobs-Project\IdezJobsWeb\IdezJobsWeb\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\AdemiVieira\Documents\GitHub\idezJobs-Project\IdezJobsWeb\IdezJobsWeb\obj\Debug\IdezJobsWeb.dll
 C:\Users\AdemiVieira\Documents\GitHub\idezJobs-Project\IdezJobsWeb\IdezJobsWeb\obj\Debug\IdezJobsWeb.pdb

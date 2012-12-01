@@ -15,6 +15,7 @@ namespace IdezJobsWeb.Controllers
 
 		public ActionResult Index( )
 		{
+		
 			Update( );
 			Hire( );
 

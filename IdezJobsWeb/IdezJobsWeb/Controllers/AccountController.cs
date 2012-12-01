@@ -24,21 +24,21 @@ namespace IdezJobsWeb.Controllers
 		public ActionResult saveUser(string id, string firstName, string lastName, string pictureUrl, string publicProfileUrl, string headline, string industry, string interests, string emailAddress)
 		{
 			User usuario = new Models.User( );
-			if(interests == null || interests.Equals("undefined"))
+			if (interests == null || interests == "undefined")
 			{
-			interests = "sem interesse";
+				interests = "sem interesse";
 			}
-			else if (pictureUrl == null || pictureUrl.Equals("undefined"))
+			else if (pictureUrl == null || pictureUrl == "undefined")
 			{
-			pictureUrl = "sem imagem";
+				pictureUrl = "sem imagem";
 			}
-			else if( headline== null || headline.Equals("undefined"))
+			else if (headline == null || headline == "undefined")
 			{
-			 headline = "sem informação de estudos";
+				headline = "sem informação de estudos";
 			}
-			else if(industry == null || industry.Equals("undefined"))
+			if (industry == null || industry == "undefined")
 			{
-			  industry = "no momento nao trabalha";
+				industry = "no momento nao trabalha";
 			}
 			MembershipUser UsuarioExiste = FindUserByEmail(emailAddress);
 
@@ -54,13 +54,14 @@ namespace IdezJobsWeb.Controllers
 				pUpdate.LastName = lastName;
 				pUpdate.PictureUrl = pictureUrl;
 				pUpdate.PublicUrl = publicProfileUrl;
-				pUpdate.Headline = headline.ToLower();
-				pUpdate.Industry = industry.ToLower();
-				pUpdate.Interests = interests.ToLower();
+				pUpdate.Headline = headline.ToLower( );
+				pUpdate.Industry = industry.ToLower( );
+				pUpdate.Interests = interests.ToLower( );
 				pUpdate.EmailAddress = emailAddress;
 				pUpdate.IdUser = (from c in _ContextoAccount.GetAll<User>( )
-							     .Where(x => x.Token == id)
-								  select c.Id).First( ); 
+								 .Where(x => x.Token == id)
+								  select c.Id).First( );
+				pUpdate.KeyWords = RemoveString.GenerateKeyWords(interests);
 
 				TryUpdateModel(pUpdate);
 				_ContextoAccount.SaveChanges( );
@@ -92,13 +93,14 @@ namespace IdezJobsWeb.Controllers
 				p.LastName = lastName;
 				p.PictureUrl = pictureUrl;
 				p.PublicUrl = publicProfileUrl;
-				p.Headline = headline.ToLower();
-				p.Industry = industry.ToLower();
-				p.Interests = interests.ToLower();
+				p.Headline = headline.ToLower( );
+				p.Industry = industry.ToLower( );
+				p.Interests = interests.ToLower( );
 				p.EmailAddress = emailAddress;
-				p.IdUser = (from c in _ContextoAccount.GetAll<User>()
-				             .Where(x => x.Token == id)
-							 select c.Id).First(); 
+				p.IdUser = (from c in _ContextoAccount.GetAll<User>( )
+							 .Where(x => x.Token == id)
+							select c.Id).First( );
+				p.KeyWords = RemoveString.GenerateKeyWords(interests);
 
 
 				MembershipCreateStatus status;
@@ -109,7 +111,7 @@ namespace IdezJobsWeb.Controllers
 
 					_ContextoAccount.Add<Profile>(p);
 					_ContextoAccount.SaveChanges( );
-					
+
 
 					if (Membership.ValidateUser(p.FirstName, p.FirstName + p.Id))
 					{
@@ -143,7 +145,7 @@ namespace IdezJobsWeb.Controllers
 		public ActionResult LogOn( )
 		{
 			return View( );
-		} 
+		}
 
 
 		[HttpPost]

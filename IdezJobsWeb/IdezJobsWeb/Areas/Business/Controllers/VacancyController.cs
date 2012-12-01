@@ -43,21 +43,6 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 
 		public ActionResult Inscritos(int id)
 		{
-			//IList<JobCandidate> listaCandidatos = null;
-			//listaCandidatos = _ContextDataVacancy.GetAll<JobCandidate>( )
-			//                         .Where(x => x.JobCandidato.Id == id).ToList( );
-			//IList<Profile> listaPerfil = null;
-			//foreach (var item in listaCandidatos)
-			//{
-			//    listaPerfil = _ContextDataVacancy.GetAll<Profile>( )
-			//                  .Where(x => x.Id == item.UserJobs.Id.ToString( )).ToList( );
-
-			//}
-			//if (listaPerfil == null)
-			//{
-			//    return RedirectToAction("ErroVaga");
-			//}
-
 			return View( );
 
 		}
@@ -85,7 +70,25 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 			Vacancy DetailsVacancy = _ContextDataVacancy.Get<Vacancy>(id);
 			return View(DetailsVacancy);
 		}
+		public ActionResult SendMailUser(int Code)
+		{
+			string EmpresaLogada = User.Identity.Name;
+			string EmailEmpresa = (from c in _ContextDataVacancy.GetAll<Company>( )
+								   .Where(x => x.Name == EmpresaLogada)
+								   select c.Email).First( );
+			var PfofileSendMail = (from c in _ContextDataVacancy.GetAll<Profile>( )
+									   .Where(x => x.Code == Code)
+								   select c.EmailAddress).First( );
+			var PName = (from c in _ContextDataVacancy.GetAll<Profile>( )
+									 .Where(x => x.Code == Code)
+						 select c.FirstName).First( );
 
+
+			string BodyMessage = "Olá " + PName + " , " + " A Empresa: " + EmpresaLogada + " Visualizou seu perfil " + " Você pode entrar em contato pelo email " + EmailEmpresa;
+			WebMail.Send(PfofileSendMail, "Visualização de Perfil", BodyMessage);
+
+			return RedirectToAction("Sucess", "Home");
+		}
 
 		public ActionResult Create( )
 		{
@@ -98,6 +101,7 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 		[HttpPost]
 		public ActionResult Create(Vacancy vacancy)
 		{
+
 			vacancy.RegistrionDate = DateTime.Now;
 			ModelState["ProfileVacancy.Myprofile"].Errors.Clear( );
 			ModelState["Status"].Errors.Clear( );
@@ -114,6 +118,7 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 				}
 				vacancy.Benefits = vacancy.Benefits;
 				vacancy.Description = vacancy.Description;
+				vacancy.KeyWords = RemoveString.GenerateKeyWords(vacancy.Description);
 				vacancy.OfficeHours = vacancy.OfficeHours;
 				vacancy.ProfileVacancy = _ContextDataVacancy.Get<ProfileVacancy>(vacancy.ProfileVacancy.Id);
 				vacancy.Status = _ContextDataVacancy.GetAll<Status>( ).Where(x => x.Description == "Aberto").First( );
@@ -169,6 +174,7 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 			VacancyEdit.OfficeHours = vacancy.OfficeHours.ToLower( );
 			VacancyEdit.Description = vacancy.Description.ToLower( );
 			VacancyEdit.Benefits = vacancy.Benefits.ToLower( );
+			VacancyEdit.KeyWords = RemoveString.GenerateKeyWords(vacancy.Description);
 			TryUpdateModel(VacancyEdit);
 			_ContextDataVacancy.SaveChanges( );
 			return RedirectToAction("ListVacancyDetails", "Vacancy");
@@ -252,26 +258,41 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 			foreach (var item in profileUser)
 			{
 				string IntersectIndividual = (from c in _ContextDataVacancy.GetAll<Profile>( )
-								   .Where(x => x.Code ==item.Code)
+								   .Where(x => x.Code == item.Code)
 											  select c.Interests.ToLower( )).First( );
 				string[] PalavrasInteresseIndividual = IntersectIndividual.Split(new char[] { ' ' });
 				foreach (var palavrasDaDescricao in Letras)
 				{
+
 					foreach (var itemInteresse in PalavrasInteresseIndividual)
 					{
-					 var list = (from c in profileUser
-						         where palavrasDaDescricao.ToLower().Contains(itemInteresse.ToLower())
-								 select c).ToList();
+						if (palavrasDaDescricao.Length > 2 && itemInteresse.Length > 2)
+						{
+							var list = (from c in profileUser
+										where palavrasDaDescricao.ToLower( ).Contains(itemInteresse.ToLower( ))
+										select c).ToList( );
 
-					if (list.Count( ) > 0)
-					{
-						achei++;
-						listCopy = list;
-					}	
+							if (list.Count( ) > 0)
+							{
+								Profile profileShow = _ContextDataVacancy.Get<Profile>(item.Code);
+								//profileShow.FirstName = item.FirstName;
+								//profileShow.PublicUrl = item.PublicUrl;
+								//profileShow.Pontuacao = item.Pontuacao;
+								//profileShow.IdUser = item.IdUser;
+								//profileShow.Headline = item.Headline;
+								//profileShow.Industry = item.Industry;
+								//profileShow.Interests = item.Interests;
+								//profileShow.LastName = item.LastName;
+								//profileShow.PictureUrl = item.PictureUrl;
+								achei++;
+								listCopy.Add(profileShow);
+							}
+						}
+
 					}
 				}
-			} 
-			return View(listCopy);
+			}
+			return View(listCopy.Distinct( ));
 		}
 
 

@@ -14,12 +14,16 @@
 			Url Pública:
 		</th>
 		<th>
+			Interesses:
+		</th>
+		<th>
 			Opções:
 		</th>
 	</tr>
 	@foreach (var item in Model)
  {
 		<tr>
+			@Html.HiddenFor(modelItem => item.Code)
 			<td>
 				@Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
 			</td>
@@ -27,8 +31,11 @@
 				@Html.DisplayFor(modelItem => item.PublicUrl)
 			</td>
 			<td>
-				@Html.ActionLink("Enviar Email", "Edit", new { id = item.Id }) |
+				@Html.DisplayFor(modelItem => item.Interests)
 			</td>
-		</tr>
+			<td>
+				@Html.ActionLink("Enviar Email", "SendMailUser", new { Code = item.Code })
+			</td>
+		</tr>															  
  }
 </table>
