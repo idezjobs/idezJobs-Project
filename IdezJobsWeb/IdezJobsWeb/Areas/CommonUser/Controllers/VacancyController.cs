@@ -69,8 +69,8 @@ namespace IdezJobsWeb.Areas.CommonUser.Controllers
 		[HttpPost]
 		public ActionResult SearchVacancyOpen(string description)
 		{
-			string descriptonUpper = description.ToUpper( );
-			return View("ResultSearch", _ContextoVaga.GetAll<Vacancy>( ).Where(x => x.Description.Contains(descriptonUpper)));
+			string descriptonUpper = description.ToLower( );
+			return View("ResultSearch", _ContextoVaga.GetAll<Vacancy>( ).Where(x => x.KeyWords.ToLower( ).Contains(descriptonUpper) && x.Status.Code == 1));
 		}
 
 		public ActionResult ResultSearch( )
@@ -87,29 +87,50 @@ namespace IdezJobsWeb.Areas.CommonUser.Controllers
 
 			string MyProfile = (from c in _ContextoVaga.GetAll<Profile>( )
 							.Where(x => x.Id == MyToken)
-								select c.Interests).First( );
+								select c.KeyWords).First( );
 
-			string ListIntersectes = MyProfile;
-			string[] Letras = ListIntersectes.Split(new char[] { ' ' });
-			var Query = from w in Letras where w == "," select w;
+			string[] Letras = MyProfile.Split(new char[] { ' ' });
 
-			IList<Vacancy> listVacancy = null;
-			IList<Vacancy> CopyVacancy = _ContextoVaga.GetAll<Vacancy>( ).ToList( );
-			int achei = 0;
-			foreach (var item in Letras)
+
+			IList<Vacancy> listVacancy = new List<Vacancy>( );
+			IList<Vacancy> CopyVacancy = _ContextoVaga.GetAll<Vacancy>( ).Where(x => x.Status.Code == 1).ToList( );
+			if (true)
 			{
-				listVacancy = _ContextoVaga.GetAll<Vacancy>( )
-					  .Where(x => x.Description.Contains(item.ToString( ))).ToList( );
 
-				if (listVacancy.Count( ) > 0)
+				foreach (var item in CopyVacancy)
 				{
-					achei++;
-					CopyVacancy = listVacancy;
+					string KeyVacancy = (from c in _ContextoVaga.GetAll<Vacancy>( )
+									   .Where(x => x.Id == item.Id)
+										 select c.KeyWords.ToLower( )).First( );
+					if (KeyVacancy != null)
+					{
+
+						string[] PalavrasInteresseIndividual = KeyVacancy.Split(new char[] { ',' });
+						foreach (var palavrasDaDescricao in Letras)
+						{
+
+							foreach (var itemInteresse in PalavrasInteresseIndividual)
+							{
+
+								var list = (from c in CopyVacancy
+											where palavrasDaDescricao.ToLower( ).Contains(itemInteresse.ToLower( ))
+											select c).ToList( );
+
+								if (list.Count( ) > 0)
+								{
+
+									Vacancy VacancyShow = _ContextoVaga.Get<Vacancy>(item.Id);
+
+									listVacancy.Add(VacancyShow);
+								}
+
+
+							}
+						}
+					}
 				}
-
 			}
-
-			return View(CopyVacancy);
+			return View(listVacancy.Distinct( ));
 		}
 
 	}

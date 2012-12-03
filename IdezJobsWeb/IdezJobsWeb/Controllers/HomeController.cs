@@ -15,7 +15,7 @@ namespace IdezJobsWeb.Controllers
 
 		public ActionResult Index( )
 		{
-		
+
 			Update( );
 			Hire( );
 
@@ -25,9 +25,9 @@ namespace IdezJobsWeb.Controllers
 		public ActionResult listaPerfil( )
 		{
 			IList<Profile> list = null;
-			using (IContextData c = new ContextDataNH())
+			using (IContextData c = new ContextDataNH( ))
 			{
-				list = c.GetAll<Profile>( ).ToList( );	
+				list = c.GetAll<Profile>( ).ToList( );
 			}
 
 			return View(list);
@@ -59,66 +59,130 @@ namespace IdezJobsWeb.Controllers
 
 		public ActionResult Hire( )
 		{
-			using (IContextData Hir = new ContextDataNH( ))
+			using (IContextData _ContextHire = new ContextDataNH( ))
 			{
 				IList<Vacancy> listaVagas = null;
-				listaVagas = Hir.GetAll<Vacancy>( )
-							 .Where(x => x.RegistrationDeadline.Day == DateTime.Now.Day - 1 && x.Status.Code == 2)
+				listaVagas = _ContextHire.GetAll<Vacancy>( )
+							 .Where(x => x.RegistrationDeadline.Day == DateTime.Now.Day - 1 && x.RegistrationDeadline.Month == DateTime.Now.Month || x.RegistrationDeadline.Month == DateTime.Now.Month - 1 && x.RegistrationDeadline.Year == DateTime.Now.Year && x.Status.Code == 2)
 							 .ToList( );
 				if (listaVagas.Count( ) > 0)
 				{
 					IList<JobCandidate> listJobs = null;
 					IList<Profile> listProfile = null;
+					string EmailsProfile = null;
 					IList<Profile> listProfileCopy = new List<Profile>( );
-					foreach (var item in listaVagas)
+					foreach (var itemListaVagas in listaVagas)
 					{
-						listJobs = Hir.GetAll<JobCandidate>( )
-								   .Where(x => x.JobCandidato.Id == item.Id).ToList( );
-
-						foreach (var itemJobs in listJobs)
+						listJobs = _ContextHire.GetAll<JobCandidate>( )
+								   .Where(x => x.JobCandidato.Id == itemListaVagas.Id).ToList( );
+						if (listJobs.Count( ) > 0)
 						{
-							listProfile = Hir.GetAll<Profile>( )
-										  .Where(x => x.IdUser == itemJobs.UserJobs.Id)
-										  .ToList( );
+
+							string Description = itemListaVagas.KeyWords.ToLower( );
+
+							string[] Letras = Description.Split(new char[] { ',' });
 
 
-							string Description = item.Description.ToLower( );
-
-							string[] Letras = Description.Split(new char[] { ' ' });
-
-							foreach (var itemProfile in listProfile)
+							foreach (var itemJobs in listJobs)
 							{
-								foreach (var itemPalavras in Letras)
-								{
-									listProfileCopy = (from c in listProfile
-												 .Where(x => x.Interests.ToLower( ).Contains(itemPalavras.ToLower( ).ToString( )))
-												 .Where(x => x.Code == itemProfile.Code)
-													   select c).ToList( );
+								listProfile = _ContextHire.GetAll<Profile>( )
+											  .Where(x => x.IdUser == itemJobs.UserJobs.Id)
+											  .ToList( );
+								//talvez precise verificar se não tem nenhum usuário inscrito
 
-									if (listProfileCopy.Count( ) >= 1)
+								foreach (var itemProfile in listProfile)
+								{
+									string IntersectIndividual = (from c in _ContextHire.GetAll<Profile>( )
+																  .Where(x => x.Code == itemProfile.Code)
+																  select c.KeyWords.ToLower( )).First( );
+
+									if (IntersectIndividual != null)
 									{
-										itemProfile.Pontuacao = listProfileCopy.Count;
-										ViewBag.Pontuacao = listProfileCopy.Count;
-										return RedirectToAction("listaPerfil", listProfileCopy);
+										string[] PalavrasInteresseIndividual = IntersectIndividual.Split(new char[] { ',' });
+										int encontrado = 0;
+										foreach (var palavrasDaDescricao in Letras)
+										{
+
+											foreach (var itemInteresse in PalavrasInteresseIndividual)
+											{
+
+												var list = (from c in listProfile
+															where palavrasDaDescricao.ToLower( ).Contains(itemInteresse.ToLower( ))
+															select c).ToList( );
+
+												if (list.Count( ) > 0)
+												{
+													encontrado++;
+													var listScoreUser = _ContextHire.GetAll<Score>( )
+																		.Where(x => x.ScoreProfileUser.Code == itemProfile.Code && x.ScoreVacancy.Id == itemListaVagas.Id)
+																		.ToList( );
+													if (listScoreUser.Count( ) >= 1)
+													{
+														Score ScoreUpdate = _ContextHire.GetAll<Score>( )
+																		  .Where(x => x.ScoreProfileUser.Code == itemProfile.Code && x.ScoreVacancy.Id == itemListaVagas.Id)
+																		.First( );
+														ScoreUpdate.ScoreProfileUser = _ContextHire.Get<Profile>(itemProfile.Code);
+														ScoreUpdate.ScoreVacancy = _ContextHire.Get<Vacancy>(itemListaVagas.Id);
+														ScoreUpdate.ScoreUser = encontrado;
+														_ContextHire.SaveChanges( );
+
+
+													}
+													else
+													{
+														Score ScoreUser = new Score( );
+														ScoreUser.ScoreProfileUser = _ContextHire.Get<Profile>(itemProfile.Code);
+														ScoreUser.ScoreVacancy = _ContextHire.Get<Vacancy>(itemListaVagas.Id);
+														ScoreUser.ScoreUser = encontrado;
+														_ContextHire.Add<Score>(ScoreUser);
+														_ContextHire.SaveChanges( );
+
+													}
+
+													Profile ProfileSendMail = _ContextHire.Get<Profile>(itemProfile.Code);
+													listProfileCopy.Add(ProfileSendMail);
+
+												}
+
+
+											}
+										}
+									}
+									foreach (var itemEmail in listProfileCopy.Distinct( ))
+									{
+										WebMail.Send(itemEmail.EmailAddress, "Parabéns você esta concorrendo a vaga de " + itemListaVagas.ProfileVacancy.Myprofile, "Aguarde o contato da empresa " + itemListaVagas.CompanyName.Name);
 
 									}
+									var listScoreVacancy = (from sc in _ContextHire.GetAll<Score>( )
+													  .Where(x => x.ScoreVacancy.Id == itemListaVagas.Id && x.ScoreProfileUser.Code == itemProfile.Code)
+														join pf in _ContextHire.GetAll<Profile>( )
+														on sc.ScoreProfileUser.Code equals pf.Code
+														orderby sc.ScoreUser descending
+														select new { Nome = pf.FirstName, URLPública = pf.PublicUrl, Email = pf.EmailAddress + "</br>" });
 
+
+									EmailsProfile = String.Join(",", listScoreVacancy);
 
 								}
+								
 
-							}
+							}					
 
-
-
+							
 						}
-
+						
+						string BodyMessageCompany = itemListaVagas.CompanyName.Name + "," + " \n" +
+							   "Segue abaixo a relação dos candidatos que de acordo com seu perfil estão aptos a vaga descrita:" + "(" + itemListaVagas.ProfileVacancy.Myprofile + ")" + "\n" +
+							  "classificada em ordem decrescente em relação aos que melhores se enquadram na vaga, caso queira analisar o perfil público" + "\n" +
+							  "do candidato clique no link correspondente. " + EmailsProfile;
+						WebMail.Send(itemListaVagas.CompanyName.Email, "Lista de Classificados pelo IdezJobs ", BodyMessageCompany);
 					}
 
 				}
 
+
 			}
 			return View( );
-
 		}
 
 	}

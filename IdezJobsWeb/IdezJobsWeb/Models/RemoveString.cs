@@ -19,7 +19,7 @@ namespace IdezJobsWeb.Models
 			                       "entre","mediante ",	"para","perante","por","salvo","sem","segundo","sob","sobre", "trás", "o",
 			                       "à","aos","às","de","do","da","dos", "das","dum","duma","duns","dumas",	"em", "no",	"na", "nos",
 			                       "num","numa","nuns", "numas","por","pelo","pela","pelos", "pelas","excepto","ao","nas","os",
-								   "uma","um", "uns", "umas", "que", "ou", "seu", "se"};
+								   "uma","um", "uns", "umas", "que", "ou", "seu", "se","é"};
 
 			string[] palavras = text.Split(new char[] { ' ' });
 			List<String> novas = new List<string>();

@@ -248,47 +248,42 @@ namespace IdezJobsWeb.Areas.Business.Controllers
 
 			string Description = (from c in _ContextDataVacancy.GetAll<Vacancy>( )
 								  .Where(x => x.Id == id)
-								  select c.Description.ToLower( )).First( );
-			string[] Letras = Description.Split(new char[] { ' ' });
+								  select c.KeyWords.ToLower( )).First( );
+			string[] Letras = Description.Split(new char[] { ',' });
 
 			IList<Profile> profileUser = _ContextDataVacancy.GetAll<Profile>( ).ToList( );
 			IList<Profile> listCopy = new List<Profile>( );
-			int achei = 0;
+
 
 			foreach (var item in profileUser)
 			{
 				string IntersectIndividual = (from c in _ContextDataVacancy.GetAll<Profile>( )
 								   .Where(x => x.Code == item.Code)
-											  select c.Interests.ToLower( )).First( );
-				string[] PalavrasInteresseIndividual = IntersectIndividual.Split(new char[] { ' ' });
-				foreach (var palavrasDaDescricao in Letras)
+											  select c.KeyWords.ToLower( )).First( );
+				if (IntersectIndividual != null)
 				{
 
-					foreach (var itemInteresse in PalavrasInteresseIndividual)
+					string[] PalavrasInteresseIndividual = IntersectIndividual.Split(new char[] { ',' });
+					foreach (var palavrasDaDescricao in Letras)
 					{
-						if (palavrasDaDescricao.Length > 2 && itemInteresse.Length > 2)
+
+						foreach (var itemInteresse in PalavrasInteresseIndividual)
 						{
+
 							var list = (from c in profileUser
 										where palavrasDaDescricao.ToLower( ).Contains(itemInteresse.ToLower( ))
 										select c).ToList( );
 
 							if (list.Count( ) > 0)
 							{
+
 								Profile profileShow = _ContextDataVacancy.Get<Profile>(item.Code);
-								//profileShow.FirstName = item.FirstName;
-								//profileShow.PublicUrl = item.PublicUrl;
-								//profileShow.Pontuacao = item.Pontuacao;
-								//profileShow.IdUser = item.IdUser;
-								//profileShow.Headline = item.Headline;
-								//profileShow.Industry = item.Industry;
-								//profileShow.Interests = item.Interests;
-								//profileShow.LastName = item.LastName;
-								//profileShow.PictureUrl = item.PictureUrl;
-								achei++;
+							
 								listCopy.Add(profileShow);
 							}
-						}
 
+
+						}
 					}
 				}
 			}
