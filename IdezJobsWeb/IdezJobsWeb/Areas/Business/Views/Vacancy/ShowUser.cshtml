@@ -13,9 +13,7 @@
 		<th>
 			Url Pública:
 		</th>
-		<th>
-			Interesses:
-		</th>
+		
 		<th>
 			Opções:
 		</th>
@@ -30,9 +28,7 @@
 			<td>
 				@Html.DisplayFor(modelItem => item.PublicUrl)
 			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.Interests)
-			</td>
+		
 			<td>
 				@Html.ActionLink("Enviar Email", "SendMailUser", new { Code = item.Code })
 			</td>

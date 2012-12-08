@@ -935,6 +935,7 @@
     <Content Include="Views\Account\undefined.cshtml" />
     <Content Include="Views\Home\Hire.cshtml" />
     <Content Include="Views\Home\listaPerfil.cshtml" />
+    <Content Include="Views\Account\LogOn1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\UploadLocalization.zh-CN.resx">

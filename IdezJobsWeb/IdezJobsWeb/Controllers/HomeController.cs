@@ -148,34 +148,41 @@ namespace IdezJobsWeb.Controllers
 											}
 										}
 									}
-									foreach (var itemEmail in listProfileCopy.Distinct( ))
-									{
-										WebMail.Send(itemEmail.EmailAddress, "Parabéns você esta concorrendo a vaga de " + itemListaVagas.ProfileVacancy.Myprofile, "Aguarde o contato da empresa " + itemListaVagas.CompanyName.Name);
-
-									}
-									var listScoreVacancy = (from sc in _ContextHire.GetAll<Score>( )
-													  .Where(x => x.ScoreVacancy.Id == itemListaVagas.Id && x.ScoreProfileUser.Code == itemProfile.Code)
-														join pf in _ContextHire.GetAll<Profile>( )
-														on sc.ScoreProfileUser.Code equals pf.Code
-														orderby sc.ScoreUser descending
-														select new { Nome = pf.FirstName, URLPública = pf.PublicUrl, Email = pf.EmailAddress + "</br>" });
-
-
-									EmailsProfile = String.Join(",", listScoreVacancy);
+									  //aqui estudante antes
+									
+									//estava aqui
 
 								}
-								
+
+								//agora envio de estudante
+								foreach (var itemEmail in listProfileCopy.Distinct( ))
+								{
+									WebMail.Send(itemEmail.EmailAddress, "Parabéns você esta concorrendo a vaga de " + itemListaVagas.ProfileVacancy.Myprofile, "Aguarde o contato da empresa " + itemListaVagas.CompanyName.Name);
+
+								}
 
 							}					
 
 							
 						}
+
+						var listScoreVacancy = (from sc in _ContextHire.GetAll<Score>( )
+													  .Where(x => x.ScoreVacancy.Id == itemListaVagas.Id )
+												join pf in _ContextHire.GetAll<Profile>( )
+												on sc.ScoreProfileUser.Code equals pf.Code
+												orderby sc.ScoreUser descending
+												select new { Nome = pf.FirstName, URLPública = pf.PublicUrl, Email = pf.EmailAddress + "</br>" });
+						if (listScoreVacancy.Count() > 0)
+						{
+
+						EmailsProfile = String.Join(",", listScoreVacancy);
 						
 						string BodyMessageCompany = itemListaVagas.CompanyName.Name + "," + " \n" +
 							   "Segue abaixo a relação dos candidatos que de acordo com seu perfil estão aptos a vaga descrita:" + "(" + itemListaVagas.ProfileVacancy.Myprofile + ")" + "\n" +
 							  "classificada em ordem decrescente em relação aos que melhores se enquadram na vaga, caso queira analisar o perfil público" + "\n" +
 							  "do candidato clique no link correspondente. " + EmailsProfile;
 						WebMail.Send(itemListaVagas.CompanyName.Email, "Lista de Classificados pelo IdezJobs ", BodyMessageCompany);
+						}
 					}
 
 				}
